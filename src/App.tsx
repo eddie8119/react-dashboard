@@ -1,16 +1,12 @@
 import "./App.css";
-
-import NavBar from "./components/navBar/NavBar";
-import SideBar from "./components/navBar/SideBar";
-import RightArea from "./components/global/RightArea";
+import { useRoutes } from "react-router-dom";
+import router from "./router";
 
 function App() {
+  const content = useRoutes(router);
+
   return (
-    <div className="h-screen w-screen flex flex-col md:flex-row">
-      <NavBar />
-      <SideBar />
-      <RightArea />
-    </div>
+    <div className="h-screen w-screen flex flex-col md:flex-row">{content}</div>
   );
 }
 

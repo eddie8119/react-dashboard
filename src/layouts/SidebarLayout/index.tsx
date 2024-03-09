@@ -1,6 +1,7 @@
-import NavList from "./NavList";
+import React from "react";
+// import NavList from "./NavList";
 
-const SideBar = () => {
+const SidebarLayout = () => {
   return (
     <div className="h-full bg-box-bg hidden md:block w-[260px]  flex-none p-[26px]">
       <div className="flex justify-between">
@@ -16,9 +17,9 @@ const SideBar = () => {
         </div>
       </div>
 
-      <NavList />
+      {/* <NavList /> */}
     </div>
   );
 };
 
-export default SideBar;
+export default SidebarLayout;

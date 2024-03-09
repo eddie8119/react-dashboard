@@ -6,8 +6,8 @@ interface ProgressCircleProps {
 }
 
 const ProgressCircle: FC<ProgressCircleProps> = ({ progress }) => {
-  const angle = (progress / 100) * 360;
-  const size = "40";
+  const angle: number = (progress / 100) * 360;
+  const size: number = 40;
 
   return (
     <Box
