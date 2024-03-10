@@ -1,7 +1,10 @@
-import React from "react";
+import { FC } from "react";
 
-const PageTitle = () => {
-  return <div>PageTitle</div>;
+interface PageTitleProps {
+  title: string;
+}
+const PageTitle: FC<PageTitleProps> = ({ title }) => {
+  return <h1 className="text-gray">{title}</h1>;
 };
 
 export default PageTitle;

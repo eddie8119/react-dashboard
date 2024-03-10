@@ -1,3 +1,5 @@
+import PageTitle from "./../../../components/PageTitle";
+
 interface ProjectList {
   id: number;
   name: string;
@@ -44,8 +46,8 @@ const projectLists: ProjectList[] = [
 
 const OverviewCase = () => {
   return (
-    <div className="w-full grid grid-cols-1 p-6">
-      <h1>目前專案列表</h1>
+    <div className="w-full h-full flex flex-col gap-6 p-6">
+      <PageTitle title="目前專案列表" />
       <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-3 ">
         {projectLists.map((data) => (
           <div
