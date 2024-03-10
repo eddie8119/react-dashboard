@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import ArchitectureIcon from "@mui/icons-material/Architecture";
+import { useTranslation } from "react-i18next";
 
 const navLists = [
   {
@@ -8,7 +9,7 @@ const navLists = [
     includeLists: [
       {
         id: 0,
-        index: "專案列表",
+        name: "專案列表",
         icon: ArchitectureIcon,
         url: "/",
       },
@@ -16,17 +17,17 @@ const navLists = [
   },
   {
     id: 1,
-    title: "規劃階段",
+    title: "planning-stage",
     includeLists: [
       {
         id: 0,
-        index: "材料圖書館",
+        name: "material-library",
         icon: ArchitectureIcon,
         url: "/plan/materiallibrary",
       },
       {
         id: 1,
-        index: "編輯預算",
+        name: "編輯預算",
         icon: ArchitectureIcon,
         url: "/plan/materialbudget",
       },
@@ -34,11 +35,11 @@ const navLists = [
   },
   {
     id: 2,
-    title: "工程階段",
+    title: "construction-stage",
     includeLists: [
       {
         id: 0,
-        index: "材料進貨",
+        name: "material-stock",
         icon: ArchitectureIcon,
         url: "/construction/materialstock",
       },
@@ -46,11 +47,11 @@ const navLists = [
   },
   {
     id: 3,
-    title: "完工階段",
+    title: "closeout-stage",
     includeLists: [
       {
         id: 0,
-        index: "專案利潤圖表",
+        name: "專案利潤圖表",
         icon: ArchitectureIcon,
         url: "/closeout/caseprofit",
       },
@@ -59,15 +60,19 @@ const navLists = [
 ];
 
 const SidebarMenu = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="grid grid-cols-1 gap-4">
       {navLists.map((navList) => (
         <ul key={navList.id}>
-          <p className="text-gray">{navList.title}</p>
+          {navList.title && (
+            <p className="text-gray">{t(`navLists.${navList.title}`)} </p>
+          )}
           {navList.includeLists.map((list) => (
             <li key={list.id} className="flex items-center gap-2 h-[45px]">
               <list.icon />
-              <Link to={list.url}>{list.index}</Link>
+              <Link to={list.url}>{list.name}</Link>
             </li>
           ))}
         </ul>
