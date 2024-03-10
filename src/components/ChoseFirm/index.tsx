@@ -12,23 +12,39 @@ const firmLists = [
   "油漆",
 ];
 
-const firmObjects = firmLists.map((firm, index) => ({
+interface FirmObject {
+  id: number;
+  name: string;
+}
+
+const handleFirmLists: FirmObject[] = firmLists.map((firm, index) => ({
   id: index,
   name: firm,
 }));
 
 const ChoseFirm = () => {
-  const [selectedFirms, setSelectedFirms] = useState([]);
+  const [selectedFirms, setSelectedFirms] = useState<string[]>([]);
+
+  const handleChoseFirm = (firmName: string) => {
+    setSelectedFirms((prevFirms) => {
+      if (prevFirms.includes(firmName)) {
+        return prevFirms.filter((firm) => firm !== firmName);
+      } else {
+        return [...prevFirms, firmName];
+      }
+    });
+  };
 
   return (
     <div>
       <h1 className="text-gray">選擇工程種類</h1>
 
       <div className="flex flex-wrap">
-        {firmObjects.map((firm) => (
+        {handleFirmLists.map((firm) => (
           <div
             key={firm.id}
             className="m-2 p-2 bg-box-bg cursor-pointer relative"
+            onClick={() => handleChoseFirm(firm.name)}
           >
             {firm.name}
             <div
