@@ -4,7 +4,7 @@ import ArchitectureIcon from "@mui/icons-material/Architecture";
 const navLists = [
   {
     id: 0,
-    title: "規劃階段",
+    title: "",
     includeLists: [
       {
         id: 0,
@@ -12,16 +12,22 @@ const navLists = [
         icon: ArchitectureIcon,
         url: "/",
       },
-      {
-        id: 1,
-        index: "新建專案",
-        icon: ArchitectureIcon,
-        url: "/createcase",
-      },
     ],
   },
   {
     id: 1,
+    title: "規劃階段",
+    includeLists: [
+      {
+        id: 0,
+        index: "編輯預算",
+        icon: ArchitectureIcon,
+        url: "/plan/materialbudget",
+      },
+    ],
+  },
+  {
+    id: 2,
     title: "工程階段",
     includeLists: [
       {
@@ -33,7 +39,7 @@ const navLists = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     title: "完工階段",
     includeLists: [
       {

@@ -23,7 +23,7 @@ const CreateProject: FC<FormProps> = ({ handleSubmitAddProject }) => {
       className="flex flex-col gap-3 w-[300px] bg-box-bg"
     >
       <label>
-        Name:
+        專案名稱:
         <input
           type="text"
           value={name}
@@ -32,7 +32,7 @@ const CreateProject: FC<FormProps> = ({ handleSubmitAddProject }) => {
       </label>
 
       <label>
-        Number:
+        專案編號:
         <input
           type="text"
           value={number}
