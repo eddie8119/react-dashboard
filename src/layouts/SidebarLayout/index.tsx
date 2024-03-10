@@ -1,6 +1,7 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import SidebarMenu from "./SidebarMenu";
+import Header from "./Header";
 
 const SidebarLayout = () => {
   return (
@@ -22,7 +23,10 @@ const SidebarLayout = () => {
           <SidebarMenu />
         </div>
       </div>
-      <Outlet />
+      <div className="flex flex-col w-full">
+        <Header />
+        <Outlet />
+      </div>
     </>
   );
 };

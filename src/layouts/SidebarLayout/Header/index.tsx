@@ -4,9 +4,9 @@ import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 
-const SettingHeader = () => {
+const Header = () => {
   return (
-    <div className="w-full h-10">
+    <div className="w-full h-10 bg-white">
       <Box display="flex">
         <IconButton>
           <NotificationsOutlinedIcon />
@@ -22,4 +22,4 @@ const SettingHeader = () => {
   );
 };
 
-export default SettingHeader;
+export default Header;
