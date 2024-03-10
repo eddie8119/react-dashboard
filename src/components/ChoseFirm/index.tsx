@@ -1,29 +1,14 @@
-import { useState } from "react";
-
-const firmLists = [
-  "拆除",
-  "機電",
-  "水電",
-  "地坪",
-  "泥做",
-  "門框",
-  "輕隔間",
-  "木做",
-  "油漆",
-];
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 interface FirmObject {
   id: number;
   name: string;
 }
 
-const handleFirmLists: FirmObject[] = firmLists.map((firm, index) => ({
-  id: index,
-  name: firm,
-}));
-
 const ChoseFirm = () => {
   const [selectedFirms, setSelectedFirms] = useState<string[]>([]);
+  const [firmLists, setFirmLists] = useState<FirmObject[]>([]);
 
   const handleChoseFirm = (firmName: string) => {
     setSelectedFirms((prevFirms) => {
@@ -35,12 +20,20 @@ const ChoseFirm = () => {
     });
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get("http://localhost:3000/firmLists");
+      setFirmLists(response.data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <div>
       <h1 className="text-gray">選擇工程種類</h1>
 
       <div className="flex flex-wrap">
-        {handleFirmLists.map((firm) => (
+        {firmLists.map((firm) => (
           <div
             key={firm.id}
             className="m-2 p-2 bg-box-bg cursor-pointer relative"

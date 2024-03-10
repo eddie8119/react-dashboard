@@ -10,7 +10,6 @@ const CreateProject: FC<FormProps> = ({ handleSubmitAddProject }) => {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    console.log("name", name);
     handleSubmitAddProject(name, number);
 
     setName("");

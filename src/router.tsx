@@ -4,10 +4,12 @@ import SidebarLayout from "./layouts/SidebarLayout";
 
 const OverviewCase = lazy(() => import("./content/dashboards/OverviewCase"));
 const CreateCase = lazy(() => import("./content/dashboards/CreateCase"));
+const ProjectPlan = lazy(() => import("./content/dashboards/ProjectPlan"));
+const MaterialStock = lazy(() => import("./content/dashboards/MaterialStock"));
+const CaseProfit = lazy(() => import("./content/dashboards/CaseProfit"));
 const MaterialLibrary = lazy(
   () => import("./content/dashboards/MaterialLibrary")
 );
-const ProjectPlan = lazy(() => import("./content/dashboards/ProjectPlan"));
 const ProjectConstruction = lazy(
   () => import("./content/dashboards/ProjectConstruction")
 );
@@ -17,8 +19,6 @@ const ProjectCloseout = lazy(
 const MaterialBudget = lazy(
   () => import("./content/dashboards/MaterialBudget")
 );
-const MaterialStock = lazy(() => import("./content/dashboards/MaterialStock"));
-const CaseProfit = lazy(() => import("./content/dashboards/CaseProfit"));
 
 const routers: RouteObject[] = [
   {
