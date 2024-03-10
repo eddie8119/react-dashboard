@@ -4,6 +4,8 @@ import SidebarLayout from "./layouts/SidebarLayout";
 
 const OverviewCase = lazy(() => import("./content/dashboards/OverviewCase"));
 const CreateCase = lazy(() => import("./content/dashboards/CreateCase"));
+const MaterialStock = lazy(() => import("./content/dashboards/MaterialStock"));
+const CaseProfit = lazy(() => import("./content/dashboards/CaseProfit"));
 
 const routers: RouteObject[] = [
   {
@@ -17,6 +19,26 @@ const routers: RouteObject[] = [
       {
         path: "createcase",
         element: <CreateCase />,
+      },
+    ],
+  },
+  {
+    path: "construction",
+    element: <SidebarLayout />,
+    children: [
+      {
+        path: "materialstock",
+        element: <MaterialStock />,
+      },
+    ],
+  },
+  {
+    path: "closeout",
+    element: <SidebarLayout />,
+    children: [
+      {
+        path: "caseprofit",
+        element: <CaseProfit />,
       },
     ],
   },

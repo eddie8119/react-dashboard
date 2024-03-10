@@ -1,5 +1,5 @@
 import { ResponsiveLine } from "@nivo/line";
-import { mockLineData } from "../data/chart";
+import { mockLineData } from "../temporaryStorage/chart";
 
 const RevenuePannel = () => {
   return (
