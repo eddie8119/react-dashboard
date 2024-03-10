@@ -1,6 +1,7 @@
 import PageTitle from "./../../../components/PageTitle";
 import CreateProject from "./CreateProject";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 interface ProjectList {
   id: number;
@@ -76,11 +77,33 @@ const OverviewCase = () => {
             key={data.id}
             className="flex h-[140px]  items-center justify-between bg-box-bg px-[30px]"
           >
-            <div className="flex flex-col ">
-              <p className="text font-bold text-gray">{data.number}</p>
-              <p className="text text-primary">{data.name}</p>
-              <p className="text text-primary">{data.status}</p>
-              <p className="text text-primary">{data.date}</p>
+            <div className="w-full flex justify-between">
+              <div className="flex flex-col ">
+                <p className="text font-bold text-gray">{data.number}</p>
+                <p className="text text-primary">{data.name}</p>
+                <p className="text text-primary">{data.status}</p>
+                <p className="text text-primary">{data.date}</p>
+              </div>
+              <div className="flex flex-col gap-2 ">
+                <Link
+                  to={`/plan/project/${data.id}`}
+                  className=" px-2 py-1 text-white bg-blue-500 rounded hover:bg-blue-700"
+                >
+                  預算
+                </Link>
+                <Link
+                  to={`/construction/project/${data.id}`}
+                  className=" px-2 py-1 text-white bg-blue-500 rounded hover:bg-blue-700"
+                >
+                  工程
+                </Link>
+                <Link
+                  to={`/closeout/project/${data.id}`}
+                  className=" px-2 py-1 text-white bg-blue-500 rounded hover:bg-blue-700"
+                >
+                  利潤
+                </Link>
+              </div>
             </div>
           </div>
         ))}

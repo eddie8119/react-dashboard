@@ -4,6 +4,16 @@ import SidebarLayout from "./layouts/SidebarLayout";
 
 const OverviewCase = lazy(() => import("./content/dashboards/OverviewCase"));
 const CreateCase = lazy(() => import("./content/dashboards/CreateCase"));
+const MaterialLibrary = lazy(
+  () => import("./content/dashboards/MaterialLibrary")
+);
+const ProjectPlan = lazy(() => import("./content/dashboards/ProjectPlan"));
+const ProjectConstruction = lazy(
+  () => import("./content/dashboards/ProjectConstruction")
+);
+const ProjectCloseout = lazy(
+  () => import("./content/dashboards/ProjectCloseout")
+);
 const MaterialBudget = lazy(
   () => import("./content/dashboards/MaterialBudget")
 );
@@ -30,8 +40,16 @@ const routers: RouteObject[] = [
     element: <SidebarLayout />,
     children: [
       {
+        path: "materiallibrary",
+        element: <MaterialLibrary />,
+      },
+      {
         path: "materialbudget",
         element: <MaterialBudget />,
+      },
+      {
+        path: "project/:id",
+        element: <ProjectPlan />,
       },
     ],
   },
@@ -43,6 +61,10 @@ const routers: RouteObject[] = [
         path: "materialstock",
         element: <MaterialStock />,
       },
+      {
+        path: "project/:id",
+        element: <ProjectConstruction />,
+      },
     ],
   },
   {
@@ -52,6 +74,10 @@ const routers: RouteObject[] = [
       {
         path: "caseprofit",
         element: <CaseProfit />,
+      },
+      {
+        path: "project/:id",
+        element: <ProjectCloseout />,
       },
     ],
   },

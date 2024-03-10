@@ -20,6 +20,12 @@ const navLists = [
     includeLists: [
       {
         id: 0,
+        index: "材料圖書館",
+        icon: ArchitectureIcon,
+        url: "/plan/materiallibrary",
+      },
+      {
+        id: 1,
         index: "編輯預算",
         icon: ArchitectureIcon,
         url: "/plan/materialbudget",
@@ -44,7 +50,7 @@ const navLists = [
     includeLists: [
       {
         id: 0,
-        index: "專案利潤",
+        index: "專案利潤圖表",
         icon: ArchitectureIcon,
         url: "/closeout/caseprofit",
       },
