@@ -1,7 +1,5 @@
-import React from "react";
-
 const CreateCase = () => {
-  return <div>CreateCase</div>;
+  return <p>222</p>;
 };
 
 export default CreateCase;

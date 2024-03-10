@@ -1,4 +1,6 @@
 import PageTitle from "./../../../components/PageTitle";
+import CreateProject from "./CreateProject";
+import { useState, useEffect } from "react";
 
 interface ProjectList {
   id: number;
@@ -9,7 +11,7 @@ interface ProjectList {
   number: string;
 }
 
-const projectLists: ProjectList[] = [
+const projectListsTest: ProjectList[] = [
   {
     id: 0,
     name: "Project 1",
@@ -45,9 +47,29 @@ const projectLists: ProjectList[] = [
 ];
 
 const OverviewCase = () => {
+  const [projectLists, setProjectLists] = useState<ProjectList[]>([]);
+
+  useEffect(() => {
+    setProjectLists(projectListsTest);
+  }, []);
+
+  const handleSubmitAddProject = (name: string, number: string) => {
+    const newProject: ProjectList = {
+      id: Date.now(),
+      name,
+      status: "Progress",
+      date: new Date().toISOString(),
+      picture: "",
+      number,
+    };
+
+    setProjectLists((prevProjectLists) => [...prevProjectLists, newProject]);
+  };
+
   return (
     <div className="w-full h-full flex flex-col gap-6 p-6">
       <PageTitle title="目前專案列表" />
+      <CreateProject handleSubmitAddProject={handleSubmitAddProject} />
       <div className="w-full grid grid-cols-1 md:grid-cols-4 gap-3 ">
         {projectLists.map((data) => (
           <div
