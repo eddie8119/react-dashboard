@@ -1,6 +1,6 @@
 import SettingHeader from "./SettingHeader";
 import TitleArea from "./TitleArea";
-import DashboardArea from "../dashboard/DashboardArea";
+import DashboardArea from "./DashboardArea";
 
 const RightArea = () => {
   return (
