@@ -1,26 +1,32 @@
-import { useState, FormEvent, FC } from "react";
+import { useState, FormEvent, FC } from 'react';
 
 interface FormProps {
-  handleSubmitAddProject: (name: string, number: string) => void;
+  handleSubmitAddProject: (
+    name: string,
+    number: string,
+    category: string,
+  ) => void;
 }
 
 const CreateProject: FC<FormProps> = ({ handleSubmitAddProject }) => {
-  const [name, setName] = useState("");
-  const [number, setNumber] = useState("");
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    handleSubmitAddProject(name, number);
+    handleSubmitAddProject(name, number, category);
 
-    setName("");
-    setNumber("");
+    setName('');
+    setNumber('');
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-3 w-[300px] bg-box-bg"
+      className="flex w-[300px] flex-col gap-3 bg-box-bg"
     >
+      <h3>創建專案</h3>
       <label>
         專案名稱:
         <input
@@ -38,6 +44,7 @@ const CreateProject: FC<FormProps> = ({ handleSubmitAddProject }) => {
           onChange={(e) => setNumber(e.target.value)}
         />
       </label>
+
       <input type="submit" value="創建" />
     </form>
   );

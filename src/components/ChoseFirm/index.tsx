@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
 interface FirmObject {
   id: number;
@@ -22,7 +22,7 @@ const ChoseFirm = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get("http://localhost:3000/firmLists");
+      const response = await axios.get('http://localhost:3000/firmLists');
       setFirmLists(response.data);
     };
     fetchData();
@@ -36,12 +36,12 @@ const ChoseFirm = () => {
         {firmLists.map((firm) => (
           <div
             key={firm.id}
-            className="m-2 p-2 bg-box-bg cursor-pointer relative"
+            className="relative m-2 cursor-pointer bg-box-bg p-2"
             onClick={() => handleChoseFirm(firm.name)}
           >
             {firm.name}
             <div
-              className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-3 h-3 rounded-full ${selectedFirms.includes(firm.name) ? "bg-green-500" : "bg-gray-500"}`}
+              className={`absolute bottom-0 left-1/2 h-3 w-3 -translate-x-1/2 transform rounded-full ${selectedFirms.includes(firm.name) ? 'bg-green-500' : 'bg-gray-500'}`}
             />
           </div>
         ))}

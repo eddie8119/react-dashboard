@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC } from 'react';
 
 interface TransactionsPannelProps {
   transactionsData: {
@@ -14,12 +14,12 @@ const TransactionsPannel: FC<TransactionsPannelProps> = ({
   transactionsData,
 }) => {
   return (
-    <div className="w-full lg:w-1/3   grid grid-cols-1 gap-2 overflow-y-auto">
-      <div className="text-gray bg-box-bg p-[15px]">Recent Transactions</div>
+    <div className="grid w-full   grid-cols-1 gap-2 overflow-y-auto lg:w-1/3">
+      <div className="bg-box-bg p-[15px] text-gray">Recent Transactions</div>
       {transactionsData.map((data) => (
         <div
           key={data.id}
-          className="w-full p-[15px] bg-box-bg flex justify-between items-center"
+          className="flex w-full items-center justify-between bg-box-bg p-[15px]"
         >
           <div className="flex flex-col">
             <p className="text-primary">{data.barcode}</p>
@@ -27,7 +27,7 @@ const TransactionsPannel: FC<TransactionsPannelProps> = ({
           </div>
 
           <p className="text-gray">{data.date}</p>
-          <p className="text-gray bg-primary py-[5px] px-[10px] rounded-md">
+          <p className="rounded-md bg-primary px-[10px] py-[5px] text-gray">
             ${data.price}
           </p>
         </div>

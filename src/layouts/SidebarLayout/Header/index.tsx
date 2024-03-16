@@ -1,12 +1,12 @@
-import { Box, IconButton } from "@mui/material";
+import { Box, IconButton } from '@mui/material';
 
-import NotificationsOutlinedIcon from "@mui/icons-material/NotificationsOutlined";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 
 const Header = () => {
   return (
-    <div className="w-full h-10 bg-white">
+    <div className="h-10 w-full bg-white">
       <Box display="flex">
         <IconButton>
           <NotificationsOutlinedIcon />

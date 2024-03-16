@@ -1,59 +1,59 @@
-import { Link } from "react-router-dom";
-import ArchitectureIcon from "@mui/icons-material/Architecture";
-import { useTranslation } from "react-i18next";
+import { Link } from 'react-router-dom';
+import ArchitectureIcon from '@mui/icons-material/Architecture';
+import { useTranslation } from 'react-i18next';
 
 const navLists = [
   {
     id: 0,
-    title: "",
+    title: '',
     includeLists: [
       {
         id: 0,
-        name: "專案列表",
+        name: '專案列表',
         icon: ArchitectureIcon,
-        url: "/",
+        url: '/',
       },
     ],
   },
   {
     id: 1,
-    title: "planning-stage",
+    title: 'planning-stage',
     includeLists: [
       {
         id: 0,
-        name: "material-library",
+        name: 'material-library',
         icon: ArchitectureIcon,
-        url: "/plan/materiallibrary",
+        url: '/plan/materiallibrary',
       },
       {
         id: 1,
-        name: "編輯預算",
+        name: '編輯預算',
         icon: ArchitectureIcon,
-        url: "/plan/materialbudget",
+        url: '/plan/materialbudget',
       },
     ],
   },
   {
     id: 2,
-    title: "construction-stage",
+    title: 'construction-stage',
     includeLists: [
       {
         id: 0,
-        name: "material-stock",
+        name: 'material-stock',
         icon: ArchitectureIcon,
-        url: "/construction/materialstock",
+        url: '/construction/materialstock',
       },
     ],
   },
   {
     id: 3,
-    title: "closeout-stage",
+    title: 'closeout-stage',
     includeLists: [
       {
         id: 0,
-        name: "專案利潤圖表",
+        name: '專案利潤圖表',
         icon: ArchitectureIcon,
-        url: "/closeout/caseprofit",
+        url: '/closeout/caseprofit',
       },
     ],
   },
@@ -70,7 +70,7 @@ const SidebarMenu = () => {
             <p className="text-gray">{t(`navLists.${navList.title}`)} </p>
           )}
           {navList.includeLists.map((list) => (
-            <li key={list.id} className="flex items-center gap-2 h-[45px]">
+            <li key={list.id} className="flex h-[45px] items-center gap-2">
               <list.icon />
               <Link to={list.url}>{list.name}</Link>
             </li>
