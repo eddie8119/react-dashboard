@@ -1,52 +1,77 @@
-import { useState, FormEvent, FC } from 'react';
+import { TextField, Stack, Button } from '@mui/material';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
 
-interface FormProps {
-  handleSubmitAddProject: (
-    name: string,
-    number: string,
-    category: string,
-  ) => void;
+interface FormValues {
+  name: string;
+  fileNumber: string;
+  category: string;
 }
 
-const CreateProject: FC<FormProps> = ({ handleSubmitAddProject }) => {
-  const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const [category, setCategory] = useState('');
+interface ProjectFormValues {
+  id: number;
+  name: string;
+  status: string;
+  date: string;
+  picture?: string;
+  fileNumber: string;
+  cost: number;
+  category: string;
+}
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    handleSubmitAddProject(name, number, category);
+const CreateProject = () => {
+  const form = useForm<FormValues>({
+    defaultValues: {
+      name: '',
+      fileNumber: '',
+      category: '',
+    },
+  });
 
-    setName('');
-    setNumber('');
+  const { register, handleSubmit } = form;
+
+  const onSubmit = async (data: FormValues) => {
+    const { name, fileNumber, category } = data;
+
+    const formData: ProjectFormValues = {
+      id: Date.now(),
+      name,
+      status: 'Progress',
+      date: new Date().toISOString(),
+      picture: '',
+      fileNumber,
+      cost: 0,
+      category,
+    };
+
+    try {
+      await axios.post('http://localhost:3000/projectListsTest', formData);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex w-[300px] flex-col gap-3 bg-box-bg"
-    >
-      <h3>創建專案</h3>
-      <label>
-        專案名稱:
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </label>
-
-      <label>
-        專案編號:
-        <input
-          type="text"
-          value={number}
-          onChange={(e) => setNumber(e.target.value)}
-        />
-      </label>
-
-      <input type="submit" value="創建" />
-    </form>
+    <>
+      <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        <Stack
+          spacing={2}
+          width={400}
+          className="border border-black bg-white p-5"
+        >
+          <TextField label="name" type="text" {...register('name')} />
+          <TextField
+            label="fileNumber"
+            type="text"
+            {...register('fileNumber')}
+          />
+          <TextField label="category" type="text" {...register('category')} />
+          <Button type="submit" variant="contained">
+            Create Project
+          </Button>
+        </Stack>
+      </form>
+    </>
   );
 };
 

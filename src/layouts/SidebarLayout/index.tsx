@@ -1,4 +1,3 @@
-import React from 'react';
 import { Outlet } from 'react-router-dom';
 import SidebarMenu from './SidebarMenu';
 import Header from './Header';
@@ -19,7 +18,7 @@ const SidebarLayout = () => {
           <SidebarMenu />
         </div>
       </div>
-      <div className="flex w-full flex-col">
+      <div className="flex w-full flex-col bg-white">
         <Header />
         <Outlet />
       </div>

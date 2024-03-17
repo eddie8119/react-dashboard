@@ -11,7 +11,7 @@ interface ProjectList {
   status: string;
   date: string;
   picture?: string;
-  number: string;
+  fileNumber: string;
   cost: number;
   category: string;
 }
@@ -19,24 +19,6 @@ interface ProjectList {
 const OverviewCase = () => {
   const [projectLists, setProjectLists] = useState<ProjectList[]>([]);
 
-  const handleSubmitAddProject = (
-    name: string,
-    number: string,
-    category: string,
-  ) => {
-    const newProject: ProjectList = {
-      id: Date.now(),
-      name,
-      status: 'Progress',
-      date: new Date().toISOString(),
-      picture: '',
-      number,
-      cost: 0,
-      category,
-    };
-
-    setProjectLists((prevProjectLists) => [...prevProjectLists, newProject]);
-  };
   const buttonLists = [
     { id: 1, name: 'budjet', link: '/plan/project' },
     { id: 2, name: 'construction', link: '/construction/project' },
@@ -56,8 +38,8 @@ const OverviewCase = () => {
 
   return (
     <div className="flex h-full w-full flex-col gap-6 p-6">
-      <PageTitle title="目前專案列表" />
-      <CreateProject handleSubmitAddProject={handleSubmitAddProject} />
+      <PageTitle title="Project List" />
+      <CreateProject />
       <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-3 ">
         {projectLists.map((data) => (
           <div
@@ -67,7 +49,7 @@ const OverviewCase = () => {
             <div className="flex w-full justify-between">
               <div className="flex flex-col ">
                 <p className="text font-bold text-gray">
-                  {data.number}-({data.category})
+                  {data.fileNumber}-({data.category})
                 </p>
                 <p className="text text-primary">{data.name}</p>
                 <p className="text text-primary">{data.status}</p>
