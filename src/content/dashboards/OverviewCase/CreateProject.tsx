@@ -1,5 +1,14 @@
-import { TextField, Stack, Button } from '@mui/material';
+import {
+  TextField,
+  Stack,
+  Button,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  Select,
+} from '@mui/material';
 import { useForm } from 'react-hook-form';
+
 import axios from 'axios';
 
 interface FormValues {
@@ -46,6 +55,8 @@ const CreateProject = () => {
 
     try {
       await axios.post('http://localhost:3000/projectListsTest', formData);
+      form.reset();
+      form.setValue('category', '');
     } catch (error) {
       console.error(error);
     }
@@ -65,7 +76,20 @@ const CreateProject = () => {
             type="text"
             {...register('fileNumber')}
           />
-          <TextField label="category" type="text" {...register('category')} />
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">category</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="category"
+              {...register('category')}
+            >
+              <MenuItem value="House">House</MenuItem>
+              <MenuItem value="Mansion">Mansion</MenuItem>
+              <MenuItem value="Commercial">Commercial</MenuItem>
+              <MenuItem value="Office">Office</MenuItem>
+            </Select>
+          </FormControl>
           <Button type="submit" variant="contained">
             Create Project
           </Button>

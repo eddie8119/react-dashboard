@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+import { MenuItem, InputLabel, FormControl, Select } from '@mui/material';
+
 import PageTitle from './../../../components/PageTitle';
 import CreateProject from './CreateProject';
 
@@ -19,12 +21,6 @@ interface ProjectList {
 const OverviewCase = () => {
   const [projectLists, setProjectLists] = useState<ProjectList[]>([]);
 
-  const buttonLists = [
-    { id: 1, name: 'budjet', link: '/plan/project' },
-    { id: 2, name: 'construction', link: '/construction/project' },
-    { id: 3, name: 'profit', link: '/closeout/project' },
-  ];
-
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
@@ -36,10 +32,33 @@ const OverviewCase = () => {
     fetchData();
   }, []);
 
+  const buttonLists = [
+    { id: 1, name: 'budjet', link: '/plan/project' },
+    { id: 2, name: 'construction', link: '/construction/project' },
+    { id: 3, name: 'profit', link: '/closeout/project' },
+  ];
+
   return (
     <div className="flex h-full w-full flex-col gap-6 p-6">
       <PageTitle title="Project List" />
       <CreateProject />
+      <div className="flex items-center">
+        <p className="text-black">Projeect Select</p>
+        <FormControl sx={{ m: 1, width: 150 }}>
+          <InputLabel id="demo-simple-select-label">category</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            label="category"
+            value="House"
+          >
+            <MenuItem value="House">House</MenuItem>
+            <MenuItem value="Mansion">Mansion</MenuItem>
+            <MenuItem value="Commercial">Commercial</MenuItem>
+            <MenuItem value="Office">Office</MenuItem>
+          </Select>
+        </FormControl>
+      </div>
       <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-3 ">
         {projectLists.map((data) => (
           <div
