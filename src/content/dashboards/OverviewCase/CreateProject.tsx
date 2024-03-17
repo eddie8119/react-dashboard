@@ -17,15 +17,12 @@ interface FormValues {
   category: string;
 }
 
-interface ProjectFormValues {
+interface ProjectFormValues extends FormValues {
   id: number;
-  name: string;
   status: string;
   date: string;
   picture?: string;
-  fileNumber: string;
   cost: number;
-  category: string;
 }
 
 const CreateProject = () => {
