@@ -6,6 +6,7 @@ import {
   InputLabel,
   FormControl,
   Select,
+  FormHelperText,
 } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
@@ -34,7 +35,8 @@ const CreateProject = () => {
     },
   });
 
-  const { register, handleSubmit } = form;
+  const { register, handleSubmit, formState } = form;
+  const { errors } = formState;
 
   const onSubmit = async (data: FormValues) => {
     const { name, fileNumber, category } = data;
@@ -67,25 +69,43 @@ const CreateProject = () => {
           width={400}
           className="border border-black bg-white p-5"
         >
-          <TextField label="name" type="text" {...register('name')} />
           <TextField
-            label="fileNumber"
+            label="Name"
             type="text"
-            {...register('fileNumber')}
+            {...register('name', {
+              required: 'Name is required',
+            })}
+            error={!!errors.name}
+            helperText={errors.name?.message}
+          />
+          <TextField
+            label="FileNumber"
+            type="text"
+            {...register('fileNumber', {
+              required: 'FileNumber is required',
+            })}
+            error={!!errors.fileNumber}
+            helperText={errors.fileNumber?.message}
           />
           <FormControl fullWidth>
-            <InputLabel id="demo-simple-select-label">category</InputLabel>
+            <InputLabel id="demo-simple-select-label">Category</InputLabel>
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              label="category"
-              {...register('category')}
+              label="Category"
+              {...register('category', {
+                required: 'Category is required',
+              })}
+              error={!!errors.category}
             >
               <MenuItem value="House">House</MenuItem>
               <MenuItem value="Mansion">Mansion</MenuItem>
               <MenuItem value="Commercial">Commercial</MenuItem>
               <MenuItem value="Office">Office</MenuItem>
             </Select>
+            {errors.category && (
+              <FormHelperText>{errors.category.message}</FormHelperText>
+            )}
           </FormControl>
           <Button type="submit" variant="contained">
             Create Project
