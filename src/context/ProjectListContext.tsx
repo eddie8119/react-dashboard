@@ -25,7 +25,12 @@ export const ProjectListProvider = ({ children }) => {
     });
   };
 
-  const value = { projectListsdata, handleChangeCategory, handleChangeKeyword };
+  const value = {
+    variables,
+    projectListsdata,
+    handleChangeCategory,
+    handleChangeKeyword,
+  };
 
   return (
     <ProjectListContext.Provider value={value}>

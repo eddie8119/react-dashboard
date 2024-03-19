@@ -1,9 +1,4 @@
-import { useReducer, ChangeEvent } from 'react';
-import useProjectListsQuery from '../../hooks/useProjectListsQuery';
-import ProjectFilterReducer, {
-  INITIAL_STATE,
-  ACTIONS,
-} from '../../reducers/ProjectFilterReducer';
+import { ChangeEvent } from 'react';
 import { useProjectList } from '../../context/ProjectListContext';
 
 import {
@@ -15,9 +10,8 @@ import {
 } from '@mui/material';
 
 const ProjectSelect = () => {
-  const { handleChangeCategory, handleChangeKeyword } = useProjectList();
-
-  const [variables] = useReducer(ProjectFilterReducer, INITIAL_STATE);
+  const { variables, handleChangeCategory, handleChangeKeyword } =
+    useProjectList();
 
   const changeCategory = (event: ChangeEvent<{ value: string }>) => {
     handleChangeCategory(event.target.value);

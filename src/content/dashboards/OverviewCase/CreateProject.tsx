@@ -87,7 +87,7 @@ const CreateProject = () => {
             error={!!errors.fileNumber}
             helperText={errors.fileNumber?.message}
           />
-          <FormControl fullWidth>
+          <FormControl fullWidth error={!!errors.category}>
             <InputLabel id="demo-simple-select-label">Category</InputLabel>
             <Select
               labelId="demo-simple-select-label"
