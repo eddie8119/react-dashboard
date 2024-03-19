@@ -1,19 +1,21 @@
-import { FC } from 'react';
 import { Link } from 'react-router-dom';
+import { useProjectList } from '../../context/ProjectListContext';
 
-interface ProjectListPanelProps {
-  dataSource: {
-    id: number;
-    name: string;
-    status: string;
-    date: string;
-    picture?: string;
-    fileNumber: string;
-    cost: number;
-    category: string;
-  }[];
+interface ProjectData {
+  id: number;
+  name: string;
+  status: string;
+  date: string;
+  picture?: string;
+  fileNumber: string;
+  cost: number;
+  category: string;
 }
-const ProjectListPanel: FC<ProjectListPanelProps> = ({ dataSource }) => {
+
+const ProjectListPanel = () => {
+  const { projectListsdata }: { projectListsdata: ProjectData[] } =
+    useProjectList();
+
   const buttonLists = [
     { id: 1, name: 'budjet', link: '/plan/project' },
     { id: 2, name: 'construction', link: '/construction/project' },
@@ -22,7 +24,7 @@ const ProjectListPanel: FC<ProjectListPanelProps> = ({ dataSource }) => {
 
   return (
     <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-3 ">
-      {dataSource.map((data) => (
+      {projectListsdata.map((data) => (
         <div
           key={data.id}
           className="flex h-[140px]  items-center justify-between bg-box-bg px-[30px]"

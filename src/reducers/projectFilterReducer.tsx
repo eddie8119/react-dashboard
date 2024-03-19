@@ -1,13 +1,30 @@
 // import { isUndefined } from 'lodash';
 
-const DEFAULT_PAGINATION = {
+interface Pagination {
+  current: number;
+  pageSize: number;
+  showSizeChanger: boolean;
+  pageSizeOptions: number[];
+}
+
+interface Filter {
+  keyword: string;
+  category: string;
+}
+
+interface State {
+  filter: Filter;
+  pagination: Pagination;
+}
+
+const DEFAULT_PAGINATION: Pagination = {
   current: 1,
   pageSize: 6,
   showSizeChanger: true,
   pageSizeOptions: [3, 6, 8],
 };
 
-export const INITIAL_STATE = {
+export const INITIAL_STATE: State = {
   filter: { keyword: '', category: 'All' },
   pagination: DEFAULT_PAGINATION,
 };
@@ -19,7 +36,7 @@ export const ACTIONS = {
   CHANGE_SORT: 'CHANGE_SORT',
 };
 
-const projectFilterReducer = (state, action) => {
+const ProjectFilterReducer = (state: State, action: any) => {
   switch (action.type) {
     case ACTIONS.CHANGE_KEYWORD:
       return {
@@ -47,4 +64,4 @@ const projectFilterReducer = (state, action) => {
   }
 };
 
-export default projectFilterReducer;
+export default ProjectFilterReducer;

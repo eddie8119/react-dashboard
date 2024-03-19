@@ -16,8 +16,6 @@ const useProjectListsQuery = (params) => {
   const { variables } = params;
   const { filter, pagination, sort } = variables;
 
-  console.log(filter.category);
-
   const [projectLists, setProjectLists] = useState<ProjectList[]>([]);
 
   useEffect(() => {
