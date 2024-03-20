@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useProjectList } from '../../context/ProjectListContext';
+import useDateHandler from '../../hooks/useDateHandler';
 
 interface ProjectData {
   id: number;
@@ -36,7 +37,7 @@ const ProjectListPanel = () => {
               </p>
               <p className="text text-primary">{data.name}</p>
               <p className="text text-primary">{data.status}</p>
-              <p className="text text-primary">{data.date}</p>
+              <p className="text text-primary">{useDateHandler(data.date)}</p>
               <p className="text text-primary">cost: {data.cost}</p>
             </div>
             <div className="flex flex-col gap-2 ">
