@@ -20,9 +20,7 @@ const useProjectListsQuery = (params) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        'http://localhost:3000/projectListsTest',
-      );
+      const response = await axios.get('http://localhost:3000/projectLists');
 
       setProjectLists(response.data);
     };

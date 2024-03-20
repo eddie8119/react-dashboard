@@ -53,7 +53,7 @@ const CreateProject = () => {
     };
 
     try {
-      await axios.post('http://localhost:3000/projectListsTest', formData);
+      await axios.post('http://localhost:3000/projectLists', formData);
       form.reset();
       form.setValue('category', '');
     } catch (error) {

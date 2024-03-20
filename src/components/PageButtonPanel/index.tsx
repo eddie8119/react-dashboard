@@ -10,7 +10,7 @@ const PageButtonPanel: FC<PageButtonPanelProps> = ({ projectId }) => {
 
   const removeProject = async (id: string) => {
     try {
-      await fetch(`http://localhost:3000/projectListsTest/${id}`, {
+      await fetch(`http://localhost:3000/projectLists/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

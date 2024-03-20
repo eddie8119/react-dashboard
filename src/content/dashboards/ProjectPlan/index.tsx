@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import PageTitle from './../../../components/PageTitle';
 import PageButtonPanel from './../../../components/PageButtonPanel';
 import ChoseFirm from '../../../components/ChoseFirm';
+import CreateFirmTask from './CreateFirmTask';
 
 const ProjectPlan = () => {
   const { id } = useParams();
@@ -15,6 +16,7 @@ const ProjectPlan = () => {
 
       <p>建立工程種類</p>
       <ChoseFirm />
+      <CreateFirmTask projectId={id} />
     </div>
   );
 };
