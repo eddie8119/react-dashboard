@@ -1,12 +1,29 @@
 import { useEffect, useState, FC } from 'react';
 import axios from 'axios';
 
+import FirmTaskPanel from './FirmTaskPanel';
+
 interface CreateFirmTaskProps {
   projectId: string;
 }
+interface Task {
+  id: number;
+  todo: string;
+  uint: string;
+  quantity: number;
+  stock: number;
+  cost: number;
+  price: number;
+}
+
+interface FirmTask {
+  id: number;
+  name: string;
+  tasks: Task[];
+}
 
 const CreateFirmTask: FC<CreateFirmTaskProps> = ({ projectId }) => {
-  const [firmTaskLists, setFirmTaskLists] = useState('');
+  const [firmTaskLists, setFirmTaskLists] = useState<FirmTask[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,14 +40,8 @@ const CreateFirmTask: FC<CreateFirmTaskProps> = ({ projectId }) => {
     <div>
       <h1 className="text-black">Create Firm Task</h1>
       <div className="flex gap-4 ">
-        {firmTaskLists.map((firmTask) => (
-          <div
-            key={firmTask.id}
-            className="grid w-[300px] grid-cols-1 gap-2 bg-box-bg p-4"
-          >
-            <h1 className="text-center">{firmTask.name}</h1>
-            <p> construction item: </p>
-          </div>
+        {firmTaskLists.map((firmTask: FirmTask) => (
+          <FirmTaskPanel firmTask={firmTask} firmId={projectId} />
         ))}
       </div>
     </div>

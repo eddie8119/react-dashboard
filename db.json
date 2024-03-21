@@ -1,4 +1,18 @@
 {
+  "uintLists": [
+    {
+      "id": 0,
+      "uint": "cm"
+    },
+    {
+      "id": 1,
+      "uint": "m"
+    },
+    {
+      "id": 2,
+      "uint": "m2"
+    }
+  ],
   "firmLists": [
     {
       "id": 0,
@@ -37,7 +51,7 @@
       "name": "油漆"
     }
   ],
-  "projectListsTest": [
+  "projectLists": [
     {
       "id": 0,
       "name": "Project 1",
@@ -89,26 +103,6 @@
       "category": "Mansion"
     },
     {
-      "id": 1710648229811,
-      "name": "yy",
-      "status": "Progress",
-      "date": "2024-03-17T04:03:49.811Z",
-      "picture": "",
-      "fileNumber": "5555",
-      "cost": 0,
-      "category": "Commercial"
-    },
-    {
-      "id": 1710648691454,
-      "name": "55",
-      "status": "Progress",
-      "date": "2024-03-17T04:11:31.454Z",
-      "picture": "",
-      "fileNumber": "667",
-      "cost": 0,
-      "category": "Office"
-    },
-    {
       "id": 1710648886186,
       "name": "王旌",
       "status": "Progress",
@@ -117,6 +111,55 @@
       "fileNumber": "55",
       "cost": 0,
       "category": "House"
+    }
+  ],
+  "project0": [
+    {
+      "id": 2,
+      "name": "水電",
+      "task": [
+        {
+          "id": 0,
+          "todo": "消防",
+          "uint": "units",
+          "quantity": 10,
+          "stock": 0,
+          "cost": 5000,
+          "price": 8000
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "name": "木做",
+      "task": [
+        {
+          "id": 0,
+          "todo": "木門",
+          "uint": "units",
+          "quantity": 10,
+          "stock": 0,
+          "cost": 5000,
+          "price": 8000
+        }
+      ]
+    }
+  ],
+  "project1": [
+    {
+      "id": 7,
+      "name": "木做",
+      "task": [
+        {
+          "id": 0,
+          "todo": "木門",
+          "uint": "units",
+          "quantity": 12,
+          "stock": 0,
+          "cost": 5000,
+          "price": 8000
+        }
+      ]
     }
   ]
 }

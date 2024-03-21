@@ -1,3 +1,6 @@
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+
 import {
   TextField,
   Stack,
@@ -8,9 +11,6 @@ import {
   Select,
   FormHelperText,
 } from '@mui/material';
-import { useForm } from 'react-hook-form';
-
-import axios from 'axios';
 
 interface FormValues {
   name: string;
@@ -35,8 +35,11 @@ const CreateProject = () => {
     },
   });
 
-  const { register, handleSubmit, formState } = form;
-  const { errors } = formState;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = form;
 
   const onSubmit = async (data: FormValues) => {
     const { name, fileNumber, category } = data;
@@ -57,7 +60,7 @@ const CreateProject = () => {
       form.reset();
       form.setValue('category', '');
     } catch (error) {
-      console.error(error);
+      throw new Error(String(error));
     }
   };
 
@@ -88,10 +91,10 @@ const CreateProject = () => {
             helperText={errors.fileNumber?.message}
           />
           <FormControl fullWidth error={!!errors.category}>
-            <InputLabel id="demo-simple-select-label">Category</InputLabel>
+            <InputLabel id="type-select-label">Category</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              labelId="type-select-label"
+              id="type-select"
               label="Category"
               {...register('category', {
                 required: 'Category is required',
