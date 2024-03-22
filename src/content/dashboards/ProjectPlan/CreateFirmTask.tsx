@@ -19,7 +19,7 @@ interface Task {
 interface FirmTask {
   id: number;
   name: string;
-  tasks: Task[];
+  taskLists: Task[];
 }
 
 const CreateFirmTask: FC<CreateFirmTaskProps> = ({ projectId }) => {

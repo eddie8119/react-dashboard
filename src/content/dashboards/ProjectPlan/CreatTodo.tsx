@@ -31,7 +31,7 @@ interface FirmTaskPanelProps {
   firmTask: {
     id: number;
     name: string;
-    tasks: Task[];
+    taskLists: Task[];
   };
 }
 
