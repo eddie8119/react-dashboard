@@ -37,6 +37,7 @@ const OverviewCase = () => {
           Create Project
         </Button>
 
+        {/* 彈窗 */}
         <Dialog
           open={openCreateProject}
           onClose={handleCreateProjectClose}
@@ -56,7 +57,9 @@ const OverviewCase = () => {
           </DialogTitle>
 
           <DialogContent>
-            <CreateProject />
+            <CreateProject
+              handleCreateProjectClose={handleCreateProjectClose}
+            />
           </DialogContent>
         </Dialog>
 

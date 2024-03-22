@@ -25,7 +25,7 @@ const useProjectListsQuery = (params) => {
       setProjectLists(response.data);
     };
     fetchData();
-  }, []);
+  }, [variables]);
 
   const projectListsHandle = projectLists
     .filter((project) => {

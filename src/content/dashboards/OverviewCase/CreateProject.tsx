@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
+import { useProjectList } from '../../../context/ProjectListContext';
 
 import {
   TextField,
@@ -26,7 +27,11 @@ interface ProjectFormValues extends FormValues {
   cost: number;
 }
 
-const CreateProject = () => {
+const CreateProject = ({
+  handleCreateProjectClose,
+}: {
+  handleCreateProjectClose: () => void;
+}) => {
   const form = useForm<FormValues>({
     defaultValues: {
       name: '',
@@ -40,6 +45,14 @@ const CreateProject = () => {
     handleSubmit,
     formState: { errors },
   } = form;
+
+  const {
+    handleChangeCategory,
+  }: { handleChangeCategory: (data: string) => void } = useProjectList();
+
+  const initProjectList = () => {
+    handleChangeCategory('All');
+  };
 
   const onSubmit = async (data: FormValues) => {
     const { name, fileNumber, category } = data;
@@ -59,6 +72,8 @@ const CreateProject = () => {
       await axios.post('http://localhost:3000/projectLists', formData);
       form.reset();
       form.setValue('category', '');
+      initProjectList(); // 觸發刷新ProjectList
+      handleCreateProjectClose();
     } catch (error) {
       throw new Error(String(error));
     }
