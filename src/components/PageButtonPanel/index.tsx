@@ -1,22 +1,18 @@
 import { FC } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 interface PageButtonPanelProps {
   projectId: string;
 }
 
 const PageButtonPanel: FC<PageButtonPanelProps> = ({ projectId }) => {
-  // const history = useHistory();
+  const navigate = useNavigate();
 
-  const removeProject = async (id: string) => {
+  const removeProject = async (id: string): Promise<void> => {
     try {
-      await fetch(`http://localhost:3000/projectLists/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      // history.push('/');
+      await axios.delete(`http://localhost:3000/projectLists/${id}`);
+      navigate('/');
     } catch (error) {
       console.error(error);
     }
