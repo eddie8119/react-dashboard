@@ -1,69 +1,87 @@
 {
   "uintLists": [
     {
-      "id": 0,
+      "id": "0",
       "uint": "cm"
     },
     {
-      "id": 1,
+      "id": "1",
       "uint": "m"
     },
     {
-      "id": 2,
+      "id": "2",
       "uint": "m2"
+    }
+  ],
+  "projectTypeLists": [
+    {
+      "id": "0",
+      "name": "House"
+    },
+    {
+      "id": "1",
+      "name": "Mansion"
+    },
+    {
+      "id": "2",
+      "name": "Commercial"
+    },
+    {
+      "id": "3",
+      "name": "Office"
     }
   ],
   "firmLists": [
     {
-      "id": 0,
+      "id": "0",
       "name": "拆除"
     },
     {
-      "id": 1,
+      "id": "1",
       "name": "機電"
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "水電"
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "地坪"
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "泥做"
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "門框"
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "輕隔間"
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "木做"
     },
     {
-      "id": 8,
+      "id": "8",
       "name": "油漆"
     }
   ],
   "projectLists": [
     {
-      "id": 0,
-      "name": "Project 1",
-      "status": "Progress",
+      "name": "Project 1888",
+      "status": "Completed",
+      "fileNumber": "001",
+      "category": "Mansion",
+      "id": "0",
       "date": "2023-09-01",
       "picture": " ",
-      "fileNumber": "001",
-      "cost": 1000000,
-      "category": "House"
+      "cost": 1000000
     },
     {
-      "id": 1,
+      "id": "1",
       "name": "Project 2",
       "status": "Completed",
       "date": "2023-09-05",
@@ -73,17 +91,17 @@
       "category": "Commercial"
     },
     {
-      "id": 2,
-      "name": "Project 3",
+      "name": "Project 35",
       "status": "Pending",
+      "fileNumber": "003",
+      "category": "House",
+      "id": "2",
       "date": "2023-09-10",
       "picture": " ",
-      "fileNumber": "003",
-      "cost": 1000000,
-      "category": "House"
+      "cost": 1000000
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "Project 4",
       "status": "Pending",
       "date": "2023-09-10",
@@ -93,31 +111,31 @@
       "category": "House"
     },
     {
-      "id": 1710612610333,
+      "id": "1711119785138",
       "name": "王旌",
       "status": "Progress",
-      "date": "2024-03-16T18:10:10.333Z",
+      "date": "2024-03-22T15:03:05.138Z",
       "picture": "",
-      "fileNumber": "0055",
+      "fileNumber": "5555",
       "cost": 0,
       "category": "Mansion"
     },
     {
-      "id": 1710648886186,
-      "name": "王旌",
+      "id": "1711119810420",
+      "name": "5",
       "status": "Progress",
-      "date": "2024-03-17T04:14:46.186Z",
+      "date": "2024-03-22T15:03:30.420Z",
       "picture": "",
-      "fileNumber": "55",
+      "fileNumber": "5555",
       "cost": 0,
-      "category": "House"
+      "category": "Mansion"
     }
   ],
   "project0": [
     {
-      "id": 2,
+      "id": "2",
       "name": "水電",
-      "task": [
+      "taskLists": [
         {
           "id": 0,
           "todo": "消防",
@@ -126,13 +144,22 @@
           "stock": 0,
           "cost": 5000,
           "price": 8000
+        },
+        {
+          "id": 2,
+          "todo": "冷熱水管",
+          "uint": "",
+          "quantity": 0,
+          "stock": 0,
+          "cost": 0,
+          "price": 0
         }
       ]
     },
     {
-      "id": 7,
+      "id": "7",
       "name": "木做",
-      "task": [
+      "taskLists": [
         {
           "id": 0,
           "todo": "木門",
@@ -147,9 +174,9 @@
   ],
   "project1": [
     {
-      "id": 7,
+      "id": "7",
       "name": "木做",
-      "task": [
+      "taskLists": [
         {
           "id": 0,
           "todo": "木門",

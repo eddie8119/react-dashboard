@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useProjectList } from '../../../context/ProjectListContext';
@@ -26,12 +27,19 @@ interface ProjectFormValues extends FormValues {
   picture?: string;
   cost: number;
 }
+type ProjectTypeLists = {
+  id: number;
+  name: string;
+};
 
 const CreateProject = ({
   handleCreateProjectClose,
 }: {
   handleCreateProjectClose: () => void;
 }) => {
+  const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeLists[]>(
+    [],
+  );
   const form = useForm<FormValues>({
     defaultValues: {
       name: '',
@@ -79,6 +87,16 @@ const CreateProject = ({
     }
   };
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(
+        'http://localhost:3000/projectTypeLists',
+      );
+      setProjectTypeLists(response.data);
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <form noValidate onSubmit={handleSubmit(onSubmit)}>
@@ -116,10 +134,11 @@ const CreateProject = ({
               })}
               error={!!errors.category}
             >
-              <MenuItem value="House">House</MenuItem>
-              <MenuItem value="Mansion">Mansion</MenuItem>
-              <MenuItem value="Commercial">Commercial</MenuItem>
-              <MenuItem value="Office">Office</MenuItem>
+              {projectTypeLists.map((item) => (
+                <MenuItem key={item.id} value={item.name}>
+                  {item.name}
+                </MenuItem>
+              ))}
             </Select>
             {errors.category && (
               <FormHelperText>{errors.category.message}</FormHelperText>

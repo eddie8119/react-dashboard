@@ -1,11 +1,12 @@
 import { useParams } from 'react-router-dom';
 import PageTitle from './../../../components/PageTitle';
 import PageButtonPanel from './../../../components/PageButtonPanel';
+import EditProjectInfo from './EditProjectInfo';
 import ChoseFirm from '../../../components/ChoseFirm';
 import CreateFirmTask from './CreateFirmTask';
 
 const ProjectPlan = () => {
-  const { id } = useParams();
+  const { id = '' }: { id?: string } = useParams();
 
   return (
     <div className="flex h-full w-full flex-col gap-6 p-6">
@@ -13,8 +14,8 @@ const ProjectPlan = () => {
         <PageTitle title={`專案名稱: ${id}`} />
         <PageButtonPanel projectId={id} />
       </div>
+      <EditProjectInfo projectId={id} />
 
-      <p>建立工程種類</p>
       <ChoseFirm />
       <CreateFirmTask projectId={id} />
     </div>
