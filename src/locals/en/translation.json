@@ -2,6 +2,13 @@
   "navLists": {
     "planning-stage": "Planning Stage",
     "construction-stage": "Construction Stage",
-    "closeout-stage": "Closeout Stage"
+    "closeout-stage": "Closeout Stage",
+    "sublink": {
+      "projects-overview": "projects-overview",
+      "material-library": "Material Library",
+      "edit-budget": "Edit Budget",
+      "material-stock": "Material Stock",
+      "project-profit": "Project Profit"
+    }
   }
 }

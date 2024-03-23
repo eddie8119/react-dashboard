@@ -9,7 +9,7 @@ const navLists = [
     includeLists: [
       {
         id: 0,
-        name: '專案列表',
+        name: 'projects-overview',
         icon: ArchitectureIcon,
         url: '/',
       },
@@ -27,7 +27,7 @@ const navLists = [
       },
       {
         id: 1,
-        name: '編輯預算',
+        name: 'edit-budget',
         icon: ArchitectureIcon,
         url: '/plan/materialbudget',
       },
@@ -51,7 +51,7 @@ const navLists = [
     includeLists: [
       {
         id: 0,
-        name: '專案利潤圖表',
+        name: 'project-profit',
         icon: ArchitectureIcon,
         url: '/closeout/caseprofit',
       },
@@ -67,12 +67,12 @@ const SidebarMenu = () => {
       {navLists.map((navList) => (
         <ul key={navList.id}>
           {navList.title && (
-            <p className="text-gray">{t(`navLists.${navList.title}`)} </p>
+            <p className="text-gray">{t(`navLists.${navList.title}`)}</p>
           )}
           {navList.includeLists.map((list) => (
             <li key={list.id} className="flex h-[45px] items-center gap-2">
               <list.icon />
-              <Link to={list.url}>{list.name}</Link>
+              <Link to={list.url}>{t(`navLists.sublink.${list.name}`)}</Link>
             </li>
           ))}
         </ul>

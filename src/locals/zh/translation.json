@@ -3,9 +3,12 @@
     "planning-stage": "規劃階段",
     "construction-stage": "工程階段",
     "closeout-stage": "完工階段",
-    "material-library": "材料圖書館",
-    "material-stock": "材料進貨",
-    "planning-stage-2": "編輯預算",
-    "planning-stage-4": "專案利潤圖表"
+    "sublink": {
+      "projects-overview": "專案列表",
+      "material-library": "材料圖書館",
+      "edit-budget": "編輯預算",
+      "material-stock": "材料進貨",
+      "project-profit": "專案利潤圖表"
+    }
   }
 }
