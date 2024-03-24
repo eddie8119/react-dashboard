@@ -1,13 +1,26 @@
-import { createContext, useReducer, useContext } from 'react';
+import { createContext, useReducer, useContext, FC, ReactNode } from 'react';
 import ProjectFilterReducer, {
   INITIAL_STATE,
   ACTIONS,
 } from '../reducers/ProjectFilterReducer';
 import useProjectListsQuery from '../hooks/useProjectListsQuery';
 
+interface ProjectListProviderProps {
+  children: ReactNode;
+}
+
+interface ProjectListContextType {
+  variables: any;
+  projectListsdata: any;
+  handleChangeCategory: (data: string) => void;
+  handleChangeKeyword: (data: string) => void;
+}
+
 export const ProjectListContext = createContext(INITIAL_STATE);
 
-export const ProjectListProvider = ({ children }) => {
+export const ProjectListProvider: FC<ProjectListProviderProps> = ({
+  children,
+}) => {
   const [variables, dispatch] = useReducer(ProjectFilterReducer, INITIAL_STATE);
   const { projectListsdata } = useProjectListsQuery({ variables });
 
@@ -25,7 +38,7 @@ export const ProjectListProvider = ({ children }) => {
     });
   };
 
-  const value = {
+  const value: ProjectListContextType = {
     variables,
     projectListsdata,
     handleChangeCategory,

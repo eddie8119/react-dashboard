@@ -24,6 +24,12 @@ interface FirmTask {
 
 const CreateFirmTask: FC<CreateFirmTaskProps> = ({ projectId }) => {
   const [firmTaskLists, setFirmTaskLists] = useState<FirmTask[]>([]);
+  const [updateFirmTaskLists, setUpdateFirmTaskLists] =
+    useState<boolean>(false);
+
+  const handlerSetUpdateFirmTaskLists = () => {
+    setUpdateFirmTaskLists((prev) => !prev);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +40,7 @@ const CreateFirmTask: FC<CreateFirmTaskProps> = ({ projectId }) => {
       setFirmTaskLists(response.data);
     };
     fetchData();
-  }, []);
+  }, [updateFirmTaskLists]);
 
   return (
     <div>

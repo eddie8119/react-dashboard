@@ -17,24 +17,6 @@ interface UintList {
   uint: string;
 }
 
-interface Task {
-  id: number;
-  todo: string;
-  uint: string;
-  quantity: number;
-  stock: number;
-  cost: number;
-  price: number;
-}
-
-interface FirmTaskPanelProps {
-  firmTask: {
-    id: number;
-    name: string;
-    taskLists: Task[];
-  };
-}
-
 interface FormValues {
   todo: string;
   quantity: number;
@@ -77,8 +59,10 @@ const CreatTodo = () => {
       price: 0,
     };
 
+    // 過濾id 找到供向 -> 改成整個物件傳進來 -> 複製一份taskLists - > push進taskLists ->
+
     try {
-      // await axios.post('http://localhost:3000/project0', formData);
+      await axios.post('http://localhost:3000/project0', formData);
       form.reset();
       form.setValue('uint', '');
     } catch (error) {
@@ -122,7 +106,7 @@ const CreatTodo = () => {
             <Select
               labelId="uint-select-label"
               id="uint-select"
-              label="uint"
+              label="Uint"
               {...register('uint')}
             >
               {uintLists.map((item) => (

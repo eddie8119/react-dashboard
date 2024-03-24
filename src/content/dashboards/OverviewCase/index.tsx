@@ -17,11 +17,11 @@ import ClearIcon from '@mui/icons-material/Clear';
 const OverviewCase = () => {
   const [openCreateProject, setOpenCreateProject] = useState<boolean>(false);
 
-  const handleCreateProjectOpen = () => {
+  const handleCreateProjectOpen: () => void = () => {
     setOpenCreateProject(true);
   };
 
-  const handleCreateProjectClose = () => {
+  const handleCreateProjectClose: () => void = () => {
     setOpenCreateProject(false);
   };
 
