@@ -2,7 +2,7 @@ import { createContext, useReducer, useContext, FC, ReactNode } from 'react';
 import ProjectFilterReducer, {
   INITIAL_STATE,
   ACTIONS,
-} from '../reducers/ProjectFilterReducer';
+} from '../reducers/projectFilterReducer';
 import useProjectListsQuery from '../hooks/useProjectListsQuery';
 
 interface ProjectListProviderProps {
