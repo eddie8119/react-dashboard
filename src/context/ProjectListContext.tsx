@@ -4,19 +4,33 @@ import ProjectFilterReducer, {
   ACTIONS,
 } from '../reducers/projectFilterReducer';
 import useProjectListsQuery from '../hooks/useProjectListsQuery';
+import { IntState } from '../reducers/projectFilterReducer';
 
 interface ProjectListProviderProps {
   children: ReactNode;
 }
 
 interface ProjectListContextType {
-  variables: any;
-  projectListsdata: any;
+  variables: IntState;
+  projectListsdata: ProjectData[];
   handleChangeCategory: (data: string) => void;
   handleChangeKeyword: (data: string) => void;
 }
 
-export const ProjectListContext = createContext(INITIAL_STATE);
+export const ProjectListContext = createContext<ProjectListContextType>({
+  variables: {
+    filter: { keyword: '', category: '' },
+    pagination: {
+      current: 0,
+      pageSize: 0,
+      showSizeChanger: true,
+      pageSizeOptions: [],
+    },
+  },
+  projectListsdata: [],
+  handleChangeCategory: () => {},
+  handleChangeKeyword: () => {},
+});
 
 export const ProjectListProvider: FC<ProjectListProviderProps> = ({
   children,
@@ -24,14 +38,14 @@ export const ProjectListProvider: FC<ProjectListProviderProps> = ({
   const [variables, dispatch] = useReducer(ProjectFilterReducer, INITIAL_STATE);
   const { projectListsdata } = useProjectListsQuery({ variables });
 
-  const handleChangeCategory = (data: string) => {
+  const handleChangeCategory = (data: string): void => {
     dispatch({
       type: ACTIONS.CHANGE_CATEGORY,
       payload: { category: data },
     });
   };
 
-  const handleChangeKeyword = (data: string) => {
+  const handleChangeKeyword = (data: string): void => {
     dispatch({
       type: ACTIONS.CHANGE_KEYWORD,
       payload: { keyword: data },
