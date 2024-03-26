@@ -11,16 +11,16 @@ interface Filter {
   keyword: string;
   category: string;
 }
-interface IntState {
+export interface IntState {
   filter: Filter;
   pagination: Pagination;
 }
 
 interface Payload {
-  category: string;
-  keyword: string;
-  pagination: number[];
-  sort: string;
+  category?: string;
+  keyword?: string;
+  pagination?: number[];
+  sort?: string;
 }
 
 interface Action {
