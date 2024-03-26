@@ -2,20 +2,8 @@ import { Link } from 'react-router-dom';
 import { useProjectList } from '../../context/ProjectListContext';
 import useDateHandler from '../../hooks/useDateHandler';
 
-interface ProjectData {
-  id: number;
-  name: string;
-  status: string;
-  date: string;
-  picture?: string;
-  fileNumber: string;
-  cost: number;
-  category: string;
-}
-
 const ProjectListPanel = () => {
-  const { projectListsdata }: { projectListsdata: ProjectData[] } =
-    useProjectList();
+  const { projectListsdata } = useProjectList();
 
   const buttonLists = [
     { id: 1, name: 'budjet', link: '/plan/project' },
