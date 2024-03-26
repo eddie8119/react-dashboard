@@ -11,10 +11,21 @@ interface Filter {
   keyword: string;
   category: string;
 }
-
-interface State {
+interface IntState {
   filter: Filter;
   pagination: Pagination;
+}
+
+interface Payload {
+  category: string;
+  keyword: string;
+  pagination: number[];
+  sort: string;
+}
+
+interface Action {
+  payload: Payload;
+  type: string;
 }
 
 const DEFAULT_PAGINATION: Pagination = {
@@ -24,7 +35,7 @@ const DEFAULT_PAGINATION: Pagination = {
   pageSizeOptions: [3, 6, 8],
 };
 
-export const INITIAL_STATE: State = {
+export const INITIAL_STATE: IntState = {
   filter: { keyword: '', category: 'All' },
   pagination: DEFAULT_PAGINATION,
 };
@@ -36,7 +47,7 @@ export const ACTIONS = {
   CHANGE_SORT: 'CHANGE_SORT',
 };
 
-const ProjectFilterReducer = (state: State, action: any) => {
+const ProjectFilterReducer = (state: IntState, action: Action) => {
   switch (action.type) {
     case ACTIONS.CHANGE_KEYWORD:
       return {
