@@ -23,13 +23,6 @@ interface FormValues {
   uint: string;
 }
 
-interface TodoFormValues extends FormValues {
-  id: number;
-  stock: number;
-  cost: number;
-  price: number;
-}
-
 const CreatTodo = () => {
   const [uintLists, setUintLists] = useState<UintList[]>([]);
 
@@ -49,7 +42,7 @@ const CreatTodo = () => {
 
   const onTodoSubmit = async (data: FormValues) => {
     const { todo, quantity, uint } = data;
-    const formData: TodoFormValues = {
+    const formData: TaskData = {
       id: Date.now(),
       todo,
       quantity,
