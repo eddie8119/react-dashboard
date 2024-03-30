@@ -1,5 +1,6 @@
-import { useEffect, useState, FC } from 'react';
+import { useEffect, useState, useContext, FC } from 'react';
 import { useForm } from 'react-hook-form';
+import ProjectContext from '../../../context/ProjectContext';
 import axios from 'axios';
 
 import {
@@ -14,7 +15,6 @@ import {
 
 interface EditProjectInfoProps {
   projectId: string;
-  projectInfo: ProjectData;
 }
 
 type ProjectTypeLists = {
@@ -29,10 +29,8 @@ interface FormValues {
   category: string;
 }
 
-const EditProjectInfo: FC<EditProjectInfoProps> = ({
-  projectId,
-  projectInfo,
-}) => {
+const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
+  const projectInfo = useContext(ProjectContext);
   const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeLists[]>(
     [],
   );

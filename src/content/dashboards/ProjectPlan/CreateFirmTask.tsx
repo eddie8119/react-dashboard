@@ -1,5 +1,5 @@
-import { useEffect, useState, FC } from 'react';
-
+import { useEffect, useState, useContext, FC } from 'react';
+import ProjectContext from '../../../context/ProjectContext';
 import FirmTaskPanel from './FirmTaskPanel';
 
 interface CreateFirmTaskProps {
@@ -22,7 +22,8 @@ interface FirmTask {
   taskLists: Task[];
 }
 
-const CreateFirmTask: FC<CreateFirmTaskProps> = ({ projectInfo }) => {
+const CreateFirmTask: FC<CreateFirmTaskProps> = () => {
+  const projectInfo = useContext(ProjectContext);
   const [firmTaskLists, setFirmTaskLists] = useState<FirmTask[]>([]);
   const [updateFirmTaskLists, setUpdateFirmTaskLists] =
     useState<boolean>(false);
@@ -39,14 +40,14 @@ const CreateFirmTask: FC<CreateFirmTaskProps> = ({ projectInfo }) => {
   }, [projectInfo, updateFirmTaskLists]);
 
   return (
-    <div>
+    <>
       <h1 className="text-black">Create Firm Task</h1>
       <div className="flex gap-4 ">
         {firmTaskLists.map((firmTask: FirmTask) => (
           <FirmTaskPanel firmTask={firmTask} />
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

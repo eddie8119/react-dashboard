@@ -68,10 +68,5 @@ export const ProjectListProvider: FC<ProjectListProviderProps> = ({
 
 export const useProjectList = () => {
   const context = useContext(ProjectListContext);
-  if (!context) {
-    throw new Error(
-      'useProjectListContext must be used within a ProjectListProvider',
-    );
-  }
   return context;
 };
