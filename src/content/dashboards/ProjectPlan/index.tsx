@@ -30,7 +30,7 @@ const ProjectPlan = () => {
       <EditProjectInfo projectInfo={projectInfo} projectId={id} />
 
       <ChoseFirm />
-      <CreateFirmTask projectId={id} />
+      <CreateFirmTask projectInfo={projectInfo} />
     </div>
   );
 };
