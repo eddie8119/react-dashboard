@@ -16,17 +16,6 @@ interface EditProjectInfoProps {
   projectId: number;
 }
 
-type ProjectInfo = {
-  id: string;
-  name: string;
-  status: string;
-  date: string;
-  picture: string;
-  fileNumber: string;
-  cost: number;
-  category: string;
-};
-
 type ProjectTypeLists = {
   id: number;
   name: string;
@@ -40,7 +29,7 @@ interface FormValues {
 }
 
 const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
-  const [projectInfo, setProjectInfo] = useState<ProjectInfo>();
+  const [projectInfo, setProjectInfo] = useState<ProjectData>();
   const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeLists[]>(
     [],
   );
@@ -62,7 +51,7 @@ const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
   const onTodoSubmit = async (data: FormValues) => {
     const { name, status, fileNumber, category } = data;
 
-    const formData: ProjectInfo = {
+    const formData: ProjectData = {
       name,
       status,
       fileNumber,
@@ -71,6 +60,7 @@ const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
       date: projectInfo.date,
       picture: projectInfo.picture,
       cost: projectInfo.cost,
+      thirdPartyLists: projectInfo.thirdPartyLists,
     };
 
     try {
