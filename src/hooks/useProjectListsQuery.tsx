@@ -1,22 +1,11 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-interface ProjectList {
-  id: number;
-  name: string;
-  status: string;
-  date: string;
-  picture?: string;
-  fileNumber: string;
-  cost: number;
-  category: string;
-}
-
 const useProjectListsQuery = (params) => {
   const { variables } = params;
   const { filter, pagination, sort } = variables;
 
-  const [projectLists, setProjectLists] = useState<ProjectList[]>([]);
+  const [projectLists, setProjectLists] = useState<ProjectData[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
