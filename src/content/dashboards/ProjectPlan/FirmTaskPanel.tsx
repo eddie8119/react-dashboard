@@ -3,21 +3,11 @@ import { FC } from 'react';
 import CreatTodo from './CreatTodo';
 import TodoListsArea from './TodoListsArea';
 
-interface Task {
-  id: number;
-  todo: string;
-  uint: string;
-  quantity: number;
-  stock: number;
-  cost: number;
-  price: number;
-}
-
 interface FirmTaskPanelProps {
   firmTask: {
     id: number;
     name: string;
-    taskLists: Task[];
+    taskLists: TaskData[];
   };
   firmId: string;
 }
