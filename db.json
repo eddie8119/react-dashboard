@@ -78,7 +78,48 @@
       "id": "0",
       "date": "2023-09-01",
       "picture": " ",
-      "cost": 1000000
+      "cost": 1000000,
+      "thirdPartyLists": [
+        {
+          "id": "2",
+          "name": "水電",
+          "taskLists": [
+            {
+              "id": 0,
+              "todo": "消防",
+              "uint": "units",
+              "quantity": 10,
+              "stock": 0,
+              "cost": 5000,
+              "price": 8000
+            },
+            {
+              "id": 2,
+              "todo": "冷熱水管",
+              "uint": "",
+              "quantity": 0,
+              "stock": 0,
+              "cost": 0,
+              "price": 0
+            }
+          ]
+        },
+        {
+          "id": "7",
+          "name": "木做",
+          "taskLists": [
+            {
+              "id": 0,
+              "todo": "木門",
+              "uint": "units",
+              "quantity": 10,
+              "stock": 0,
+              "cost": 5000,
+              "price": 8000
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "1",
@@ -88,7 +129,24 @@
       "picture": " ",
       "fileNumber": "002",
       "cost": 1000000,
-      "category": "Commercial"
+      "category": "Commercial",
+      "thirdPartyLists": [
+        {
+          "id": "7",
+          "name": "木做",
+          "taskLists": [
+            {
+              "id": 0,
+              "todo": "木門",
+              "uint": "units",
+              "quantity": 12,
+              "stock": 0,
+              "cost": 5000,
+              "price": 8000
+            }
+          ]
+        }
+      ]
     },
     {
       "name": "Project 35",
@@ -98,7 +156,8 @@
       "id": "2",
       "date": "2023-09-10",
       "picture": " ",
-      "cost": 1000000
+      "cost": 1000000,
+      "thirdPartyLists": []
     },
     {
       "id": "3",
@@ -108,7 +167,8 @@
       "picture": " ",
       "fileNumber": "004",
       "cost": 1000000,
-      "category": "House"
+      "category": "House",
+      "thirdPartyLists": []
     },
     {
       "id": "1711119785138",
@@ -118,7 +178,8 @@
       "picture": "",
       "fileNumber": "5555",
       "cost": 0,
-      "category": "Mansion"
+      "category": "Mansion",
+      "thirdPartyLists": []
     },
     {
       "id": "1711119810420",
@@ -128,65 +189,8 @@
       "picture": "",
       "fileNumber": "5555",
       "cost": 0,
-      "category": "Mansion"
-    }
-  ],
-  "project0": [
-    {
-      "id": "2",
-      "name": "水電",
-      "taskLists": [
-        {
-          "id": 0,
-          "todo": "消防",
-          "uint": "units",
-          "quantity": 10,
-          "stock": 0,
-          "cost": 5000,
-          "price": 8000
-        },
-        {
-          "id": 2,
-          "todo": "冷熱水管",
-          "uint": "",
-          "quantity": 0,
-          "stock": 0,
-          "cost": 0,
-          "price": 0
-        }
-      ]
-    },
-    {
-      "id": "7",
-      "name": "木做",
-      "taskLists": [
-        {
-          "id": 0,
-          "todo": "木門",
-          "uint": "units",
-          "quantity": 10,
-          "stock": 0,
-          "cost": 5000,
-          "price": 8000
-        }
-      ]
-    }
-  ],
-  "project1": [
-    {
-      "id": "7",
-      "name": "木做",
-      "taskLists": [
-        {
-          "id": 0,
-          "todo": "木門",
-          "uint": "units",
-          "quantity": 12,
-          "stock": 0,
-          "cost": 5000,
-          "price": 8000
-        }
-      ]
+      "category": "Mansion",
+      "thirdPartyLists": []
     }
   ]
 }
