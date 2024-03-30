@@ -4,15 +4,10 @@ import CreatTodo from './CreatTodo';
 import TodoListsArea from './TodoListsArea';
 
 interface FirmTaskPanelProps {
-  firmTask: {
-    id: number;
-    name: string;
-    taskLists: TaskData[];
-  };
-  firmId: string;
+  firmTask: ThirdPartyData;
 }
 
-const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask, firmId }) => {
+const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
   return (
     <div
       key={firmTask.id}
