@@ -79,7 +79,7 @@
       "date": "2023-09-01",
       "picture": " ",
       "cost": 1000000,
-      "thirdParty": [
+      "thirdPartyLists": [
         {
           "id": "2",
           "name": "水電",
@@ -130,7 +130,7 @@
       "fileNumber": "002",
       "cost": 1000000,
       "category": "Commercial",
-      "thirdParty": [
+      "thirdPartyLists": [
         {
           "id": "7",
           "name": "木做",
@@ -157,7 +157,7 @@
       "date": "2023-09-10",
       "picture": " ",
       "cost": 1000000,
-      "thirdParty": []
+      "thirdPartyLists": []
     },
     {
       "id": "3",
@@ -168,7 +168,7 @@
       "fileNumber": "004",
       "cost": 1000000,
       "category": "House",
-      "thirdParty": []
+      "thirdPartyLists": []
     },
     {
       "id": "1711119785138",
@@ -179,7 +179,7 @@
       "fileNumber": "5555",
       "cost": 0,
       "category": "Mansion",
-      "thirdParty": []
+      "thirdPartyLists": []
     },
     {
       "id": "1711119810420",
@@ -190,7 +190,7 @@
       "fileNumber": "5555",
       "cost": 0,
       "category": "Mansion",
-      "thirdParty": []
+      "thirdPartyLists": []
     }
   ]
 }
