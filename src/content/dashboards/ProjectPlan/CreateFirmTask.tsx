@@ -34,10 +34,10 @@ const CreateFirmTask: FC<CreateFirmTaskProps> = ({ projectId }) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(
-        `http://localhost:3000/project${projectId}`,
+        `http://localhost:3000/projectLists/${projectId}`,
       );
 
-      setFirmTaskLists(response.data);
+      setFirmTaskLists(response.data.thirdParty);
     };
     fetchData();
   }, [updateFirmTaskLists]);
