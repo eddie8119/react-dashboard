@@ -13,7 +13,8 @@ import {
 } from '@mui/material';
 
 interface EditProjectInfoProps {
-  projectId: number;
+  projectId: string;
+  projectInfo: ProjectData;
 }
 
 type ProjectTypeLists = {
@@ -28,8 +29,10 @@ interface FormValues {
   category: string;
 }
 
-const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
-  const [projectInfo, setProjectInfo] = useState<ProjectData>();
+const EditProjectInfo: FC<EditProjectInfoProps> = ({
+  projectId,
+  projectInfo,
+}) => {
   const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeLists[]>(
     [],
   );
@@ -74,14 +77,6 @@ const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get('http://localhost:3000/projectLists');
-      const projectLists = response.data;
-      const project = projectLists.filter((item: any) => item.id === projectId);
-      setProjectInfo(project[0]);
-    };
-    fetchData();
-
     const fetchTypeListsData = async () => {
       const response = await axios.get(
         'http://localhost:3000/projectTypeLists',
