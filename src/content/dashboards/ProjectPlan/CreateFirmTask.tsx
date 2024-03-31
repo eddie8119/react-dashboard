@@ -2,29 +2,9 @@ import { useEffect, useState, useContext, FC } from 'react';
 import ProjectContext from '../../../context/ProjectContext';
 import FirmTaskPanel from './FirmTaskPanel';
 
-interface CreateFirmTaskProps {
-  projectId: string;
-  projectInfo: ProjectData;
-}
-interface Task {
-  id: number;
-  todo: string;
-  uint: string;
-  quantity: number;
-  stock: number;
-  cost: number;
-  price: number;
-}
-
-interface FirmTask {
-  id: number;
-  name: string;
-  taskLists: Task[];
-}
-
-const CreateFirmTask: FC<CreateFirmTaskProps> = () => {
+const CreateFirmTask = () => {
   const projectInfo = useContext(ProjectContext);
-  const [firmTaskLists, setFirmTaskLists] = useState<FirmTask[]>([]);
+  const [firmTaskLists, setFirmTaskLists] = useState<ThirdPartyData[]>([]);
   const [updateFirmTaskLists, setUpdateFirmTaskLists] =
     useState<boolean>(false);
 
@@ -43,7 +23,7 @@ const CreateFirmTask: FC<CreateFirmTaskProps> = () => {
     <>
       <h1 className="text-black">Create Firm Task</h1>
       <div className="flex gap-4 ">
-        {firmTaskLists.map((firmTask: FirmTask) => (
+        {firmTaskLists.map((firmTask: ThirdPartyData) => (
           <FirmTaskPanel firmTask={firmTask} />
         ))}
       </div>
