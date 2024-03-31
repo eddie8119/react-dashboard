@@ -18,12 +18,16 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({ firmTaskLists }) => {
     {
       id: 1,
       name: 'edit',
-      colors: 'bg-blue-600',
+      color: 'bg-blue-600',
+      hovercolor: 'bg-blue-700',
+      action: '',
     },
     {
       id: 2,
       name: 'delete',
-      colors: 'bg-red-600',
+      color: 'bg-red-600',
+      hovercolor: 'bg-red-700',
+      action: '',
     },
   ];
   useEffect(() => {}, []);
@@ -43,7 +47,7 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({ firmTaskLists }) => {
             {btnLists.map((btn) => (
               <button
                 key={btn.id}
-                className={`rounded-md  border border-transparent ${btn.colors} px-4 py-2 text-center text-sm font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2`}
+                className={`rounded-md  border border-transparent ${btn.color} px-4 py-2 text-center text-sm font-medium text-white hover:${btn.hovercolor}  focus:ring-2`}
               >
                 {btn.name}
               </button>
