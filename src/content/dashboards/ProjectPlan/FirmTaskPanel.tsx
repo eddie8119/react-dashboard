@@ -74,7 +74,10 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
       />
 
       <CreateTodo firmTaskId={firmTask.id} />
-      <TodoListsArea firmTaskLists={firmTask.taskLists} />
+      <TodoListsArea
+        firmTaskId={firmTask.id}
+        firmTaskLists={firmTask.taskLists}
+      />
     </div>
   );
 };
