@@ -1,5 +1,6 @@
-import { useEffect, useState, FC } from 'react';
+import { useEffect, useState, useContext, FC } from 'react';
 import { useForm } from 'react-hook-form';
+import ProjectContext from '../../../context/ProjectContext';
 import axios from 'axios';
 
 import {
@@ -12,18 +13,18 @@ import {
   Select,
 } from '@mui/material';
 
-interface UintList {
-  id: number;
-  uint: string;
-}
-
 interface FormValues {
   todo: string;
   quantity: number;
   uint: string;
 }
+interface CreateTodoProps {
+  firmTaskId: number;
+}
 
-const CreatTodo = () => {
+const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
+  const { projectInfo, handlerSetUpdateProjectInfo } =
+    useContext(ProjectContext);
   const [uintLists, setUintLists] = useState<UintList[]>([]);
 
   const form = useForm<FormValues>({
@@ -52,12 +53,27 @@ const CreatTodo = () => {
       price: 0,
     };
 
-    // 過濾id 找到供向 -> 改成整個物件傳進來 -> 複製一份taskLists - > push進taskLists ->
-
+    const updateThirdPartyLists = projectInfo.thirdPartyLists.map((item) => {
+      if (item.id === firmTaskId) {
+        return {
+          ...item,
+          taskLists: [...item.taskLists, formData],
+        };
+      }
+      return item;
+    });
+    console.log(updateThirdPartyLists);
+    debugger;
     try {
-      await axios.post('http://localhost:3000/project0', formData);
+      await axios.patch(
+        `http://localhost:3000/projectLists/${projectInfo.id}`,
+        {
+          thirdPartyLists: updateThirdPartyLists,
+        },
+      );
       form.reset();
       form.setValue('uint', '');
+      handlerSetUpdateProjectInfo();
     } catch (error) {
       throw new Error(String(error));
     }
@@ -118,4 +134,4 @@ const CreatTodo = () => {
   );
 };
 
-export default CreatTodo;
+export default CreateTodo;
