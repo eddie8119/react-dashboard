@@ -3,7 +3,7 @@ import ProjectContext from '../../../context/ProjectContext';
 import FirmTaskPanel from './FirmTaskPanel';
 
 const CreateFirmTask = () => {
-  const projectInfo = useContext(ProjectContext);
+  const { projectInfo } = useContext(ProjectContext);
   const [firmTaskLists, setFirmTaskLists] = useState<ThirdPartyData[]>([]);
   const [updateFirmTaskLists, setUpdateFirmTaskLists] =
     useState<boolean>(false);
