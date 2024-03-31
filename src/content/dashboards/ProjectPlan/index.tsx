@@ -28,7 +28,7 @@ const ProjectPlan = () => {
     <ProjectContext.Provider value={projectInfo}>
       <div className="flex h-full w-full flex-col gap-6 p-6">
         <div className="flex justify-between">
-          <PageTitle title={`專案名稱: ${id}`} />
+          <PageTitle title={`專案名稱: ${projectInfo?.name}`} />
           <PageButtonPanel projectId={id} />
         </div>
         <EditProjectInfo projectId={id} />
