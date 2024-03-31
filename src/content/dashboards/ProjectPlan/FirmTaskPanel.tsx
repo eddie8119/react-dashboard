@@ -1,8 +1,10 @@
-import { useState, lazy, FC } from 'react';
+import { useState, lazy, useContext, FC } from 'react';
 import CreatTodo from './CreatTodo';
 import TodoListsArea from './TodoListsArea';
 import { IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
+import ProjectContext from '../../../context/ProjectContext';
+import axios from 'axios';
 const PopUp = lazy(() => import('../../../components/PopUp'));
 
 interface FirmTaskPanelProps {
@@ -11,6 +13,8 @@ interface FirmTaskPanelProps {
 
 const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
   const [openComfirmPop, setOpenComfirmPop] = useState<boolean>(false);
+  const projectInfo = useContext(ProjectContext);
+  const popPropsTitle = firmTask.name;
 
   const handlePopOpen: () => void = () => {
     setOpenComfirmPop(true);
@@ -18,7 +22,23 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
   const handlePopClose: () => void = () => {
     setOpenComfirmPop(false);
   };
-  const popPropsTitle = firmTask.name;
+  const deleteTodo: () => void = async () => {
+    const handleThirdPartyLists = projectInfo.thirdPartyLists.filter(
+      (item) => item.id !== firmTask.id,
+    );
+
+    try {
+      await axios.patch(
+        `http://localhost:3000/projectLists/${projectInfo.id}`,
+        {
+          thirdPartyLists: handleThirdPartyLists,
+        },
+      );
+      setOpenComfirmPop(false);
+    } catch (error) {
+      throw new Error(String(error));
+    }
+  };
 
   return (
     <div
@@ -46,6 +66,7 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
       <PopUp
         openComfirmPop={openComfirmPop}
         handlePopClose={handlePopClose}
+        deleteTodo={deleteTodo}
         popupTitle="Delete the firm"
         popupIndex={`Are you sure delete the ${popPropsTitle} card?`}
       />

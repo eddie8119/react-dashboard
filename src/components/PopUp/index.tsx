@@ -6,12 +6,14 @@ interface PopUpProps {
   popupTitle: string;
   popupIndex: string;
   openComfirmPop: boolean;
+  deleteTodo: () => void;
   handlePopClose: () => void;
 }
 const PopUp: FC<PopUpProps> = ({
   popupTitle,
   popupIndex,
   openComfirmPop,
+  deleteTodo,
   handlePopClose,
 }) => {
   const btnLists = [
@@ -27,7 +29,7 @@ const PopUp: FC<PopUpProps> = ({
       name: 'delete',
       color: 'bg-red-600',
       hovercolor: 'bg-red-700',
-      action: handlePopClose,
+      action: deleteTodo,
     },
   ];
 
