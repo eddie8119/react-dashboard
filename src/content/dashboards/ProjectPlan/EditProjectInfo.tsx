@@ -30,7 +30,8 @@ interface FormValues {
 }
 
 const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
-  const projectInfo = useContext(ProjectContext);
+  const { projectInfo, handlerSetUpdateProjectInfo } =
+    useContext(ProjectContext);
   const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeLists[]>(
     [],
   );
@@ -69,6 +70,7 @@ const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
         `http://localhost:3000/projectLists/${projectId}`,
         formData,
       );
+      handlerSetUpdateProjectInfo();
     } catch (error) {
       throw new Error(String(error));
     }

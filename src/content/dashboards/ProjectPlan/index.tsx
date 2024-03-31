@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProjectContext from '../../../context/ProjectContext';
 
@@ -12,6 +12,11 @@ import axios from 'axios';
 const ProjectPlan = () => {
   const { id = '' }: { id?: string } = useParams();
   const [projectInfo, setProjectInfo] = useState<ProjectData>();
+  const [updateProjectInfo, setUpdateProjectInfo] = useState<boolean>(false);
+
+  const handlerSetUpdateProjectInfo = () => {
+    setUpdateProjectInfo((prev) => !prev);
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,13 +27,15 @@ const ProjectPlan = () => {
       setProjectInfo(project);
     };
     fetchData();
-  }, [id]);
+  }, [id, updateProjectInfo]);
 
   return (
-    <ProjectContext.Provider value={projectInfo}>
+    <ProjectContext.Provider
+      value={{ projectInfo, handlerSetUpdateProjectInfo }}
+    >
       <div className="flex h-full w-full flex-col gap-6 p-6">
         <div className="flex justify-between">
-          <PageTitle title={`專案名稱: ${id}`} />
+          <PageTitle title={`專案名稱: ${projectInfo?.name}`} />
           <PageButtonPanel projectId={id} />
         </div>
         <EditProjectInfo projectId={id} />

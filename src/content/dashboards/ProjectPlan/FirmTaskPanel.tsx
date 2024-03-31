@@ -13,7 +13,8 @@ interface FirmTaskPanelProps {
 
 const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
   const [openComfirmPop, setOpenComfirmPop] = useState<boolean>(false);
-  const projectInfo = useContext(ProjectContext);
+  const { projectInfo, handlerSetUpdateProjectInfo } =
+    useContext(ProjectContext);
   const popPropsTitle = firmTask.name;
 
   const handlePopOpen: () => void = () => {
@@ -23,18 +24,19 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
     setOpenComfirmPop(false);
   };
   const deleteTodo: () => void = async () => {
-    const handleThirdPartyLists = projectInfo.thirdPartyLists.filter(
+    const handleThirdPartyLists = projectInfo?.thirdPartyLists.filter(
       (item) => item.id !== firmTask.id,
     );
 
     try {
       await axios.patch(
-        `http://localhost:3000/projectLists/${projectInfo.id}`,
+        `http://localhost:3000/projectLists/${projectInfo?.id}`,
         {
           thirdPartyLists: handleThirdPartyLists,
         },
       );
       setOpenComfirmPop(false);
+      handlerSetUpdateProjectInfo();
     } catch (error) {
       throw new Error(String(error));
     }
