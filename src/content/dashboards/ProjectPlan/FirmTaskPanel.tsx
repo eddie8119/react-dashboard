@@ -23,7 +23,7 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
   const handlePopClose: () => void = () => {
     setOpenComfirmPop(false);
   };
-  const deleteTodo: () => void = async () => {
+  const deleteThirdParty: () => void = async () => {
     const handleThirdPartyLists = projectInfo?.thirdPartyLists.filter(
       (item) => item.id !== firmTask.id,
     );
@@ -68,7 +68,7 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
       <PopUp
         openComfirmPop={openComfirmPop}
         handlePopClose={handlePopClose}
-        deleteTodo={deleteTodo}
+        deleteThirdParty={deleteThirdParty}
         popupTitle="Delete the firm"
         popupIndex={`Are you sure delete the ${popPropsTitle} card?`}
       />
