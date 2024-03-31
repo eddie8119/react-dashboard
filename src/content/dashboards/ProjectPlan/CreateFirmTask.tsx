@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, FC } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import ProjectContext from '../../../context/ProjectContext';
 import FirmTaskPanel from './FirmTaskPanel';
 
