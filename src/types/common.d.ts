@@ -1,3 +1,4 @@
+//Project系列
 interface ProjectData {
     id: string;  //注意這裡的id是string
     name: string;
@@ -26,3 +27,8 @@ interface TaskData {
     price: number;
 }
 
+//單位系列
+interface UintList {
+    id: number;
+    uint: string;
+}
