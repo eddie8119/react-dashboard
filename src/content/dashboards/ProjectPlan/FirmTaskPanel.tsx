@@ -1,5 +1,5 @@
 import { useState, lazy, useContext, FC } from 'react';
-import CreatTodo from './CreatTodo';
+import CreateTodo from './CreateTodo';
 import TodoListsArea from './TodoListsArea';
 import { IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
@@ -73,7 +73,7 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
         popupIndex={`Are you sure delete the ${popPropsTitle} card?`}
       />
 
-      <CreatTodo firmTaskId={firmTask.id} />
+      <CreateTodo firmTaskId={firmTask.id} />
       <TodoListsArea firmTaskLists={firmTask.taskLists} />
     </div>
   );

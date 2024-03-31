@@ -18,11 +18,11 @@ interface FormValues {
   quantity: number;
   uint: string;
 }
-interface CreatTodoProps {
+interface CreateTodoProps {
   firmTaskId: number;
 }
 
-const CreatTodo: FC<CreatTodoProps> = ({ firmTaskId }) => {
+const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
   const [uintLists, setUintLists] = useState<UintList[]>([]);
@@ -134,4 +134,4 @@ const CreatTodo: FC<CreatTodoProps> = ({ firmTaskId }) => {
   );
 };
 
-export default CreatTodo;
+export default CreateTodo;
