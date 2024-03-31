@@ -1,5 +1,5 @@
 interface ProjectData {
-    id: number;
+    id: string;  //注意這裡的id是string
     name: string;
     status: string;
     date: Date;
