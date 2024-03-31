@@ -62,8 +62,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
       }
       return item;
     });
-    console.log(updateThirdPartyLists);
-    debugger;
+
     try {
       await axios.patch(
         `http://localhost:3000/projectLists/${projectInfo.id}`,
