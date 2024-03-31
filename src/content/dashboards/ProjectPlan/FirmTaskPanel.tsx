@@ -68,7 +68,7 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
       <PopUp
         openComfirmPop={openComfirmPop}
         handlePopClose={handlePopClose}
-        deleteThirdParty={deleteThirdParty}
+        deleteOnClick={deleteThirdParty}
         popupTitle="Delete the firm"
         popupIndex={`Are you sure delete the ${popPropsTitle} card?`}
       />
