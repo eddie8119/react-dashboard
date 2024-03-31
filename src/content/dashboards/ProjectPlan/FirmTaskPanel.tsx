@@ -73,7 +73,7 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
         popupIndex={`Are you sure delete the ${popPropsTitle} card?`}
       />
 
-      <CreatTodo />
+      <CreatTodo firmTaskId={firmTask.id} />
       <TodoListsArea firmTaskLists={firmTask.taskLists} />
     </div>
   );
