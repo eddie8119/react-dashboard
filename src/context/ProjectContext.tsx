@@ -5,7 +5,7 @@ interface ProjectContextType {
   handlerSetUpdateProjectInfo: () => void;
 }
 
-const ProjectContext = createContext<ProjectContextType>({
+export const initProjectContext: ProjectContextType = {
   projectInfo: {
     id: '0',
     name: '',
@@ -18,6 +18,8 @@ const ProjectContext = createContext<ProjectContextType>({
     thirdPartyLists: [],
   },
   handlerSetUpdateProjectInfo: () => {},
-});
+};
+
+const ProjectContext = createContext<ProjectContextType>(initProjectContext);
 
 export default ProjectContext;
