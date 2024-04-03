@@ -30,19 +30,18 @@ const ChoseFirm = () => {
 
   return (
     <div>
-      <h1 className="text-gray">選擇工程種類</h1>
-
-      <div className="flex flex-wrap">
+      <h1 className="text-black">Create Construction Type</h1>
+      <div className="flex w-full flex-wrap  overflow-x-auto">
         {firmLists.map((firm) => (
           <div
             key={firm.id}
-            className="relative m-2 cursor-pointer bg-box-bg p-2"
+            className={`${selectedFirms.includes(firm.name) ? 'bg-blue-700' : 'border-black text-black'} m-1 flex cursor-pointer items-center justify-center rounded-md border  p-4 `}
             onClick={() => handleChoseFirm(firm.name)}
           >
             {firm.name}
-            <div
-              className={`absolute bottom-0 left-1/2 h-3 w-3 -translate-x-1/2 transform rounded-full ${selectedFirms.includes(firm.name) ? 'bg-green-500' : 'bg-gray-500'}`}
-            />
+            {selectedFirms.includes(firm.name) && (
+              <span className="ml-2 h-3 w-3 rounded-full bg-white" />
+            )}
           </div>
         ))}
       </div>
