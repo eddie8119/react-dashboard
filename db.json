@@ -81,7 +81,7 @@
       "cost": 1000000,
       "thirdPartyLists": [
         {
-          "id": "2",
+          "id": 2,
           "name": "水電",
           "taskLists": [
             {
@@ -105,7 +105,7 @@
           ]
         },
         {
-          "id": "7",
+          "id": 7,
           "name": "木做",
           "taskLists": [
             {
@@ -132,7 +132,7 @@
       "category": "Commercial",
       "thirdPartyLists": [
         {
-          "id": "7",
+          "id": 7,
           "name": "木做",
           "taskLists": [
             {
