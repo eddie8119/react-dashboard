@@ -30,7 +30,7 @@ const ChoseFirm = () => {
         return;
       }
 
-      updateFirmDataLists = projectInfo.thirdPartyLists.filter(
+      updateFirmDataLists = projectThirdPartyLists.filter(
         (firm) => firm.name !== firmName,
       );
 
@@ -43,7 +43,7 @@ const ChoseFirm = () => {
         name: firmName,
         taskLists: [],
       };
-      updateFirmDataLists = [...projectInfo.thirdPartyLists, newFirmData];
+      updateFirmDataLists = [...projectThirdPartyLists, newFirmData];
 
       setThirdParties((prevFirms) => [...prevFirms, firmName]);
     }
