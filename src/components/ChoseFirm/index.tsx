@@ -46,8 +46,17 @@ const ChoseFirm = () => {
       const response = await axios.get('http://localhost:3000/firmLists');
       setFirmLists(response.data);
     };
+
     fetchData();
   }, []);
+
+  useEffect(() => {
+    //將目前專案有的協力廠商 儲存到selectedFirms
+    const aprojectThirdPartyLists = projectInfo.thirdPartyLists;
+    const handleFirmLists = aprojectThirdPartyLists.map((firm) => firm.name);
+
+    setSelectedFirms(handleFirmLists);
+  }, [projectInfo]);
 
   return (
     <div>
