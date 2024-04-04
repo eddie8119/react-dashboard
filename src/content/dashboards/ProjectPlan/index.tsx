@@ -9,7 +9,7 @@ import PageButtonPanel from './../../../components/PageButtonPanel';
 import EditProjectInfo from './EditProjectInfo';
 import ChoseFirm from '../../../components/ChoseFirm';
 import CreateFirmTask from './CreateFirmTask';
-import axios from 'axios';
+import { getProject } from '../../../api/project';
 
 const ProjectPlan = () => {
   const { id = '' }: { id?: string } = useParams();
@@ -24,9 +24,7 @@ const ProjectPlan = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        `http://localhost:3000/projectLists/${id}`,
-      );
+      const response = await getProject(id);
       const project = response.data;
       setProjectInfo(project);
     };

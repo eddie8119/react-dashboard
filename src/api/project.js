@@ -10,6 +10,11 @@ export const getProjectLists = async () => {
   return await axios.get(`http://localhost:3000/projectLists`);
 };
 
+//取得單一專案
+export const getProject = async (id) => {
+  return await axios.get(`http://localhost:3000/projectLists/${id}`);
+};
+
 //刪除專案列表
 export const deleteProject = async (id) => {
   axios.delete(`http://localhost:3000/projectLists/${id}`);
