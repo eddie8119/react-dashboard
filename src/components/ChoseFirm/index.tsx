@@ -12,11 +12,24 @@ const ChoseFirm = () => {
   const [firmLists, setFirmLists] = useState<FirmObject[]>([]);
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
+  //projectThirdPartyLists-目前專案有的協力廠商
+  const projectThirdPartyLists = projectInfo.thirdPartyLists;
 
   const handleChoseFirm = async (firmName: string) => {
     let updateFirmDataLists = [];
 
     if (selectedFirms.includes(firmName)) {
+      //先判斷要刪除的協力廠商是否已經有任務存在, taskLists內有資料就不能直接點擊刪除;
+      const checkThirdPartyLists = projectThirdPartyLists.filter(
+        (firm) => firm.name === firmName,
+      );
+      if (checkThirdPartyLists[0].taskLists.length !== 0) {
+        alert(
+          ' This firm already has task existing, cannot cancel with clicking this button directly.',
+        );
+        return;
+      }
+
       updateFirmDataLists = projectInfo.thirdPartyLists.filter(
         (firm) => firm.name !== firmName,
       );
@@ -52,8 +65,7 @@ const ChoseFirm = () => {
 
   useEffect(() => {
     //將目前專案有的協力廠商 儲存到selectedFirms
-    const aprojectThirdPartyLists = projectInfo.thirdPartyLists;
-    const handleFirmLists = aprojectThirdPartyLists.map((firm) => firm.name);
+    const handleFirmLists = projectThirdPartyLists.map((firm) => firm.name);
 
     setSelectedFirms(handleFirmLists);
   }, [projectInfo]);
