@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext, FC } from 'react';
 import { useForm } from 'react-hook-form';
 import ProjectContext from '../../../context/ProjectContext';
-import axios from 'axios';
 import { editProjectThirdParty } from '../../../api/project';
+import { getUintLists } from '../../../api/uint';
 
 import {
   TextField,
@@ -76,7 +76,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:3000/uintLists');
+      const response = await getUintLists();
       setUintLists(response.data);
     };
     fetchData();
