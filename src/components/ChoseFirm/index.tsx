@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import ProjectContext from '../../context/ProjectContext';
 import axios from 'axios';
 
 interface FirmObject {
@@ -9,15 +10,35 @@ interface FirmObject {
 const ChoseFirm = () => {
   const [selectedFirms, setSelectedFirms] = useState<string[]>([]);
   const [firmLists, setFirmLists] = useState<FirmObject[]>([]);
+  const { projectInfo, handlerSetUpdateProjectInfo } =
+    useContext(ProjectContext);
 
-  const handleChoseFirm = (firmName: string) => {
-    setSelectedFirms((prevFirms) => {
-      if (prevFirms.includes(firmName)) {
-        return prevFirms.filter((firm) => firm !== firmName);
-      } else {
-        return [...prevFirms, firmName];
-      }
+  const handleChoseFirm = async (firmName: string) => {
+    let updateFirmDataLists = [];
+
+    if (selectedFirms.includes(firmName)) {
+      updateFirmDataLists = projectInfo.thirdPartyLists.filter(
+        (firm) => firm.name !== firmName,
+      );
+
+      setSelectedFirms((prevFirms) =>
+        prevFirms.filter((firm) => firm !== firmName),
+      );
+    } else {
+      const newFirmData: ThirdPartyData = {
+        id: Date.now(),
+        name: firmName,
+        taskLists: [],
+      };
+      updateFirmDataLists = [...projectInfo.thirdPartyLists, newFirmData];
+
+      setSelectedFirms((prevFirms) => [...prevFirms, firmName]);
+    }
+
+    await axios.patch(`http://localhost:3000/projectLists/${projectInfo.id}`, {
+      thirdPartyLists: updateFirmDataLists,
     });
+    handlerSetUpdateProjectInfo();
   };
 
   useEffect(() => {
