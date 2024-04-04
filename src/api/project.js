@@ -30,7 +30,7 @@ export const editProject = async (id, data) => {
   await axios.put(`http://localhost:3000/projectLists/${id}`, data);
 };
 
-//專案協力廠商
+//更新專案協力廠商
 export const editProjectThirdParty = async (id, data) => {
   await axios.patch(`http://localhost:3000/projectLists/${id}`, {
     thirdPartyLists: data,

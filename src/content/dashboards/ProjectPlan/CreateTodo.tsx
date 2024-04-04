@@ -2,6 +2,7 @@ import { useEffect, useState, useContext, FC } from 'react';
 import { useForm } from 'react-hook-form';
 import ProjectContext from '../../../context/ProjectContext';
 import axios from 'axios';
+import { editProjectThirdParty } from '../../../api/project';
 
 import {
   TextField,
@@ -64,12 +65,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
     });
 
     try {
-      await axios.patch(
-        `http://localhost:3000/projectLists/${projectInfo.id}`,
-        {
-          thirdPartyLists: updateThirdPartyLists,
-        },
-      );
+      await editProjectThirdParty(projectInfo.id, updateThirdPartyLists);
       form.reset();
       form.setValue('uint', '');
       handlerSetUpdateProjectInfo();

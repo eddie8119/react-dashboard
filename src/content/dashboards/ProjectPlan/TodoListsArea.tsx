@@ -1,6 +1,6 @@
 import { useState, lazy, useContext, FC } from 'react';
 import ProjectContext from '../../../context/ProjectContext';
-import axios from 'axios';
+import { editProjectThirdParty } from '../../../api/project';
 const PopUp = lazy(() => import('../../../components/PopUp'));
 
 interface TodoListsAreaProps {
@@ -37,12 +37,7 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({
     });
 
     try {
-      await axios.patch(
-        `http://localhost:3000/projectLists/${projectInfo.id}`,
-        {
-          thirdPartyLists: updateThirdPartyLists,
-        },
-      );
+      await editProjectThirdParty(projectInfo.id, updateThirdPartyLists);
       handlerSetUpdateProjectInfo();
     } catch (error) {
       throw new Error(String(error));
