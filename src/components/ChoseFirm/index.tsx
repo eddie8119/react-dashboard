@@ -8,7 +8,7 @@ interface FirmObject {
 }
 
 const ChoseFirm = () => {
-  const [selectedFirms, setSelectedFirms] = useState<string[]>([]);
+  const [thirdParties, setThirdParties] = useState<string[]>([]);
   const [firmLists, setFirmLists] = useState<FirmObject[]>([]);
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
@@ -18,7 +18,7 @@ const ChoseFirm = () => {
   const handleChoseFirm = async (firmName: string) => {
     let updateFirmDataLists = [];
 
-    if (selectedFirms.includes(firmName)) {
+    if (thirdParties.includes(firmName)) {
       //先判斷要刪除的協力廠商是否已經有任務存在, taskLists內有資料就不能直接點擊刪除;
       const checkThirdPartyLists = projectThirdPartyLists.filter(
         (firm) => firm.name === firmName,
@@ -34,7 +34,7 @@ const ChoseFirm = () => {
         (firm) => firm.name !== firmName,
       );
 
-      setSelectedFirms((prevFirms) =>
+      setThirdParties((prevFirms) =>
         prevFirms.filter((firm) => firm !== firmName),
       );
     } else {
@@ -45,7 +45,7 @@ const ChoseFirm = () => {
       };
       updateFirmDataLists = [...projectInfo.thirdPartyLists, newFirmData];
 
-      setSelectedFirms((prevFirms) => [...prevFirms, firmName]);
+      setThirdParties((prevFirms) => [...prevFirms, firmName]);
     }
 
     await axios.patch(`http://localhost:3000/projectLists/${projectInfo.id}`, {
@@ -64,10 +64,10 @@ const ChoseFirm = () => {
   }, []);
 
   useEffect(() => {
-    //將目前專案有的協力廠商 儲存到selectedFirms
+    //將目前專案有的協力廠商 儲存到thirdParties
     const handleFirmLists = projectThirdPartyLists.map((firm) => firm.name);
 
-    setSelectedFirms(handleFirmLists);
+    setThirdParties(handleFirmLists);
   }, [projectInfo]);
 
   return (
@@ -77,11 +77,11 @@ const ChoseFirm = () => {
         {firmLists.map((firm) => (
           <div
             key={firm.id}
-            className={`${selectedFirms.includes(firm.name) ? 'bg-blue-700' : 'border-black text-black'} m-1 flex cursor-pointer items-center justify-center rounded-md border  p-4 `}
+            className={`${thirdParties.includes(firm.name) ? 'bg-blue-700' : 'border-black text-black'} m-1 flex cursor-pointer items-center justify-center rounded-md border  p-4 `}
             onClick={() => handleChoseFirm(firm.name)}
           >
             {firm.name}
-            {selectedFirms.includes(firm.name) && (
+            {thirdParties.includes(firm.name) && (
               <span className="ml-2 h-3 w-3 rounded-full bg-white" />
             )}
           </div>
