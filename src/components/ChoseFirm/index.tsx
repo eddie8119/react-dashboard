@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import ProjectContext from '../../context/ProjectContext';
-import axios from 'axios';
+import { editProjectThirdParty } from '../../api/project';
+import { getFirmLists } from '../../api/firm';
 
 interface FirmObject {
   id: number;
@@ -48,20 +49,18 @@ const ChoseFirm = () => {
       setThirdParties((prevFirms) => [...prevFirms, firmName]);
     }
 
-    await axios.patch(`http://localhost:3000/projectLists/${projectInfo.id}`, {
-      thirdPartyLists: updateFirmDataLists,
-    });
+    await editProjectThirdParty(projectInfo.id, updateFirmDataLists);
     handlerSetUpdateProjectInfo();
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:3000/firmLists');
+      const response = await getFirmLists();
       setFirmLists(response.data);
     };
 
     fetchData();
-  }, []);
+  }, [firmLists]);
 
   useEffect(() => {
     //將目前專案有的協力廠商 儲存到thirdParties
