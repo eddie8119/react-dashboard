@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
+import { updateProject, getProjectTypeLists } from '../../../api/project';
 import { useProjectList } from '../../../context/ProjectListContext';
 
 import {
@@ -77,7 +77,7 @@ const CreateProject = ({
     };
 
     try {
-      await axios.post('http://localhost:3000/projectLists', formData);
+      await updateProject(formData);
       form.reset();
       form.setValue('category', '');
       initProjectList(); // 觸發刷新ProjectList
@@ -89,9 +89,7 @@ const CreateProject = ({
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(
-        'http://localhost:3000/projectTypeLists',
-      );
+      const response = await getProjectTypeLists();
       setProjectTypeLists(response.data);
     };
     fetchData();
