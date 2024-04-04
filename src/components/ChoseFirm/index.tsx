@@ -65,9 +65,10 @@ const ChoseFirm = () => {
 
   useEffect(() => {
     //將目前專案有的協力廠商 儲存到thirdParties
-    const handleFirmLists = projectThirdPartyLists.map((firm) => firm.name);
-
-    setThirdParties(handleFirmLists);
+    const initProjectThirdPartyLists = projectThirdPartyLists.map(
+      (firm) => firm.name,
+    );
+    setThirdParties(initProjectThirdPartyLists);
   }, [projectInfo]);
 
   return (
