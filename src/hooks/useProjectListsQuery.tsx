@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { getProjectLists } from '../api/project';
 
 const useProjectListsQuery = (params) => {
   const { variables } = params;
@@ -9,8 +9,7 @@ const useProjectListsQuery = (params) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('http://localhost:3000/projectLists');
-
+      const response = await getProjectLists();
       setProjectLists(response.data);
     };
     fetchData();

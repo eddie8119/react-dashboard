@@ -1,7 +1,7 @@
 import { useEffect, useState, useContext, FC } from 'react';
 import { useForm } from 'react-hook-form';
 import ProjectContext from '../../../context/ProjectContext';
-import axios from 'axios';
+import { getProjectTypeLists, editProject } from '../../../api/project';
 
 import {
   TextField,
@@ -66,10 +66,7 @@ const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
     };
 
     try {
-      await axios.put(
-        `http://localhost:3000/projectLists/${projectId}`,
-        formData,
-      );
+      await editProject(projectId, formData);
       handlerSetUpdateProjectInfo();
     } catch (error) {
       throw new Error(String(error));
@@ -78,9 +75,7 @@ const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
 
   useEffect(() => {
     const fetchTypeListsData = async () => {
-      const response = await axios.get(
-        'http://localhost:3000/projectTypeLists',
-      );
+      const response = await getProjectTypeLists();
       setProjectTypeLists(response.data);
     };
     fetchTypeListsData();

@@ -4,7 +4,7 @@ import TodoListsArea from './TodoListsArea';
 import { IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import ProjectContext from '../../../context/ProjectContext';
-import axios from 'axios';
+import { editProjectThirdParty } from '../../../api/project';
 const PopUp = lazy(() => import('../../../components/PopUp'));
 
 interface FirmTaskPanelProps {
@@ -29,12 +29,7 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
     );
 
     try {
-      await axios.patch(
-        `http://localhost:3000/projectLists/${projectInfo?.id}`,
-        {
-          thirdPartyLists: handleThirdPartyLists,
-        },
-      );
+      await editProjectThirdParty(projectInfo.id, handleThirdPartyLists);
       setOpenComfirmPop(false);
       handlerSetUpdateProjectInfo();
     } catch (error) {

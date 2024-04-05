@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import axios from 'axios';
+import { deleteProject } from '../../api/project';
 import { useNavigate } from 'react-router-dom';
 
 interface PageButtonPanelProps {
@@ -11,7 +11,7 @@ const PageButtonPanel: FC<PageButtonPanelProps> = ({ projectId }) => {
 
   const removeProject = async (id: string): Promise<void> => {
     try {
-      await axios.delete(`http://localhost:3000/projectLists/${id}`);
+      await deleteProject(id);
       navigate('/');
     } catch (error) {
       console.error(error);
