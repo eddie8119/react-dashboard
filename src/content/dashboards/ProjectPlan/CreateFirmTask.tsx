@@ -20,14 +20,14 @@ const CreateFirmTask = () => {
   }, [projectInfo, updateFirmTaskLists]);
 
   return (
-    <>
+    <div className="flex h-full w-full flex-col gap-4 ">
       <h1 className="text-black">Create Firm Task</h1>
-      <div className="flex gap-4 ">
+      <div className="flex h-full w-full gap-4 overflow-x-auto">
         {firmTaskLists.map((firmTask: ThirdPartyData) => (
           <FirmTaskPanel firmTask={firmTask} />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
