@@ -63,13 +63,23 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({
 
   return (
     <div className="flex flex-col gap-2">
-      {firmTaskLists.map((task) => (
+      <div className=" flex items-center justify-between">
+        <div className="flex gap-2">
+          <p className="w-[20px]"></p>
+          <p className="w-[90px]">title</p>
+          <p className="w-[60px]">quantity</p>
+          <p className="w-[40px] text-center">uint</p>
+          <p className="w-[40px] text-center">cost</p>
+          <p className="w-[40px] text-center">price</p>
+        </div>
+      </div>
+      {firmTaskLists.map((task, index) => (
         <div key={task.id} className=" flex items-center justify-between">
-          <div className="flex gap-4">
-            <p>{task.todo}</p>
-            <p>
-              {task.quantity} {task.uint}
-            </p>
+          <div className="flex gap-2">
+            <p className="w-[20px]">{index + 1}</p>
+            <p className="w-[90px]">{task.todo}</p>
+            <p className="w-[60px] text-center">{task.quantity}</p>
+            <p className="w-[40px]">{task.uint}</p>
           </div>
 
           {/* 彈窗 */}
@@ -86,7 +96,7 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({
               <button
                 onClick={btn.action}
                 key={btn.id}
-                className={`rounded-md  border border-transparent ${btn.color} px-4 py-2 text-center text-sm font-medium text-white hover:${btn.hovercolor}  focus:ring-2`}
+                className={`rounded-md  border border-transparent ${btn.color} px-2 py-2 text-center text-sm font-medium text-white hover:${btn.hovercolor}  focus:ring-2`}
               >
                 {btn.name}
               </button>
