@@ -42,8 +42,11 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
     formState: { errors },
   } = form;
 
-  const onTodoSubmit = async (data: FormValues) => {
-    const { todo, quantity, uint } = data;
+  const onTodoSubmit = async (data: FormValues): Promise<void> => {
+    const { todo, uint } = data;
+    //在useFotm HTML中，表單處理後的值都是字符串
+    const quantity = parseInt(String(data.quantity), 10);
+
     const formData: TaskData = {
       id: Date.now(),
       todo,
@@ -102,7 +105,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
           />
         </Grid>
         <Grid item xs={3}>
-          <TextField label="Quantity" type="text" />
+          <TextField label="Quantity" type="number" {...register('quantity')} />
         </Grid>
         <Grid item xs={3}>
           <FormControl fullWidth>
@@ -112,7 +115,9 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
               id="uint-select"
               label="Uint"
               {...register('uint')}
+              value={form.watch('uint') || ''} //表單重置後，顯示空值
             >
+              <MenuItem value="">Select uint</MenuItem>
               {uintLists.map((item) => (
                 <MenuItem key={item.id} value={item.uint}>
                   {item.uint}
