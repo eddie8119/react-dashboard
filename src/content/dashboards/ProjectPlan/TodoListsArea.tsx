@@ -1,15 +1,31 @@
-import { FC } from 'react';
+import { FC, useState, useEffect } from 'react';
 import TodoPanel from './TodoPanel';
 
 interface TodoListsAreaProps {
   firmTaskLists: TaskData[];
   firmTaskId: number;
+  firmTaskName: string;
 }
 
 const TodoListsArea: FC<TodoListsAreaProps> = ({
   firmTaskLists,
   firmTaskId,
+  firmTaskName,
 }) => {
+  const [firmTotalCost, setFirmTotalCost] = useState<number>(0);
+
+  const handleFirmCostTotal = (): void => {
+    const totalCost = firmTaskLists.reduce(
+      (sum, item) => sum + item.cost * item.quantity,
+      0,
+    );
+    setFirmTotalCost(totalCost);
+  };
+
+  useEffect(() => {
+    handleFirmCostTotal();
+  }, [firmTaskLists]);
+
   return (
     <div className="flex w-full flex-col gap-2">
       {firmTaskLists.length !== 0 && (
@@ -23,7 +39,7 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({
           </div>
         </div>
       )}
-      <div className="flex max-h-[250px] w-full flex-col gap-2 overflow-y-auto">
+      <div className="flex h-[250px] w-full flex-col gap-2 overflow-y-auto">
         {firmTaskLists.map((task, index) => (
           <TodoPanel
             task={task}
@@ -32,6 +48,12 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({
             firmTaskLists={firmTaskLists}
           />
         ))}
+      </div>
+      <div className="flex w-[412px] justify-end">
+        <p>
+          {firmTaskName} Cost Total:
+          <span className="ml-3">{firmTotalCost}</span>
+        </p>
       </div>
     </div>
   );
