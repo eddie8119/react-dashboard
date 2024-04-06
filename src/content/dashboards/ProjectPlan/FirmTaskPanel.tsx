@@ -40,7 +40,7 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
   return (
     <div
       key={firmTask.id}
-      className="flex w-[400px] flex-col gap-6 border border-black p-4  text-black"
+      className="flex min-w-[550px] flex-col gap-6 border border-black p-4  text-black"
     >
       <div className="relative flex items-center justify-center">
         <h1>{firmTask.name}</h1>

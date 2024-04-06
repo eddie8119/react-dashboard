@@ -5,7 +5,7 @@ import Header from './Header';
 const SidebarLayout = () => {
   return (
     <>
-      <div className="hidden h-full w-[260px] flex-none bg-box-bg p-[26px] md:block ">
+      <div className="hidden h-full w-[260px] flex-none p-[26px] md:block ">
         <div className="grid grid-cols-1 gap-6">
           <div className="flex justify-between">
             <p>ADMIN</p>
@@ -18,7 +18,7 @@ const SidebarLayout = () => {
           <SidebarMenu />
         </div>
       </div>
-      <div className="flex w-full flex-col bg-white">
+      <div className="flex w-full flex-col overflow-y-auto bg-white ">
         <Header />
         <Outlet />
       </div>
