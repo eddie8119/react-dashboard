@@ -17,8 +17,8 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({
           <div className="flex gap-2">
             <p className="w-[20px]" />
             <p className="w-[90px]">Title</p>
-            <p className="w-[60px]">Quantity</p>
-            <p className="w-[60px] text-center">Uint</p>
+            <p className="w-[70px]">Quantity</p>
+            <p className="w-[80px] text-center">Uint</p>
             <p className="w-[120px] text-center">Cost</p>
           </div>
         </div>

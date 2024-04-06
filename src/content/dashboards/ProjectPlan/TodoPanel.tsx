@@ -1,9 +1,10 @@
 import { useState, lazy, useContext, useEffect, FC } from 'react';
 import ProjectContext from '../../../context/ProjectContext';
 import { editProjectThirdParty } from '../../../api/project';
+import { getUintLists } from '../../../api/uint';
 import Input from '@mui/material/Input';
 import { useForm } from 'react-hook-form';
-import { Button } from '@mui/material';
+import { TextField, Button, MenuItem } from '@mui/material';
 const PopUp = lazy(() => import('../../../components/PopUp'));
 
 interface TodoPanelProps {
@@ -30,6 +31,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
     useContext(ProjectContext);
   const [openDeleteComfirmPop, setOpenDeleteComfirmPop] =
     useState<boolean>(false);
+  const [uintLists, setUintLists] = useState<UintList[]>([]);
 
   const form = useForm({
     defaultValues: {
@@ -103,6 +105,14 @@ const TodoPanel: FC<TodoPanelProps> = ({
   };
 
   useEffect(() => {
+    const fetchInitData = async () => {
+      const response = await getUintLists();
+      setUintLists(response.data);
+    };
+    fetchInitData();
+  }, []);
+
+  useEffect(() => {
     form.setValue('todo', task.todo);
     form.setValue('quantity', task.quantity);
     form.setValue('uint', task.uint);
@@ -127,13 +137,31 @@ const TodoPanel: FC<TodoPanelProps> = ({
         <Input
           type="number"
           {...register('quantity')}
-          style={{ width: '60px' }}
+          style={{ width: '70px' }}
         />
-        <Input
-          type="text"
-          {...register('uint')}
-          style={{ width: '60px', textAlign: 'center' }}
-        />
+        <div style={{ position: 'relative', width: '80px' }}>
+          <TextField
+            id="uint-select"
+            select
+            variant="standard"
+            defaultValue={task.uint}
+            {...register('uint')}
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              width: '100%',
+              textAlign: 'center',
+              paddingBottom: '0',
+            }}
+          >
+            {uintLists.map((item) => (
+              <MenuItem key={item.id} value={item.uint}>
+                {item.uint}
+              </MenuItem>
+            ))}
+          </TextField>
+        </div>
+
         <Input
           type="number"
           placeholder="Cost"
