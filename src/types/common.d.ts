@@ -27,13 +27,12 @@ interface TaskData {
     price: number;
 }
 
-//單位系列
+//選單菜單系列
 interface UintList {
     id: number;
     uint: string;
 }
 
-// Project系列
 interface ProjectTypeList {
     id: number;
     name: string;
