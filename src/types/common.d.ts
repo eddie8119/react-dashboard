@@ -32,3 +32,9 @@ interface UintList {
     id: number;
     uint: string;
 }
+
+// Project系列
+interface ProjectTypeList {
+    id: number;
+    name: string;
+};
