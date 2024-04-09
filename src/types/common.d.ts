@@ -3,7 +3,7 @@ interface ProjectData {
     id: string;  //注意這裡的id是string
     name: string;
     status: string;
-    date: Date;
+    date: string;
     picture?: string;
     fileNumber: string;
     cost: number;

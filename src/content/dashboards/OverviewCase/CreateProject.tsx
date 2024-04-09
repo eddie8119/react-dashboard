@@ -57,7 +57,7 @@ const CreateProject = ({
       id: Date.now().toString(),
       name,
       status: 'Progress',
-      date: new Date(),
+      date: new Date().toString(),
       picture: '',
       fileNumber,
       cost: 0,
