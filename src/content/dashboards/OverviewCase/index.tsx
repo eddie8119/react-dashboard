@@ -44,7 +44,7 @@ const OverviewCase = () => {
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle>
-            Create Project{' '}
+            Create Project
             <IconButton
               edge="end"
               color="inherit"
