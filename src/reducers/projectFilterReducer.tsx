@@ -40,33 +40,33 @@ export const INITIAL_STATE: IntState = {
   pagination: DEFAULT_PAGINATION,
 };
 
-export const ACTIONS = {
-  CHANGE_KEYWORD: 'CHANGE_KEYWORD',
-  CHANGE_CATEGORY: 'CHANGE_CATEGORY',
-  CHANGE_PAGINATION: 'CHANGE_PAGINATION',
-  CHANGE_SORT: 'CHANGE_SORT',
-};
+export enum ActionTypes {
+  CHANGE_KEYWORD = 'CHANGE_KEYWORD',
+  CHANGE_CATEGORY = 'CHANGE_CATEGORY',
+  CHANGE_PAGINATION = 'CHANGE_PAGINATION',
+  CHANGE_SORT = 'CHANGE_SORT',
+}
 
 const ProjectFilterReducer = (state: IntState, action: Action) => {
   switch (action.type) {
-    case ACTIONS.CHANGE_KEYWORD:
+    case ActionTypes.CHANGE_KEYWORD:
       return {
         ...state,
         filter: { ...state.filter, keyword: action.payload.keyword },
         pagination: { ...state.pagination, current: 1 },
       };
-    case ACTIONS.CHANGE_CATEGORY:
+    case ActionTypes.CHANGE_CATEGORY:
       return {
         ...state,
         filter: { ...state.filter, category: action.payload.category },
         pagination: { ...state.pagination, current: 1 },
       };
-    case ACTIONS.CHANGE_PAGINATION:
+    case ActionTypes.CHANGE_PAGINATION:
       return {
         ...state,
         pagination: { ...state.pagination, ...action.payload.pagination },
       };
-    case ACTIONS.CHANGE_SORT:
+    case ActionTypes.CHANGE_SORT:
       const newVariable = { ...state, sort: action.payload.sort };
       //   if (isUndefined(newVariable.sort.order)) delete newVariable['sort'];
       return newVariable;

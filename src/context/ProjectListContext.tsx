@@ -1,10 +1,10 @@
 import { createContext, useReducer, useContext, FC, ReactNode } from 'react';
 import ProjectFilterReducer, {
   INITIAL_STATE,
-  ACTIONS,
+  ActionTypes,
+  IntState,
 } from '../reducers/projectFilterReducer';
 import useProjectListsQuery from '../hooks/useProjectListsQuery';
-import { IntState } from '../reducers/projectFilterReducer';
 
 interface ProjectListProviderProps {
   children: ReactNode;
@@ -40,14 +40,14 @@ export const ProjectListProvider: FC<ProjectListProviderProps> = ({
 
   const handleChangeCategory = (data: string): void => {
     dispatch({
-      type: ACTIONS.CHANGE_CATEGORY,
+      type: ActionTypes.CHANGE_CATEGORY,
       payload: { category: data },
     });
   };
 
   const handleChangeKeyword = (data: string): void => {
     dispatch({
-      type: ACTIONS.CHANGE_KEYWORD,
+      type: ActionTypes.CHANGE_KEYWORD,
       payload: { keyword: data },
     });
   };
