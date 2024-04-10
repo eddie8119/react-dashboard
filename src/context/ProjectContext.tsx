@@ -10,7 +10,7 @@ export const initProjectContext: ProjectContextType = {
     id: '0',
     name: '',
     status: '',
-    date: new Date(),
+    date: new Date().toISOString(),
     picture: '',
     fileNumber: '',
     cost: 0,

@@ -3,7 +3,7 @@ interface ProjectData {
     id: string;  //注意這裡的id是string
     name: string;
     status: string;
-    date: Date;
+    date: string;
     picture?: string;
     fileNumber: string;
     cost: number;
@@ -27,8 +27,13 @@ interface TaskData {
     price: number;
 }
 
-//單位系列
+//選單菜單系列
 interface UintList {
     id: number;
     uint: string;
 }
+
+interface ProjectTypeList {
+    id: number;
+    name: string;
+};
