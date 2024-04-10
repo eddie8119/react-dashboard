@@ -24,7 +24,7 @@ interface Payload {
 }
 
 interface Action {
-  payload: Payload;
+  payload?: Payload;
   type: string;
 }
 
@@ -52,22 +52,22 @@ const ProjectFilterReducer = (state: IntState, action: Action) => {
     case ActionTypes.CHANGE_KEYWORD:
       return {
         ...state,
-        filter: { ...state.filter, keyword: action.payload.keyword },
+        filter: { ...state.filter, keyword: action.payload?.keyword },
         pagination: { ...state.pagination, current: 1 },
       };
     case ActionTypes.CHANGE_CATEGORY:
       return {
         ...state,
-        filter: { ...state.filter, category: action.payload.category },
+        filter: { ...state.filter, category: action.payload?.category },
         pagination: { ...state.pagination, current: 1 },
       };
     case ActionTypes.CHANGE_PAGINATION:
       return {
         ...state,
-        pagination: { ...state.pagination, ...action.payload.pagination },
+        pagination: { ...state.pagination, ...action.payload?.pagination },
       };
     case ActionTypes.CHANGE_SORT:
-      const newVariable = { ...state, sort: action.payload.sort };
+      const newVariable = { ...state, sort: action.payload?.sort };
       //   if (isUndefined(newVariable.sort.order)) delete newVariable['sort'];
       return newVariable;
     default:
