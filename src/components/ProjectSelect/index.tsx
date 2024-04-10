@@ -1,4 +1,5 @@
 import { ChangeEvent } from 'react';
+import { SelectChangeEvent } from '@mui/material';
 import { useProjectList } from '../../context/ProjectListContext';
 
 import {
@@ -13,7 +14,7 @@ const ProjectSelect = () => {
   const { variables, handleChangeCategory, handleChangeKeyword } =
     useProjectList();
 
-  const changeCategory = (event: ChangeEvent<{ value: string }>): void => {
+  const changeCategory = (event: SelectChangeEvent<string>): void => {
     handleChangeCategory(event.target.value);
   };
   const changeKeyword = (event: ChangeEvent<{ value: string }>): void => {
@@ -30,7 +31,7 @@ const ProjectSelect = () => {
           id="demo-simple-select"
           label="category"
           value={variables.filter.category}
-          onChange={changeCategory}
+          onChange={(event) => changeCategory(event)}
         >
           <MenuItem value="All">All</MenuItem>
           <MenuItem value="House">House</MenuItem>
@@ -43,7 +44,7 @@ const ProjectSelect = () => {
         label="search name"
         type="text"
         value={variables.filter.keyword}
-        onChange={changeKeyword}
+        onChange={(event) => changeKeyword(event)}
       />
     </div>
   );
