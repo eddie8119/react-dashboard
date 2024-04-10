@@ -38,17 +38,17 @@ export const ProjectListProvider: FC<ProjectListProviderProps> = ({
   const [variables, dispatch] = useReducer(ProjectFilterReducer, INITIAL_STATE);
   const { projectListsdata } = useProjectListsQuery({ variables });
 
-  const handleChangeCategory = (data: string): void => {
+  const handleChangeCategory = (category: string): void => {
     dispatch({
       type: ActionTypes.CHANGE_CATEGORY,
-      payload: { category: data },
+      payload: { category },
     });
   };
 
-  const handleChangeKeyword = (data: string): void => {
+  const handleChangeKeyword = (keyword: string): void => {
     dispatch({
       type: ActionTypes.CHANGE_KEYWORD,
-      payload: { keyword: data },
+      payload: { keyword },
     });
   };
 
