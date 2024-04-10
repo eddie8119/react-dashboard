@@ -13,10 +13,10 @@ const ProjectSelect = () => {
   const { variables, handleChangeCategory, handleChangeKeyword } =
     useProjectList();
 
-  const changeCategory = (event: ChangeEvent<{ value: string }>) => {
+  const changeCategory = (event: ChangeEvent<{ value: string }>): void => {
     handleChangeCategory(event.target.value);
   };
-  const changeKeyword = (event: ChangeEvent<{ value: string }>) => {
+  const changeKeyword = (event: ChangeEvent<{ value: string }>): void => {
     handleChangeKeyword(event.target.value);
   };
 
