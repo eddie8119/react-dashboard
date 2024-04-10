@@ -2,7 +2,7 @@ import { useEffect, useState, useContext, FC } from 'react';
 import { useForm } from 'react-hook-form';
 import ProjectContext from '../../../context/ProjectContext';
 import { editProjectThirdParty } from '../../../api/project';
-import { getUintLists } from '../../../api/uint';
+import { getUnitLists } from '../../../api/unit';
 
 import {
   TextField,
@@ -17,7 +17,7 @@ import {
 interface FormValues {
   todo: string;
   quantity: number;
-  uint: string;
+  unit: string;
 }
 interface CreateTodoProps {
   firmTaskId: number;
@@ -26,13 +26,13 @@ interface CreateTodoProps {
 const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
-  const [uintLists, setUintLists] = useState<UintList[]>([]);
+  const [unitLists, setUnitLists] = useState<unitList[]>([]);
 
   const form = useForm<FormValues>({
     defaultValues: {
       todo: '',
       quantity: 0,
-      uint: '',
+      unit: '',
     },
   });
 
@@ -43,7 +43,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
   } = form;
 
   const onTodoSubmit = async (data: FormValues): Promise<void> => {
-    const { todo, uint } = data;
+    const { todo, unit } = data;
     //在useFotm HTML中，表單處理後的值都是字符串
     const quantity = parseInt(String(data.quantity), 10);
 
@@ -51,7 +51,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
       id: Date.now(),
       todo,
       quantity,
-      uint,
+      unit,
       stock: 0,
       cost: 0,
       price: 0,
@@ -70,7 +70,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
     try {
       await editProjectThirdParty(projectInfo.id, updateThirdPartyLists);
       form.reset();
-      form.setValue('uint', '');
+      form.setValue('unit', '');
       handlerSetUpdateProjectInfo();
     } catch (error) {
       throw new Error(String(error));
@@ -79,8 +79,8 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getUintLists();
-      setUintLists(response.data);
+      const response = await getUnitLists();
+      setUnitLists(response.data);
     };
     fetchData();
   }, []);
@@ -109,18 +109,18 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
         </Grid>
         <Grid item xs={3}>
           <FormControl fullWidth>
-            <InputLabel id="uint-select-label">Uint</InputLabel>
+            <InputLabel id="unit-select-label">unit</InputLabel>
             <Select
-              labelId="uint-select-label"
-              id="uint-select"
-              label="Uint"
-              {...register('uint')}
-              value={form.watch('uint') || ''} //表單重置後，顯示空值
+              labelId="unit-select-label"
+              id="unit-select"
+              label="unit"
+              {...register('unit')}
+              value={form.watch('unit') || ''} //表單重置後，顯示空值
             >
-              <MenuItem value="">Select uint</MenuItem>
-              {uintLists.map((item) => (
-                <MenuItem key={item.id} value={item.uint}>
-                  {item.uint}
+              <MenuItem value="">Select Unit</MenuItem>
+              {unitLists.map((item) => (
+                <MenuItem key={item.id} value={item.unit}>
+                  {item.unit}
                 </MenuItem>
               ))}
             </Select>

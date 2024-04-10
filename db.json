@@ -1,16 +1,16 @@
 {
-  "uintLists": [
+  "unitLists": [
     {
       "id": 0,
-      "uint": "cm"
+      "unit": "cm"
     },
     {
       "id": 1,
-      "uint": "m"
+      "unit": "m"
     },
     {
       "id": 2,
-      "uint": "m2"
+      "unit": "m2"
     }
   ],
   "projectTypeLists": [
@@ -76,7 +76,7 @@
       "fileNumber": "001",
       "category": "Mansion",
       "id": "0",
-      "date": "2023-09-01",
+      "date": "2024-03-20T15:03:05.138Z",
       "picture": " ",
       "cost": 1000000,
       "thirdPartyLists": [
@@ -85,22 +85,22 @@
           "name": "水電",
           "taskLists": [
             {
-              "id": 0,
               "todo": "消防",
-              "uint": "units",
+              "unit": "m2",
               "quantity": 10,
-              "stock": 0,
               "cost": 5000,
-              "price": 8000
+              "id": 0,
+              "price": 8000,
+              "stock": 0
             },
             {
-              "id": 2,
               "todo": "冷熱水管",
-              "uint": "",
-              "quantity": 0,
-              "stock": 0,
-              "cost": 0,
-              "price": 0
+              "unit": "cm",
+              "quantity": 1,
+              "cost": 1000,
+              "id": 2,
+              "price": 0,
+              "stock": 0
             }
           ]
         },
@@ -109,13 +109,13 @@
           "name": "木做",
           "taskLists": [
             {
-              "id": 0,
               "todo": "木門",
-              "uint": "units",
+              "unit": "m",
               "quantity": 10,
-              "stock": 0,
-              "cost": 5000,
-              "price": 8000
+              "cost": 3500,
+              "id": 0,
+              "price": 8000,
+              "stock": 0
             }
           ]
         }
@@ -125,7 +125,7 @@
       "id": "1",
       "name": "Project 2",
       "status": "Completed",
-      "date": "2023-09-05",
+      "date": "2024-03-20T15:03:05.138Z",
       "picture": " ",
       "fileNumber": "002",
       "cost": 1000000,
@@ -138,7 +138,7 @@
             {
               "id": 0,
               "todo": "木門",
-              "uint": "units",
+              "unit": "units",
               "quantity": 12,
               "stock": 0,
               "cost": 5000,
@@ -154,7 +154,7 @@
       "fileNumber": "003",
       "category": "House",
       "id": "2",
-      "date": "2023-09-10",
+      "date": "2024-03-20T15:03:05.138Z",
       "picture": " ",
       "cost": 1000000,
       "thirdPartyLists": []
@@ -163,7 +163,7 @@
       "id": "3",
       "name": "Project 4",
       "status": "Pending",
-      "date": "2023-09-10",
+      "date": "2024-03-20T15:03:05.138Z",
       "picture": " ",
       "fileNumber": "004",
       "cost": 1000000,

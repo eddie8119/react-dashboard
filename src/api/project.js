@@ -13,7 +13,7 @@ export const getProjectLists = async () => {
 
 //更新專案列表
 export const updateProject = async (data) => {
-  axios.post('${url}/projectLists', data);
+  axios.post(`${url}/projectLists`, data);
 };
 
 //取得單一專案

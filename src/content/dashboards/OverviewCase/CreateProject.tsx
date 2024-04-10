@@ -20,24 +20,12 @@ interface FormValues {
   category: string;
 }
 
-interface ProjectFormValues extends FormValues {
-  id: number;
-  status: string;
-  date: string;
-  picture?: string;
-  cost: number;
-}
-type ProjectTypeLists = {
-  id: number;
-  name: string;
-};
-
 const CreateProject = ({
   handleCreateProjectClose,
 }: {
   handleCreateProjectClose: () => void;
 }) => {
-  const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeLists[]>(
+  const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeList[]>(
     [],
   );
   const form = useForm<FormValues>({
@@ -65,8 +53,8 @@ const CreateProject = ({
   const onSubmit = async (data: FormValues) => {
     const { name, fileNumber, category } = data;
 
-    const formData: ProjectFormValues = {
-      id: Date.now(),
+    const formData: ProjectData = {
+      id: Date.now().toString(),
       name,
       status: 'Progress',
       date: new Date().toISOString(),
@@ -74,6 +62,7 @@ const CreateProject = ({
       fileNumber,
       cost: 0,
       category,
+      thirdPartyLists: [],
     };
 
     try {

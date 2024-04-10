@@ -1,7 +1,7 @@
 import { useState, lazy, useContext, useEffect, FC } from 'react';
 import ProjectContext from '../../../context/ProjectContext';
 import { editProjectThirdParty } from '../../../api/project';
-import { getUintLists } from '../../../api/uint';
+import { getUnitLists } from '../../../api/unit';
 import Input from '@mui/material/Input';
 import { useForm } from 'react-hook-form';
 import { TextField, Button, MenuItem } from '@mui/material';
@@ -16,7 +16,7 @@ interface TodoPanelProps {
 
 interface FormValues {
   todo: string;
-  uint: string;
+  unit: string;
   quantity: number;
   cost: number;
 }
@@ -31,12 +31,12 @@ const TodoPanel: FC<TodoPanelProps> = ({
     useContext(ProjectContext);
   const [openDeleteComfirmPop, setOpenDeleteComfirmPop] =
     useState<boolean>(false);
-  const [uintLists, setUintLists] = useState<UintList[]>([]);
+  const [unitLists, setUnitLists] = useState<unitList[]>([]);
 
   const form = useForm({
     defaultValues: {
       todo: '',
-      uint: '',
+      unit: '',
       quantity: 0,
       cost: 0,
     },
@@ -79,14 +79,14 @@ const TodoPanel: FC<TodoPanelProps> = ({
   };
 
   const editTodoSubmit = async (data: FormValues): Promise<void> => {
-    const { todo, uint } = data;
+    const { todo, unit } = data;
     //在useFotm HTML中，表單處理後的值都是字符串
     const quantity = parseInt(String(data.quantity), 10);
     const cost = parseInt(String(data.cost), 10);
 
     const formData: TaskData = {
       todo,
-      uint,
+      unit,
       quantity,
       cost,
       id: task.id,
@@ -106,8 +106,8 @@ const TodoPanel: FC<TodoPanelProps> = ({
 
   useEffect(() => {
     const fetchInitData = async () => {
-      const response = await getUintLists();
-      setUintLists(response.data);
+      const response = await getUnitLists();
+      setUnitLists(response.data);
     };
     fetchInitData();
   }, []);
@@ -115,7 +115,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
   useEffect(() => {
     form.setValue('todo', task.todo);
     form.setValue('quantity', task.quantity);
-    form.setValue('uint', task.uint);
+    form.setValue('unit', task.unit);
     form.setValue('cost', task.cost);
   }, [task, setValue]);
 
@@ -141,11 +141,11 @@ const TodoPanel: FC<TodoPanelProps> = ({
         />
         <div style={{ position: 'relative', width: '80px' }}>
           <TextField
-            id="uint-select"
+            id="unit-select"
             select
             variant="standard"
-            defaultValue={task.uint}
-            {...register('uint')}
+            defaultValue={task.unit}
+            {...register('unit')}
             style={{
               position: 'absolute',
               bottom: 0,
@@ -154,9 +154,9 @@ const TodoPanel: FC<TodoPanelProps> = ({
               paddingBottom: '0',
             }}
           >
-            {uintLists.map((item) => (
-              <MenuItem key={item.id} value={item.uint}>
-                {item.uint}
+            {unitLists.map((item) => (
+              <MenuItem key={item.id} value={item.unit}>
+                {item.unit}
               </MenuItem>
             ))}
           </TextField>

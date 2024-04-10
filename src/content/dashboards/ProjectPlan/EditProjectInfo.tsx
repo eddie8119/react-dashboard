@@ -17,11 +17,6 @@ interface EditProjectInfoProps {
   projectId: string;
 }
 
-type ProjectTypeLists = {
-  id: number;
-  name: string;
-};
-
 interface FormValues {
   name: string;
   status: string;
@@ -32,7 +27,7 @@ interface FormValues {
 const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
-  const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeLists[]>(
+  const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeList[]>(
     [],
   );
   const form = useForm({
