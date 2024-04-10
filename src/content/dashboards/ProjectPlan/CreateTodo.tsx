@@ -113,7 +113,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
             <Select
               labelId="unit-select-label"
               id="unit-select"
-              label="unit"
+              label="Unit"
               {...register('unit')}
               value={form.watch('unit') || ''} //表單重置後，顯示空值
             >
