@@ -34,7 +34,7 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({
             <p className="w-[20px]" />
             <p className="w-[90px]">Title</p>
             <p className="w-[70px]">Quantity</p>
-            <p className="w-[80px] text-center">Uint</p>
+            <p className="w-[80px] text-center">unit</p>
             <p className="w-[120px] text-center">Cost</p>
           </div>
         </div>

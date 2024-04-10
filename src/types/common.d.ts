@@ -20,7 +20,7 @@ interface ThirdPartyData {
 interface TaskData {
     id: number;
     todo: string;
-    uint: string;
+    unit: string;
     quantity: number;
     stock: number;
     cost: number;
@@ -28,9 +28,9 @@ interface TaskData {
 }
 
 //選單菜單系列
-interface UintList {
+interface unitList {
     id: number;
-    uint: string;
+    unit: string;
 }
 
 interface ProjectTypeList {

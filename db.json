@@ -1,16 +1,16 @@
 {
-  "uintLists": [
+  "unitLists": [
     {
       "id": 0,
-      "uint": "cm"
+      "unit": "cm"
     },
     {
       "id": 1,
-      "uint": "m"
+      "unit": "m"
     },
     {
       "id": 2,
-      "uint": "m2"
+      "unit": "m2"
     }
   ],
   "projectTypeLists": [
@@ -86,7 +86,7 @@
           "taskLists": [
             {
               "todo": "消防",
-              "uint": "m2",
+              "unit": "m2",
               "quantity": 10,
               "cost": 5000,
               "id": 0,
@@ -95,7 +95,7 @@
             },
             {
               "todo": "冷熱水管",
-              "uint": "cm",
+              "unit": "cm",
               "quantity": 1,
               "cost": 1000,
               "id": 2,
@@ -110,7 +110,7 @@
           "taskLists": [
             {
               "todo": "木門",
-              "uint": "m",
+              "unit": "m",
               "quantity": 10,
               "cost": 3500,
               "id": 0,
@@ -138,7 +138,7 @@
             {
               "id": 0,
               "todo": "木門",
-              "uint": "units",
+              "unit": "units",
               "quantity": 12,
               "stock": 0,
               "cost": 5000,
