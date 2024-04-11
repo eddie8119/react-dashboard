@@ -42,6 +42,7 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({
       <div className="flex h-[250px] w-full flex-col gap-2 overflow-y-auto">
         {firmTaskLists.map((task, index) => (
           <TodoPanel
+            key={task.id}
             task={task}
             index={index}
             firmTaskId={firmTaskId}
