@@ -31,7 +31,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
     useContext(ProjectContext);
   const [openDeleteComfirmPop, setOpenDeleteComfirmPop] =
     useState<boolean>(false);
-  const [unitLists, setUnitLists] = useState<unitList[]>([]);
+  const [unitLists, setUnitLists] = useState<UnitMenuObject[]>([]);
 
   const form = useForm({
     defaultValues: {

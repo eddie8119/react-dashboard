@@ -27,7 +27,7 @@ interface FormValues {
 const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
-  const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeList[]>(
+  const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeObject[]>(
     [],
   );
   const form = useForm({

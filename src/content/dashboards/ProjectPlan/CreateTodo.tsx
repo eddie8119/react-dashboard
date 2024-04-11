@@ -26,7 +26,7 @@ interface CreateTodoProps {
 const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
-  const [unitLists, setUnitLists] = useState<unitList[]>([]);
+  const [unitLists, setUnitLists] = useState<UnitMenuObject[]>([]);
 
   const form = useForm<FormValues>({
     defaultValues: {
