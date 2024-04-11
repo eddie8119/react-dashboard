@@ -23,7 +23,7 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
   const handlePopClose: () => void = () => {
     setOpenComfirmPop(false);
   };
-  const deleteThirdParty: () => void = async () => {
+  const deleteThirdParty = async (): Promise<void> => {
     const handleThirdPartyLists = projectInfo?.thirdPartyLists.filter(
       (item) => item.id !== firmTask.id,
     );
