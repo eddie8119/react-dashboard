@@ -3,11 +3,6 @@ import ProjectContext from '../../context/ProjectContext';
 import { editProjectThirdParty } from '../../api/project';
 import { getFirmLists } from '../../api/firm';
 
-interface FirmObject {
-  id: number;
-  name: string;
-}
-
 const ChoseFirm = () => {
   const [thirdParties, setThirdParties] = useState<string[]>([]);
   const [firmLists, setFirmLists] = useState<FirmObject[]>([]);
@@ -60,7 +55,7 @@ const ChoseFirm = () => {
     };
 
     fetchData();
-  }, [firmLists]);
+  }, []);
 
   useEffect(() => {
     //將目前專案有的協力廠商 儲存到thirdParties

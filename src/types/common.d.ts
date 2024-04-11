@@ -27,6 +27,7 @@ interface TaskData {
     price: number;
 }
 
+
 //選單菜單系列
 interface UnitMenuObject {
     id: number;
@@ -37,3 +38,8 @@ interface ProjectTypeObject {
     id: number;
     name: string;
 };
+
+interface FirmObject {
+    id: number;
+    name: string;
+}
