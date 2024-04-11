@@ -38,10 +38,7 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
   };
 
   return (
-    <div
-      key={firmTask.id}
-      className="flex min-w-[550px] flex-col gap-6 border border-black p-4  text-black"
-    >
+    <div className="flex min-w-[550px] flex-col gap-6 border border-black p-4  text-black">
       <div className="relative flex items-center justify-center">
         <h1>{firmTask.name}</h1>
         <IconButton
@@ -70,6 +67,7 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
 
       <CreateTodo firmTaskId={firmTask.id} />
       <TodoListsArea
+        key={firmTask.id}
         firmTaskId={firmTask.id}
         firmTaskLists={firmTask.taskLists}
         firmTaskName={firmTask.name}

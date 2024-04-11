@@ -130,7 +130,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
   ];
 
   return (
-    <div key={task.id} className=" flex items-center">
+    <div className=" flex items-center">
       <form className="flex gap-3" onSubmit={handleSubmit(editTodoSubmit)}>
         <div className="flex w-[20px] items-center">{index + 1}</div>
         <Input type="text" {...register('todo')} style={{ width: '90px' }} />

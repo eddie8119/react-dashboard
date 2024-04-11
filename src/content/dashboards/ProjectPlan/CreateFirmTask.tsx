@@ -24,7 +24,7 @@ const CreateFirmTask = () => {
       <h1 className="text-black">Create Firm Task</h1>
       <div className="flex h-full w-full gap-4 overflow-x-auto">
         {firmTaskLists.map((firmTask: ThirdPartyData) => (
-          <FirmTaskPanel firmTask={firmTask} />
+          <FirmTaskPanel firmTask={firmTask} key={firmTask.id} />
         ))}
       </div>
     </div>
