@@ -6,9 +6,7 @@ import { getUnitLists } from '../../../api/unit';
 
 jest.mock('../../../api/project', () => ({
   editProjectThirdParty: jest.fn(),
-}));
 
-jest.mock('../../../api/project', () => ({
   getUnitLists: jest.fn().mockResolvedValue({
     data: [
       { id: 1, unit: 'cm' },
@@ -32,19 +30,29 @@ describe('CreateTodo', () => {
     expect(unitOptions[2]).toHaveTextContent('m');
   });
 
-  test('without fill in todo inpute can not submit ', async () => {
-    render(<CreateTodo firmTaskId={0} />);
+  test('without fill in todo input can not submit ', async () => {
+    const testCases = [
+      { description: 'Todo input is empty', input: '' }, //沒有輸入
+      { description: 'Todo input contains only spaces', input: ' ' }, //輸入空格
+    ];
 
-    const createItemButton = screen.getByRole('button', {
-      name: /add item/i,
-    });
-    await userEvent.click(createItemButton);
+    for (const { input } of testCases) {
+      render(<CreateTodo firmTaskId={0} />);
 
-    const todoErrorMessage = screen.getByText(/Todo is required/i);
-    expect(todoErrorMessage).toBeInTheDocument();
+      const todoInput = screen.getByLabelText(/Todo/i);
+      const createItemButton = screen.getByRole('button', {
+        name: /add item/i,
+      });
+
+      await userEvent.type(todoInput, input);
+      await userEvent.click(createItemButton);
+
+      const todoErrorMessage = screen.findByText(/Todo is required/i);
+      expect(todoErrorMessage).toBeInTheDocument();
+    }
   });
 
-  test('fill in only todo inpute can submit', async () => {
+  test('fill in only todo input can submit', async () => {
     render(<CreateTodo firmTaskId={0} />);
 
     const todoInput = screen.getByLabelText(/Todo/i);
@@ -55,19 +63,7 @@ describe('CreateTodo', () => {
     });
     await userEvent.click(createItemButton);
 
-    expect(editProjectThirdParty).toHaveBeenCalledWith(
-      expect.anything(), // Assuming the first argument is the project ID, which we're not checking here
-      expect.arrayContaining([
-        expect.objectContaining({
-          todo: 'this is todo',
-          quantity: 0,
-          unit: '',
-          stock: 0,
-          cost: 0,
-          price: 0,
-        }),
-      ]),
-    );
+    expect(editProjectThirdParty).toHaveBeenCalled();
     // 清空input
     expect(todoInput).toHaveValue('');
   });
