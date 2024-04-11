@@ -2,7 +2,7 @@ import axios from 'axios';
 const url = 'http://localhost:3000';
 
 //取得專案類型列表
-export const getProjectTypeLists = async ():Promise<ProjectTypeList[]> => {
+export const getProjectTypeLists = async ():Promise<ProjectTypeObject[]> => {
   return await axios.get(`${url}/projectTypeLists`);
 };
 

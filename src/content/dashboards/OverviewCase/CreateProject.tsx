@@ -25,7 +25,7 @@ const CreateProject = ({
 }: {
   handleCreateProjectClose: () => void;
 }) => {
-  const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeList[]>(
+  const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeObject[]>(
     [],
   );
   const form = useForm<FormValues>({

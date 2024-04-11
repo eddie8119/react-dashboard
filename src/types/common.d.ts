@@ -33,7 +33,7 @@ interface UnitMenuObject {
     unit: string;
 }
 
-interface ProjectTypeList {
+interface ProjectTypeObject {
     id: number;
     name: string;
 };
