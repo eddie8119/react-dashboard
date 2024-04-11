@@ -28,7 +28,7 @@ interface TaskData {
 }
 
 //選單菜單系列
-interface unitList {
+interface UnitMenuObject {
     id: number;
     unit: string;
 }
