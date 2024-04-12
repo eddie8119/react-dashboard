@@ -30,16 +30,16 @@ interface TaskData {
 
 //選單菜單系列
 interface UnitMenuObject {
-    id: number;
+    id: string;
     unit: string;
 }
 
 interface ProjectTypeObject {
-    id: number;
+    id: string;
     name: string;
 };
 
 interface FirmObject {
-    id: number;
+    id: string;
     name: string;
 }
