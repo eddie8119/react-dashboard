@@ -97,6 +97,8 @@ const CreateProject = ({
             type="text"
             {...register('name', {
               required: 'Name is required',
+              validate: (value) =>
+                value.trim() !== '' || 'Cannot be only whitespace',
             })}
             error={!!errors.name}
             helperText={errors.name?.message}
@@ -106,6 +108,8 @@ const CreateProject = ({
             type="text"
             {...register('fileNumber', {
               required: 'FileNumber is required',
+              validate: (value) =>
+                value.trim() !== '' || 'Cannot be only whitespace',
             })}
             error={!!errors.fileNumber}
             helperText={errors.fileNumber?.message}
