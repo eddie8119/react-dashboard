@@ -1,8 +1,8 @@
-import axios, { AxiosResponse } from 'axios';
-const url = 'http://localhost:3000';
+import { AxiosResponse } from 'axios';
+import request from "../utils/request";
 
 //取得廠商列表
 export const getFirmLists = async ():Promise<AxiosResponse> => { 
-  return await axios.get<FirmObject[]>(`${url}/firmLists`);
+  return await request.get<FirmObject[]>(`/firmLists`);
 };
 
