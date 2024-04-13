@@ -94,6 +94,7 @@ const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
               label="Name"
               sx={{ width: '100%' }}
               type="text"
+              value={form.watch('name')}
               {...register('name', {
                 required: 'Name is required',
               })}
@@ -106,6 +107,7 @@ const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
               label="FileNumber"
               sx={{ width: '100%' }}
               type="text"
+              value={form.watch('fileNumber')}
               {...register('fileNumber', {
                 required: 'FileNumber is required',
               })}
@@ -120,6 +122,7 @@ const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
                 labelId="category-select-label"
                 id="category-select"
                 label="category"
+                value={form.watch('category')}
                 {...register('category', {
                   required: 'Category is required',
                 })}
@@ -140,6 +143,7 @@ const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
                 labelId="type-select-label"
                 id="type-select"
                 label="Status"
+                value={form.watch('status')}
                 {...register('status')}
               >
                 <MenuItem value="Plan">Plan</MenuItem>

@@ -4,7 +4,7 @@ import { editProjectThirdParty } from '../../../api/project';
 import { getUnitLists } from '../../../api/unit';
 import Input from '@mui/material/Input';
 import { useForm } from 'react-hook-form';
-import { TextField, Button, MenuItem } from '@mui/material';
+import { Select, Button, MenuItem } from '@mui/material';
 const PopUp = lazy(() => import('../../../components/PopUp'));
 
 interface TodoPanelProps {
@@ -140,11 +140,10 @@ const TodoPanel: FC<TodoPanelProps> = ({
           style={{ width: '70px' }}
         />
         <div style={{ position: 'relative', width: '80px' }}>
-          <TextField
+          <Select
             id="unit-select"
-            select
             variant="standard"
-            defaultValue={task.unit}
+            value={form.watch('unit')}
             {...register('unit')}
             style={{
               position: 'absolute',
@@ -159,7 +158,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
                 {item.unit}
               </MenuItem>
             ))}
-          </TextField>
+          </Select>
         </div>
 
         <Input

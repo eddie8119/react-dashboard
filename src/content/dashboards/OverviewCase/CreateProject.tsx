@@ -116,6 +116,7 @@ const CreateProject = ({
               labelId="type-select-label"
               id="type-select"
               label="Category"
+              value={form.watch('category')}
               {...register('category', {
                 required: 'Category is required',
               })}
