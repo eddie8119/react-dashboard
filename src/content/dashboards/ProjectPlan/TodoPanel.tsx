@@ -1,7 +1,6 @@
 import { useState, lazy, useContext, useEffect, FC } from 'react';
 import ProjectContext from '../../../context/ProjectContext';
 import { editProjectThirdParty } from '../../../api/project';
-import { getUnitLists } from '../../../api/unit';
 import Input from '@mui/material/Input';
 import { useForm } from 'react-hook-form';
 import { TextField, Button, MenuItem } from '@mui/material';
@@ -12,6 +11,7 @@ interface TodoPanelProps {
   index: number;
   firmTaskId: number;
   firmTaskLists: TaskData[];
+  unitLists: UnitMenuObject[];
 }
 
 interface FormValues {
@@ -26,12 +26,12 @@ const TodoPanel: FC<TodoPanelProps> = ({
   index,
   firmTaskId,
   firmTaskLists,
+  unitLists,
 }) => {
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
   const [openDeleteComfirmPop, setOpenDeleteComfirmPop] =
     useState<boolean>(false);
-  const [unitLists, setUnitLists] = useState<UnitMenuObject[]>([]);
 
   const form = useForm({
     defaultValues: {
@@ -103,14 +103,6 @@ const TodoPanel: FC<TodoPanelProps> = ({
     });
     await handleUpdateTaskTodoApi(updateFirmTaskLists);
   };
-
-  useEffect(() => {
-    const fetchInitData = async () => {
-      const response = await getUnitLists();
-      setUnitLists(response.data);
-    };
-    fetchInitData();
-  }, []);
 
   useEffect(() => {
     form.setValue('todo', task.todo);

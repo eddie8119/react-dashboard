@@ -1,10 +1,11 @@
-import { useState, lazy, useContext, FC } from 'react';
+import { useState, lazy, useContext, useEffect, FC } from 'react';
 import CreateTodo from './CreateTodo';
 import TodoListsArea from './TodoListsArea';
 import { IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import ProjectContext from '../../../context/ProjectContext';
 import { editProjectThirdParty } from '../../../api/project';
+import { getUnitLists } from '../../../api/unit';
 const PopUp = lazy(() => import('../../../components/PopUp'));
 
 interface FirmTaskPanelProps {
@@ -13,6 +14,7 @@ interface FirmTaskPanelProps {
 
 const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
   const [openComfirmPop, setOpenComfirmPop] = useState<boolean>(false);
+  const [unitLists, setUnitLists] = useState<UnitMenuObject[]>([]);
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
   const popPropsTitle = firmTask.name;
@@ -36,6 +38,14 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
       throw new Error(String(error));
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getUnitLists();
+      setUnitLists(response.data);
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="flex min-w-[550px] flex-col gap-6 border border-black p-4  text-black">
@@ -65,12 +75,13 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
         popupIndex={`Are you sure delete the ${popPropsTitle} card?`}
       />
 
-      <CreateTodo firmTaskId={firmTask.id} />
+      <CreateTodo firmTaskId={firmTask.id} unitLists={unitLists} />
       <TodoListsArea
         key={firmTask.id}
         firmTaskId={firmTask.id}
         firmTaskLists={firmTask.taskLists}
         firmTaskName={firmTask.name}
+        unitLists={unitLists}
       />
     </div>
   );
