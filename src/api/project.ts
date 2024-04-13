@@ -1,14 +1,14 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 const url = 'http://localhost:3000';
 
 //取得專案類型列表
-export const getProjectTypeLists = async ():Promise<ProjectTypeObject[]> => {
-  return await axios.get(`${url}/projectTypeLists`);
+export const getProjectTypeLists = async ():Promise<AxiosResponse> => {
+  return await axios.get<ProjectTypeObject[]>(`${url}/projectTypeLists`);
 };
 
 //取得所有專案列表
-export const getProjectLists = async ():Promise<ProjectData[]> => {
-  return await axios.get(`${url}/projectLists`);
+export const getProjectLists = async ():Promise<AxiosResponse> => {
+  return await axios.get<ProjectData[]>(`${url}/projectLists`);
 };
 
 //更新專案列表
@@ -17,8 +17,8 @@ export const updateProject = async (data: ProjectData): Promise<void> => {
 };
 
 //取得單一專案
-export const getProject = async (id: string) => {
-  return await axios.get(`${url}/projectLists/${id}`);
+export const getProject = async (id: string):Promise<AxiosResponse> => {
+  return await axios.get<ProjectData>(`${url}/projectLists/${id}`);
 };
 
 //刪除專案
