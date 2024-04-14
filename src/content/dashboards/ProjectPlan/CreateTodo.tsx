@@ -97,6 +97,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
           <TextField
             label="Todo"
             type="text"
+            value={form.watch('todo')}
             {...register('todo', {
               required: 'Todo is required',
               validate: (value) =>
@@ -107,7 +108,12 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
           />
         </Grid>
         <Grid item xs={3}>
-          <TextField label="Quantity" type="number" {...register('quantity')} />
+          <TextField
+            label="Quantity"
+            type="number"
+            value={form.watch('quantity') || ''}
+            {...register('quantity')}
+          />
         </Grid>
         <Grid item xs={3}>
           <FormControl fullWidth>
@@ -117,7 +123,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
               id="unit-select"
               label="Unit"
               {...register('unit')}
-              value={form.watch('unit') || ''} //表單重置後，顯示空值
+              value={form.watch('unit')}
             >
               <MenuItem value="">Select Unit</MenuItem>
               {unitLists.map((item) => (
