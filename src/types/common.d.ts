@@ -15,6 +15,8 @@ interface ThirdPartyData {
     id: number;
     name: string;
     taskLists: TaskData[];
+    cost: number;
+    sellingPrice: number;
 }
 
 interface TaskData {
