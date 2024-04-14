@@ -83,6 +83,8 @@
         {
           "id": 2,
           "name": "水電",
+          "cost": 132000,
+          "sellingPrice": 0,
           "taskLists": [
             {
               "todo": "消防",
@@ -101,12 +103,32 @@
               "id": 2,
               "price": 0,
               "stock": 0
+            },
+            {
+              "todo": "電線",
+              "unit": "m",
+              "quantity": 25,
+              "cost": 3000,
+              "id": 1713112121401,
+              "price": 0,
+              "stock": 0
+            },
+            {
+              "todo": "監視",
+              "unit": "m",
+              "quantity": 6,
+              "cost": 1000,
+              "id": 1713112133913,
+              "price": 0,
+              "stock": 0
             }
           ]
         },
         {
           "id": 7,
           "name": "木做",
+          "cost": 37000,
+          "sellingPrice": 0,
           "taskLists": [
             {
               "todo": "木門",
@@ -116,81 +138,19 @@
               "id": 0,
               "price": 8000,
               "stock": 0
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "id": "1",
-      "name": "Project 2",
-      "status": "Completed",
-      "date": "2024-03-20T15:03:05.138Z",
-      "picture": " ",
-      "fileNumber": "002",
-      "cost": 1000000,
-      "category": "Commercial",
-      "thirdPartyLists": [
-        {
-          "id": 7,
-          "name": "木做",
-          "taskLists": [
+            },
             {
-              "id": 0,
-              "todo": "木門",
-              "unit": "units",
-              "quantity": 12,
-              "stock": 0,
-              "cost": 5000,
-              "price": 8000
+              "todo": "門把",
+              "unit": "",
+              "quantity": 10,
+              "cost": 200,
+              "id": 1713113194305,
+              "price": 0,
+              "stock": 0
             }
           ]
         }
       ]
-    },
-    {
-      "name": "Project 35",
-      "status": "Pending",
-      "fileNumber": "003",
-      "category": "House",
-      "id": "2",
-      "date": "2024-03-20T15:03:05.138Z",
-      "picture": " ",
-      "cost": 1000000,
-      "thirdPartyLists": []
-    },
-    {
-      "id": "3",
-      "name": "Project 4",
-      "status": "Pending",
-      "date": "2024-03-20T15:03:05.138Z",
-      "picture": " ",
-      "fileNumber": "004",
-      "cost": 1000000,
-      "category": "House",
-      "thirdPartyLists": []
-    },
-    {
-      "id": "1711119785138",
-      "name": "王旌",
-      "status": "Progress",
-      "date": "2024-03-22T15:03:05.138Z",
-      "picture": "",
-      "fileNumber": "5555",
-      "cost": 0,
-      "category": "Mansion",
-      "thirdPartyLists": []
-    },
-    {
-      "id": "1711119810420",
-      "name": "5",
-      "status": "Progress",
-      "date": "2024-03-22T15:03:30.420Z",
-      "picture": "",
-      "fileNumber": "5555",
-      "cost": 0,
-      "category": "Mansion",
-      "thirdPartyLists": []
     }
   ]
 }
