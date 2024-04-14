@@ -2,6 +2,7 @@ import { useEffect, useState, useContext } from 'react';
 import ProjectContext from '../../../context/ProjectContext';
 import TaskContext from '../../../context/TaskContext';
 import FirmTaskPanel from './FirmTaskPanel';
+import ProjectPlanCostChart from './ProjectPlanCostChart';
 import { getUnitLists } from '../../../api/unit';
 
 const CreateFirmTask = () => {
@@ -34,6 +35,7 @@ const CreateFirmTask = () => {
           ))}
         </div>
       </div>
+      <ProjectPlanCostChart firmTaskLists={firmTaskLists} />
     </TaskContext.Provider>
   );
 };
