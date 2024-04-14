@@ -1,6 +1,6 @@
 import { useEffect, useState, useContext } from 'react';
 import ProjectContext from '../../../context/ProjectContext';
-import TaskContext, { initTaskContext } from '../../../context/TaskContext';
+import TaskContext from '../../../context/TaskContext';
 import FirmTaskPanel from './FirmTaskPanel';
 import { getUnitLists } from '../../../api/unit';
 
@@ -8,19 +8,13 @@ const CreateFirmTask = () => {
   const { projectInfo } = useContext(ProjectContext);
   const [firmTaskLists, setFirmTaskLists] = useState<ThirdPartyData[]>([]);
   const [unitLists, setUnitLists] = useState<UnitMenuObject[]>([]);
-  const [updateFirmTaskLists, setUpdateFirmTaskLists] =
-    useState<boolean>(false);
-
-  const handlerSetUpdateFirmTaskLists = () => {
-    setUpdateFirmTaskLists((prev) => !prev);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
       setFirmTaskLists(projectInfo.thirdPartyLists);
     };
     fetchData();
-  }, [projectInfo, updateFirmTaskLists]);
+  }, [projectInfo]);
 
   useEffect(() => {
     const fetchData = async () => {
