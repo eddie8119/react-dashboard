@@ -1,6 +1,7 @@
 import { useContext, FC } from 'react';
 import { useForm } from 'react-hook-form';
 import ProjectContext from '../../../context/ProjectContext';
+import TaskContext from '../../../context/TaskContext';
 import { editProjectThirdParty } from '../../../api/project';
 
 import {
@@ -20,12 +21,12 @@ interface FormValues {
 }
 interface CreateTodoProps {
   firmTaskId: number;
-  unitLists: UnitMenuObject[];
 }
 
-const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId, unitLists }) => {
+const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
+  const { unitLists } = useContext(TaskContext);
 
   const form = useForm<FormValues>({
     defaultValues: {
