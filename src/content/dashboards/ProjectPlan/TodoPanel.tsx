@@ -61,8 +61,14 @@ const TodoPanel: FC<TodoPanelProps> = ({
   ): Promise<void> => {
     const updateThirdPartyLists = projectInfo.thirdPartyLists.map((item) => {
       if (item.id === firmTaskId) {
+        const totalCost = updateData.reduce(
+          (sum, item) => sum + item.cost * item.quantity,
+          0,
+        );
+
         return {
           ...item,
+          cost: totalCost,
           taskLists: updateData,
         };
       }
