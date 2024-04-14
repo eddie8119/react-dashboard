@@ -1,10 +1,10 @@
 import { useState, lazy, useContext, useEffect, FC } from 'react';
 import ProjectContext from '../../../context/ProjectContext';
+import TaskContext from '../../../context/TaskContext';
 import { editProjectThirdParty } from '../../../api/project';
-import { getUnitLists } from '../../../api/unit';
 import Input from '@mui/material/Input';
 import { useForm } from 'react-hook-form';
-import { TextField, Button, MenuItem } from '@mui/material';
+import { Select, Button, MenuItem } from '@mui/material';
 const PopUp = lazy(() => import('../../../components/PopUp'));
 
 interface TodoPanelProps {
@@ -29,9 +29,9 @@ const TodoPanel: FC<TodoPanelProps> = ({
 }) => {
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
+  const { unitLists } = useContext(TaskContext);
   const [openDeleteComfirmPop, setOpenDeleteComfirmPop] =
     useState<boolean>(false);
-  const [unitLists, setUnitLists] = useState<UnitMenuObject[]>([]);
 
   const form = useForm({
     defaultValues: {
@@ -42,7 +42,11 @@ const TodoPanel: FC<TodoPanelProps> = ({
     },
   });
   const { setValue } = useForm();
-  const { register, handleSubmit } = form;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = form;
 
   const handleDeletePopOpen: () => void = () => {
     setOpenDeleteComfirmPop(true);
@@ -105,14 +109,6 @@ const TodoPanel: FC<TodoPanelProps> = ({
   };
 
   useEffect(() => {
-    const fetchInitData = async () => {
-      const response = await getUnitLists();
-      setUnitLists(response.data);
-    };
-    fetchInitData();
-  }, []);
-
-  useEffect(() => {
     form.setValue('todo', task.todo);
     form.setValue('quantity', task.quantity);
     form.setValue('unit', task.unit);
@@ -133,18 +129,25 @@ const TodoPanel: FC<TodoPanelProps> = ({
     <div className=" flex items-center">
       <form className="flex gap-3" onSubmit={handleSubmit(editTodoSubmit)}>
         <div className="flex w-[20px] items-center">{index + 1}</div>
-        <Input type="text" {...register('todo')} style={{ width: '90px' }} />
+        <Input
+          type="text"
+          {...register('todo', {
+            required: 'Todo is required',
+            validate: (value) => value.trim() !== '',
+          })}
+          error={!!errors.todo}
+          style={{ width: '90px' }}
+        />
         <Input
           type="number"
           {...register('quantity')}
           style={{ width: '70px' }}
         />
         <div style={{ position: 'relative', width: '80px' }}>
-          <TextField
+          <Select
             id="unit-select"
-            select
             variant="standard"
-            defaultValue={task.unit}
+            value={form.watch('unit')}
             {...register('unit')}
             style={{
               position: 'absolute',
@@ -159,7 +162,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
                 {item.unit}
               </MenuItem>
             ))}
-          </TextField>
+          </Select>
         </div>
 
         <Input

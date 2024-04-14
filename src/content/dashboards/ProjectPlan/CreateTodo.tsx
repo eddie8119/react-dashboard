@@ -1,8 +1,8 @@
-import { useEffect, useState, useContext, FC } from 'react';
+import { useContext, FC } from 'react';
 import { useForm } from 'react-hook-form';
 import ProjectContext from '../../../context/ProjectContext';
+import TaskContext from '../../../context/TaskContext';
 import { editProjectThirdParty } from '../../../api/project';
-import { getUnitLists } from '../../../api/unit';
 
 import {
   TextField,
@@ -26,7 +26,7 @@ interface CreateTodoProps {
 const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
-  const [unitLists, setUnitLists] = useState<UnitMenuObject[]>([]);
+  const { unitLists } = useContext(TaskContext);
 
   const form = useForm<FormValues>({
     defaultValues: {
@@ -77,14 +77,6 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getUnitLists();
-      setUnitLists(response.data);
-    };
-    fetchData();
-  }, []);
-
   return (
     <form
       noValidate
@@ -97,15 +89,23 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
           <TextField
             label="Todo"
             type="text"
+            value={form.watch('todo')}
             {...register('todo', {
               required: 'Todo is required',
+              validate: (value) =>
+                value.trim() !== '' || 'Cannot be only whitespace',
             })}
             error={!!errors.todo}
             helperText={errors.todo?.message}
           />
         </Grid>
         <Grid item xs={3}>
-          <TextField label="Quantity" type="number" {...register('quantity')} />
+          <TextField
+            label="Quantity"
+            type="number"
+            value={form.watch('quantity') || ''}
+            {...register('quantity')}
+          />
         </Grid>
         <Grid item xs={3}>
           <FormControl fullWidth>
@@ -115,7 +115,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
               id="unit-select"
               label="Unit"
               {...register('unit')}
-              value={form.watch('unit') || ''} //表單重置後，顯示空值
+              value={form.watch('unit')}
             >
               <MenuItem value="">Select Unit</MenuItem>
               {unitLists.map((item) => (
