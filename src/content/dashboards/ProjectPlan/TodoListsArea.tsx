@@ -1,5 +1,6 @@
 import { FC, useState, useEffect } from 'react';
 import TodoPanel from './TodoPanel';
+import TodoPanelChart from './TodoPanelChart';
 
 interface TodoListsAreaProps {
   firmTaskLists: TaskData[];
@@ -29,33 +30,36 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({
   return (
     <div className="flex w-full flex-col gap-2">
       {firmTaskLists.length !== 0 && (
-        <div className=" flex items-center justify-between">
-          <div className="flex gap-2">
-            <p className="w-[20px]" />
-            <p className="w-[90px]">Title</p>
-            <p className="w-[70px]">Quantity</p>
-            <p className="w-[80px] text-center">unit</p>
-            <p className="w-[120px] text-center">Cost</p>
+        <>
+          <div className=" flex items-center justify-between">
+            <div className="flex gap-2">
+              <p className="w-[20px]" />
+              <p className="w-[90px]">Title</p>
+              <p className="w-[70px]">Quantity</p>
+              <p className="w-[80px] text-center">unit</p>
+              <p className="w-[120px] text-center">Cost</p>
+            </div>
           </div>
-        </div>
+          <div className="flex h-[250px] w-full flex-col gap-2 overflow-y-auto">
+            {firmTaskLists.map((task, index) => (
+              <TodoPanel
+                key={task.id}
+                task={task}
+                index={index}
+                firmTaskId={firmTaskId}
+                firmTaskLists={firmTaskLists}
+              />
+            ))}
+          </div>
+          <div className="flex w-[412px] justify-end">
+            <p>
+              {firmTaskName} Cost Total:
+              <span className="ml-3">{firmTotalCost}</span>
+            </p>
+          </div>
+          <TodoPanelChart firmTaskLists={firmTaskLists} />
+        </>
       )}
-      <div className="flex h-[250px] w-full flex-col gap-2 overflow-y-auto">
-        {firmTaskLists.map((task, index) => (
-          <TodoPanel
-            key={task.id}
-            task={task}
-            index={index}
-            firmTaskId={firmTaskId}
-            firmTaskLists={firmTaskLists}
-          />
-        ))}
-      </div>
-      <div className="flex w-[412px] justify-end">
-        <p>
-          {firmTaskName} Cost Total:
-          <span className="ml-3">{firmTotalCost}</span>
-        </p>
-      </div>
     </div>
   );
 };
