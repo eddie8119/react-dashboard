@@ -1,5 +1,6 @@
 import { useState, lazy, useContext, useEffect, FC } from 'react';
 import ProjectContext from '../../../context/ProjectContext';
+import TaskContext from '../../../context/TaskContext';
 import { editProjectThirdParty } from '../../../api/project';
 import Input from '@mui/material/Input';
 import { useForm } from 'react-hook-form';
@@ -11,7 +12,6 @@ interface TodoPanelProps {
   index: number;
   firmTaskId: number;
   firmTaskLists: TaskData[];
-  unitLists: UnitMenuObject[];
 }
 
 interface FormValues {
@@ -26,10 +26,10 @@ const TodoPanel: FC<TodoPanelProps> = ({
   index,
   firmTaskId,
   firmTaskLists,
-  unitLists,
 }) => {
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
+  const { unitLists } = useContext(TaskContext);
   const [openDeleteComfirmPop, setOpenDeleteComfirmPop] =
     useState<boolean>(false);
 
