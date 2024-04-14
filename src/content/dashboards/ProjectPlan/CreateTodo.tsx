@@ -1,8 +1,7 @@
-import { useEffect, useState, useContext, FC } from 'react';
+import { useContext, FC } from 'react';
 import { useForm } from 'react-hook-form';
 import ProjectContext from '../../../context/ProjectContext';
 import { editProjectThirdParty } from '../../../api/project';
-import { getUnitLists } from '../../../api/unit';
 
 import {
   TextField,
@@ -21,12 +20,12 @@ interface FormValues {
 }
 interface CreateTodoProps {
   firmTaskId: number;
+  unitLists: UnitMenuObject[];
 }
 
-const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
+const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId, unitLists }) => {
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
-  const [unitLists, setUnitLists] = useState<UnitMenuObject[]>([]);
 
   const form = useForm<FormValues>({
     defaultValues: {
@@ -76,14 +75,6 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
       throw new Error(String(error));
     }
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getUnitLists();
-      setUnitLists(response.data);
-    };
-    fetchData();
-  }, []);
 
   return (
     <form
