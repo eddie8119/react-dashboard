@@ -23,8 +23,8 @@ export const getProject = async (id: string):Promise<AxiosResponse> => {
 };
 
 //刪除專案
-export const deleteProject = async (id: string): Promise<void> => {
-  request.delete(`/projectLists/${id}`);
+export const deleteProject = async (id: string):Promise<AxiosResponse> => {
+  return request.delete(`/projectLists/${id}`);
 };
 
 //編輯專案
