@@ -42,7 +42,11 @@ const TodoPanel: FC<TodoPanelProps> = ({
     },
   });
   const { setValue } = useForm();
-  const { register, handleSubmit } = form;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = form;
 
   const handleDeletePopOpen: () => void = () => {
     setOpenDeleteComfirmPop(true);
@@ -133,7 +137,15 @@ const TodoPanel: FC<TodoPanelProps> = ({
     <div className=" flex items-center">
       <form className="flex gap-3" onSubmit={handleSubmit(editTodoSubmit)}>
         <div className="flex w-[20px] items-center">{index + 1}</div>
-        <Input type="text" {...register('todo')} style={{ width: '90px' }} />
+        <Input
+          type="text"
+          {...register('todo', {
+            required: 'Todo is required',
+            validate: (value) => value.trim() !== '',
+          })}
+          error={!!errors.todo}
+          style={{ width: '90px' }}
+        />
         <Input
           type="number"
           {...register('quantity')}

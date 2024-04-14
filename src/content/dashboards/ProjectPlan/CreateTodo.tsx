@@ -99,6 +99,8 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
             type="text"
             {...register('todo', {
               required: 'Todo is required',
+              validate: (value) =>
+                value.trim() !== '' || 'Cannot be only whitespace',
             })}
             error={!!errors.todo}
             helperText={errors.todo?.message}
