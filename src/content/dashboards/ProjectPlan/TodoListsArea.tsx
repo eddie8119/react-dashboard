@@ -5,14 +5,12 @@ interface TodoListsAreaProps {
   firmTaskLists: TaskData[];
   firmTaskId: number;
   firmTaskName: string;
-  unitLists: UnitMenuObject[];
 }
 
 const TodoListsArea: FC<TodoListsAreaProps> = ({
   firmTaskLists,
   firmTaskId,
   firmTaskName,
-  unitLists,
 }) => {
   const [firmTotalCost, setFirmTotalCost] = useState<number>(0);
 
@@ -49,7 +47,6 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({
             index={index}
             firmTaskId={firmTaskId}
             firmTaskLists={firmTaskLists}
-            unitLists={unitLists}
           />
         ))}
       </div>
