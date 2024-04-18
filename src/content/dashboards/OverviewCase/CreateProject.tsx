@@ -61,6 +61,7 @@ const CreateProject = ({
       picture: '',
       fileNumber,
       cost: 0,
+      sellingPrice: 0,
       category,
       thirdPartyLists: [],
     };

@@ -38,9 +38,11 @@ export const editProject = async (
 //更新專案協力廠商
 export const editProjectThirdParty = async (
   id: string,
-  data: ThirdPartyData[],
+  updateThirdPartyListsData: ThirdPartyData[],
+  projectCostData?: number,
 ): Promise<void> => {
   await request.patch(`/projectLists/${id}`, {
-    thirdPartyLists: data,
+    thirdPartyLists: updateThirdPartyListsData,
+    cost: projectCostData,
   });
 };

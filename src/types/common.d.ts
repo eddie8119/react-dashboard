@@ -7,6 +7,7 @@ interface ProjectData {
     picture?: string;
     fileNumber: string;
     cost: number;
+    sellingPrice: number,
     category: string;   
     thirdPartyLists:ThirdPartyData[]
 }

@@ -55,6 +55,7 @@ const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
       category,
       id: projectInfo.id,
       date: projectInfo.date,
+      sellingPrice: projectInfo.sellingPrice,
       picture: projectInfo.picture,
       cost: projectInfo.cost,
       thirdPartyLists: projectInfo.thirdPartyLists,

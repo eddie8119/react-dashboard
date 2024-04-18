@@ -78,7 +78,8 @@
       "id": "0",
       "date": "2024-03-20T15:03:05.138Z",
       "picture": " ",
-      "cost": 1000000,
+      "cost": 169000,
+      "sellingPrice": 0,
       "thirdPartyLists": [
         {
           "id": 2,

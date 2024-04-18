@@ -75,8 +75,18 @@ const TodoPanel: FC<TodoPanelProps> = ({
       return item;
     });
 
+    //專案總成本 也要更新 計算project.cost
+    const projectCost = updateThirdPartyLists.reduce(
+      (sum, item) => sum + item.cost,
+      0,
+    );
+
     try {
-      await editProjectThirdParty(projectInfo.id, updateThirdPartyLists);
+      await editProjectThirdParty(
+        projectInfo.id,
+        updateThirdPartyLists,
+        projectCost,
+      );
       handlerSetUpdateProjectInfo();
     } catch (error) {
       throw new Error(String(error));
