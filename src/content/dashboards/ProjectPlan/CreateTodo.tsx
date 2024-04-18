@@ -83,7 +83,9 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
       className="grid grid-cols-1 gap-3"
       onSubmit={handleSubmit(onTodoSubmit)}
     >
-      <p>add construction item</p>
+      <header className="text-black">
+        <h3>add construction item</h3>
+      </header>
       <Grid container spacing={1} alignItems="center">
         <Grid item xs={6}>
           <TextField
