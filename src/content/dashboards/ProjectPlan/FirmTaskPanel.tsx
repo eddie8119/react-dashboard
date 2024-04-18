@@ -39,7 +39,7 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
   };
 
   return (
-    <div className="box-border flex min-h-[700px] min-w-[550px] flex-col gap-6 p-4 text-black">
+    <div className="box-border flex min-h-[700px] w-[550px] flex-col gap-6 p-4 text-black">
       <div className="relative flex items-center justify-center">
         <header className="text-black">
           <h1>{firmTask.name}</h1>

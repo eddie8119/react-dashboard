@@ -32,26 +32,26 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({
       {firmTaskLists.length !== 0 && (
         <>
           <table>
-            <thead className=" flex items-center gap-2">
-              <th className="w-[20px]" />
-              <th className="w-[90px] text-center">Title</th>
-              <th className="w-[70px]">Quantity</th>
-              <th className="w-[80px] text-center">unit</th>
-              <th className="w-[120px] text-center">Cost</th>
+            <thead>
+              <tr className="flex w-full items-center gap-2">
+                <th className="w-[4%]" />
+                <th className="w-[16%] text-center">Title</th>
+                <th className="w-[12%]">Quantity</th>
+                <th className="w-[15%] text-center">unit</th>
+                <th className="w-[20%] text-center">Cost</th>
+              </tr>
             </thead>
-            <tbody>
-              <div className="flex h-[250px] w-full flex-col gap-2 overflow-y-auto">
-                {firmTaskLists.map((task, index) => (
-                  <TodoPanel
-                    key={task.id}
-                    task={task}
-                    index={index}
-                    firmTaskId={firmTaskId}
-                    firmTaskLists={firmTaskLists}
-                  />
-                ))}
-              </div>
-            </tbody>
+            <div className="flex h-[250px] w-full flex-col gap-2 overflow-y-auto">
+              {firmTaskLists.map((task, index) => (
+                <TodoPanel
+                  key={task.id}
+                  task={task}
+                  index={index}
+                  firmTaskId={firmTaskId}
+                  firmTaskLists={firmTaskLists}
+                />
+              ))}
+            </div>
           </table>
           <div className="flex w-[412px] justify-end">
             <p>

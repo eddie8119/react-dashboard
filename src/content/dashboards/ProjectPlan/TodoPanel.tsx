@@ -131,20 +131,10 @@ const TodoPanel: FC<TodoPanelProps> = ({
     form.setValue('cost', task.cost);
   }, [task, setValue]);
 
-  const btnLists = [
-    {
-      id: 1,
-      name: 'delete',
-      color: 'bg-red-600',
-      hovercolor: 'bg-red-700',
-      action: handleDeletePopOpen,
-    },
-  ];
-
   return (
     <>
       <form className="flex gap-3" onSubmit={handleSubmit(editTodoSubmit)}>
-        <div className="flex w-[20px] items-center">{index + 1}</div>
+        <div className="flex w-[4%] items-center">{index + 1}</div>
         <Input
           type="text"
           {...register('todo', {
@@ -152,14 +142,14 @@ const TodoPanel: FC<TodoPanelProps> = ({
             validate: (value) => value.trim() !== '',
           })}
           error={!!errors.todo}
-          style={{ width: '90px' }}
+          style={{ width: '16%' }}
         />
         <Input
           type="number"
           {...register('quantity')}
-          style={{ width: '70px' }}
+          style={{ width: '12%' }}
         />
-        <div style={{ position: 'relative', width: '80px' }}>
+        <div style={{ position: 'relative', width: '15%' }}>
           <Select
             id="unit-select"
             variant="standard"
@@ -185,23 +175,19 @@ const TodoPanel: FC<TodoPanelProps> = ({
           type="number"
           placeholder="Cost"
           {...register('cost')}
-          style={{ width: '100px' }}
+          style={{ width: '20%' }}
         />
         <Button type="submit" variant="contained" style={{ width: '20px' }}>
           edit
         </Button>
-
-        <div className="flex gap-2">
-          {btnLists.map((btn) => (
-            <button
-              onClick={btn.action}
-              key={btn.id}
-              className={`rounded-md  border border-transparent ${btn.color} px-3 py-2 text-center text-sm font-medium text-white hover:${btn.hovercolor}  focus:ring-2`}
-            >
-              {btn.name}
-            </button>
-          ))}
-        </div>
+        <Button
+          type="button"
+          onClick={handleDeletePopOpen}
+          variant="contained"
+          style={{ width: '20px', backgroundColor: '#dc2626' }}
+        >
+          delete
+        </Button>
       </form>
 
       {/* 彈窗 */}
