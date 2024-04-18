@@ -132,7 +132,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
   ];
 
   return (
-    <div className=" flex items-center">
+    <>
       <form className="flex gap-3" onSubmit={handleSubmit(editTodoSubmit)}>
         <div className="flex w-[20px] items-center">{index + 1}</div>
         <Input
@@ -202,7 +202,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
         popupTitle="Delete the task"
         popupIndex={`Are you sure you want to delete ${task.todo}?`}
       />
-    </div>
+    </>
   );
 };
 

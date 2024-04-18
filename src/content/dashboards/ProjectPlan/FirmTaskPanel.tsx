@@ -39,9 +39,11 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
   };
 
   return (
-    <div className="flex min-h-[700px] min-w-[550px] flex-col gap-6 border border-black p-4 text-black">
+    <div className="box-border flex min-h-[700px] min-w-[550px] flex-col gap-6 p-4 text-black">
       <div className="relative flex items-center justify-center">
-        <h1>{firmTask.name}</h1>
+        <header className="text-black">
+          <h1>{firmTask.name}</h1>
+        </header>
         <IconButton
           onClick={handlePopOpen}
           edge="end"

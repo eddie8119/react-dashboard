@@ -35,15 +35,15 @@ const ProjectPlan = () => {
     <ProjectContext.Provider
       value={{ projectInfo, handlerSetUpdateProjectInfo }}
     >
-      <div className="mt-10 flex h-full w-full flex-col gap-6 overflow-y-auto p-6">
-        <div className="flex justify-between">
+      <main className="outlat-container">
+        <div className=" flex justify-between">
           <PageTitle title={`專案名稱: ${projectInfo.name}`} />
           <PageButtonPanel projectId={id} projectName={projectInfo.name} />
         </div>
         <EditProjectInfo projectId={id} />
         <ChoseFirm />
         <CreateFirmTask />
-      </div>
+      </main>
     </ProjectContext.Provider>
   );
 };

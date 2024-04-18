@@ -27,8 +27,7 @@ const OverviewCase = () => {
 
   return (
     <ProjectListProvider>
-      <div className="flex h-full w-full flex-col gap-6 p-6">
-        <PageTitle title="Project List" />
+      <main className="outlat-container">
         <Button
           variant="contained"
           style={{ width: '200px' }}
@@ -65,7 +64,7 @@ const OverviewCase = () => {
 
         <ProjectSelect />
         <ProjectListPanel />
-      </div>
+      </main>
     </ProjectListProvider>
   );
 };

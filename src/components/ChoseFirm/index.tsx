@@ -38,6 +38,8 @@ const ChoseFirm = () => {
         id: Date.now(),
         name: firmName,
         taskLists: [],
+        sellingPrice: 0,
+        cost: 0,
       };
       updateFirmDataLists = [...projectThirdPartyLists, newFirmData];
 
@@ -66,23 +68,31 @@ const ChoseFirm = () => {
   }, [projectInfo]);
 
   return (
-    <div>
-      <h1 className="text-black">Create Construction Type</h1>
-      <div className="flex w-full flex-wrap  overflow-x-auto">
+    <section className="container-box">
+      <header className="text-black">
+        <h1>Create Construction Type</h1>
+      </header>
+      <div className="flex w-full flex-wrap gap-2 overflow-x-auto">
         {firmLists.map((firm) => (
-          <div
+          <button
             key={firm.id}
-            className={`${thirdParties.includes(firm.name) ? 'bg-blue-700' : 'border-black text-black'} m-1 flex cursor-pointer items-center justify-center rounded-md border  p-4 `}
+            className={`${
+              thirdParties.includes(firm.name)
+                ? 'bg-blue-700'
+                : 'box-border text-black'
+            } flex cursor-pointer items-center justify-center rounded-md border p-4 `}
             onClick={() => handleChoseFirm(firm.name)}
+            role="button"
+            tabIndex={0}
           >
             {firm.name}
             {thirdParties.includes(firm.name) && (
               <span className="ml-2 h-3 w-3 rounded-full bg-white" />
             )}
-          </div>
+          </button>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

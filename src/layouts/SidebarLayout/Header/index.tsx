@@ -17,7 +17,7 @@ const Header = () => {
   };
 
   return (
-    <div className="fixed z-10 h-10 w-full bg-white">
+    <nav className="fixed z-10 flex h-[70px] w-full items-center bg-white">
       <Box display="flex">
         <IconButton onClick={toggleLanguage}>
           <NotificationsOutlinedIcon />
@@ -29,7 +29,7 @@ const Header = () => {
           <PersonOutlinedIcon />
         </IconButton>
       </Box>
-    </div>
+    </nav>
   );
 };
 

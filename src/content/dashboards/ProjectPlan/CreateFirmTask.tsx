@@ -27,8 +27,10 @@ const CreateFirmTask = () => {
 
   return (
     <TaskContext.Provider value={{ unitLists }}>
-      <div className="flex h-full w-full flex-col gap-4 ">
-        <h1 className="text-black">Create Firm Task</h1>
+      <div className="container-box">
+        <header className="text-black">
+          <h1>Create Firm Task</h1>
+        </header>
         <div className="flex h-full w-full gap-4 overflow-x-auto">
           {firmTaskLists.map((firmTask: ThirdPartyData) => (
             <FirmTaskPanel firmTask={firmTask} key={firmTask.id} />

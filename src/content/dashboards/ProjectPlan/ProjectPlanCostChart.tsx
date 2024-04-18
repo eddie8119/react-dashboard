@@ -22,7 +22,7 @@ const ProjectPlanCostChart: FC<ProjectPlanCostChartProps> = ({
       {
         label: 'cost',
         data: firmTaskLists.map((data) => data.cost),
-        backgroundColor: ['#dbeafe'],
+        backgroundColor: ['#1d4ed8'],
         borderRadius: 10,
       },
     ],
@@ -36,7 +36,7 @@ const ProjectPlanCostChart: FC<ProjectPlanCostChartProps> = ({
     },
   };
   return (
-    <div className="w-full">
+    <div className="container-box bg-blue-200">
       <Bar data={data} options={options} />
     </div>
   );

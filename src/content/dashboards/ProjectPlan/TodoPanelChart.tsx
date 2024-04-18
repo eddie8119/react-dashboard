@@ -13,8 +13,8 @@ const TodoPanelChart: FC<TodoPanelChartProps> = ({ firmTaskLists }) => {
       {
         label: 'quantity',
         data: firmTaskLists.map((data) => data.quantity),
-        backgroundColor: '#dbeafe',
-        borderColor: '#dbeafe',
+        backgroundColor: '#1d4ed8',
+        borderColor: '#1d4ed8',
       },
     ],
   };
@@ -27,7 +27,7 @@ const TodoPanelChart: FC<TodoPanelChartProps> = ({ firmTaskLists }) => {
     },
   };
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <Line data={data} options={options} />
     </div>
   );

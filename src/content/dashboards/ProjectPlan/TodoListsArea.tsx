@@ -31,26 +31,28 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({
     <div className="flex w-full flex-col gap-2">
       {firmTaskLists.length !== 0 && (
         <>
-          <div className=" flex items-center justify-between">
-            <div className="flex gap-2">
-              <p className="w-[20px]" />
-              <p className="w-[90px]">Title</p>
-              <p className="w-[70px]">Quantity</p>
-              <p className="w-[80px] text-center">unit</p>
-              <p className="w-[120px] text-center">Cost</p>
-            </div>
-          </div>
-          <div className="flex h-[250px] w-full flex-col gap-2 overflow-y-auto">
-            {firmTaskLists.map((task, index) => (
-              <TodoPanel
-                key={task.id}
-                task={task}
-                index={index}
-                firmTaskId={firmTaskId}
-                firmTaskLists={firmTaskLists}
-              />
-            ))}
-          </div>
+          <table>
+            <thead className=" flex items-center gap-2">
+              <th className="w-[20px]" />
+              <th className="w-[90px] text-center">Title</th>
+              <th className="w-[70px]">Quantity</th>
+              <th className="w-[80px] text-center">unit</th>
+              <th className="w-[120px] text-center">Cost</th>
+            </thead>
+            <tbody>
+              <div className="flex h-[250px] w-full flex-col gap-2 overflow-y-auto">
+                {firmTaskLists.map((task, index) => (
+                  <TodoPanel
+                    key={task.id}
+                    task={task}
+                    index={index}
+                    firmTaskId={firmTaskId}
+                    firmTaskLists={firmTaskLists}
+                  />
+                ))}
+              </div>
+            </tbody>
+          </table>
           <div className="flex w-[412px] justify-end">
             <p>
               {firmTaskName} Cost Total:

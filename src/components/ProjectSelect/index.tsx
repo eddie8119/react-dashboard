@@ -22,8 +22,10 @@ const ProjectSelect = () => {
   };
 
   return (
-    <div className="flex items-center">
-      <p className="text-black">Projeect Select</p>
+    <section className="container-box flex items-center">
+      <header className="text-black">
+        <h1>Projeect Select</h1>
+      </header>
       <FormControl sx={{ m: 1, width: 150 }}>
         <InputLabel id="demo-simple-select-label">category</InputLabel>
         <Select
@@ -46,7 +48,7 @@ const ProjectSelect = () => {
         value={variables.filter.keyword}
         onChange={(event) => changeKeyword(event)}
       />
-    </div>
+    </section>
   );
 };
 

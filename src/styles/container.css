@@ -1,0 +1,11 @@
+
+.container-shadow {
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+}
+.container-bg {
+  background-color: rgba(255, 255, 255, 0.35);
+}
+
+.container-box {
+  @apply container-bg p-4 rounded-lg container-shadow grid grid-cols-1 gap-4;
+}
