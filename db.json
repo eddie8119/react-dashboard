@@ -79,7 +79,7 @@
       "date": "2024-03-20T15:03:05.138Z",
       "picture": " ",
       "cost": 169000,
-      "sellingPrice": 0,
+      "sellingPrice": 210000,
       "thirdPartyLists": [
         {
           "id": 2,
@@ -154,7 +154,7 @@
       ]
     },
     {
-      "name": "大安石宅",
+      "name": "松山石宅",
       "status": "Completed",
       "fileNumber": "002",
       "category": "Mansion",
@@ -162,7 +162,7 @@
       "date": "2024-03-22T15:03:05.138Z",
       "picture": " ",
       "cost": 88000,
-      "sellingPrice": 0,
+      "sellingPrice": 99000,
       "thirdPartyLists": [
         {
           "id": 2,
