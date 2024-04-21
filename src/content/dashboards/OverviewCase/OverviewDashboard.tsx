@@ -1,5 +1,6 @@
 import ProjectCostChart from './ProjectCostChart';
 import ProjectSellChart from './ProjectSellChart';
+import ProjectProfitChart from './ProjectProfitChart';
 
 interface overviewDashboard {
   id: number;
@@ -16,14 +17,20 @@ const OverviewDashboard = () => {
     },
     {
       id: 2,
-      title: 'Project revenue',
+      title: 'Project Revenue',
       chart: 'ProjectSellChart',
+    },
+    {
+      id: 3,
+      title: 'Project Profit',
+      chart: 'ProjectProfitChart',
     },
   ];
 
   const chartComponents = {
     ProjectCostChart: <ProjectCostChart />,
     ProjectSellChart: <ProjectSellChart />,
+    ProjectProfitChart: <ProjectProfitChart />,
   };
 
   return (
