@@ -22,7 +22,7 @@ const ProjectSelect = () => {
   };
 
   return (
-    <section className="container-box flex items-center">
+    <section className="flex items-center">
       <header className="text-black">
         <h1>Projeect Select</h1>
       </header>
