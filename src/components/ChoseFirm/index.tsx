@@ -1,11 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import ProjectContext from '../../context/ProjectContext';
 import { editProjectThirdParty } from '../../api/project';
-import { getFirmLists } from '../../api/firm';
+import FirmList from '../FirmList';
 
 const ChoseFirm = () => {
   const [thirdParties, setThirdParties] = useState<string[]>([]);
-  const [firmLists, setFirmLists] = useState<FirmObject[]>([]);
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
   //projectThirdPartyLists-目前專案有的協力廠商
@@ -51,15 +50,6 @@ const ChoseFirm = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await getFirmLists();
-      setFirmLists(response.data);
-    };
-
-    fetchData();
-  }, []);
-
-  useEffect(() => {
     //將目前專案有的協力廠商 儲存到thirdParties
     const initProjectThirdPartyLists = projectThirdPartyLists.map(
       (firm) => firm.name,
@@ -72,26 +62,7 @@ const ChoseFirm = () => {
       <header className="text-black">
         <h1>Create Construction Type</h1>
       </header>
-      <div className="flex w-full flex-wrap gap-2 overflow-x-auto">
-        {firmLists.map((firm) => (
-          <button
-            key={firm.id}
-            className={`${
-              thirdParties.includes(firm.name)
-                ? 'bg-blue-700'
-                : 'box-border text-black'
-            } flex cursor-pointer items-center justify-center rounded-md border p-4 `}
-            onClick={() => handleChoseFirm(firm.name)}
-            role="button"
-            tabIndex={0}
-          >
-            {firm.name}
-            {thirdParties.includes(firm.name) && (
-              <span className="ml-2 h-3 w-3 rounded-full bg-white" />
-            )}
-          </button>
-        ))}
-      </div>
+      <FirmList thirdParties={thirdParties} handleChoseFirm={handleChoseFirm} />
     </section>
   );
 };
