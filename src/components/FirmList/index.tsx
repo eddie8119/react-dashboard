@@ -3,7 +3,7 @@ import { getFirmLists } from '../../api/firm';
 
 interface FirmListProps {
   thirdParties?: string[];
-  handleChoseFirm: (firmName: string) => Promise<void>;
+  handleChoseFirm?: (firmName: string) => Promise<void>;
 }
 
 const FirmList: FC<FirmListProps> = ({ thirdParties, handleChoseFirm }) => {
@@ -27,8 +27,8 @@ const FirmList: FC<FirmListProps> = ({ thirdParties, handleChoseFirm }) => {
             thirdParties?.includes(firm.name)
               ? 'bg-blue-700'
               : 'box-border text-black'
-          } flex cursor-pointer items-center justify-center rounded-md border p-4 `}
-          onClick={() => handleChoseFirm(firm.name)}
+          } flex items-center justify-center rounded-md border p-4 `}
+          onClick={() => handleChoseFirm && handleChoseFirm(firm.name)}
           role="button"
         >
           {firm.name}
