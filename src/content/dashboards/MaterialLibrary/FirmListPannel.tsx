@@ -1,4 +1,5 @@
 import FirmList from '../../../components/FirmList';
+import AddFirm from './AddFirm';
 
 const FirmListPannel = () => {
   return (
@@ -6,6 +7,7 @@ const FirmListPannel = () => {
       <header className="text-black">
         <h1>Construction Type</h1>
       </header>
+      <AddFirm />
       <FirmList />
     </section>
   );
