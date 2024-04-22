@@ -1,27 +1,29 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import translationEN from '../public/locals/en/translation.json';
-import translationZH from '../public/locals/zh/translation.json';
-
-const resources = {
-  en: {
-    translation: translationEN,
-  },
-  zh: {
-    translation: translationZH,
-  },
-};
+import ChainedBackend from "i18next-chained-backend";
+import HttpBackend from "i18next-http-backend";
+import resourcesToBackend from "i18next-resources-to-backend";
 
 i18n
+  .use(ChainedBackend)
   .use(LanguageDetector)
   .use(initReactI18next)
-  .init({
-    resources,
-    lng: 'zh',
+  .init({   
+    fallbackLng: 'zh',
+    debug: true,
     interpolation: {
       escapeValue: false,
     },
+    backend:{
+      backends: [
+        HttpBackend,
+        resourcesToBackend((lng:string) => import(`../public/locals/${lng}/translation.json`))       
+      ],
+      backendOptions: [{
+        loadPath: '/locals/{{lng}}/translation.json'
+      }]    
+    }
   });
 
 export default i18n;
