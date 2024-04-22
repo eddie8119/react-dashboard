@@ -1,4 +1,4 @@
-import FirmList from '../../../components/FirmList';
+import FirmList from '../../../components/FirmListUi';
 import AddFirm from './AddFirm';
 
 const FirmListPannel = () => {
