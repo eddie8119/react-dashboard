@@ -78,11 +78,7 @@ const CreateProject = ({
   }, []);
   return (
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
-      <Stack
-        spacing={2}
-        width={400}
-        className="border border-black bg-white p-5"
-      >
+      <Stack spacing={2} width={400} className="box-border p-5">
         <TextField
           label={t('input-label.Name')}
           type="text"
