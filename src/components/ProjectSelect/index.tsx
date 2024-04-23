@@ -39,10 +39,10 @@ const ProjectSelect = ({
           value={variables.filter.category}
           onChange={(event) => changeCategory(event)}
         >
-          <MenuItem value="All">{t('selection.project-type.All')}</MenuItem>
+          <MenuItem value="All">{t('selection.project-select.All')}</MenuItem>
           {projectTypeLists.map((item) => (
             <MenuItem key={item.id} value={item.name}>
-              {t(`selection.project-type.${item.name}`)}
+              {t(`selection.project-select.${item.name}`)}
             </MenuItem>
           ))}
         </Select>

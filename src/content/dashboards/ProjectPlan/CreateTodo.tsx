@@ -1,4 +1,5 @@
 import { useContext, FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import ProjectContext from '../../../context/ProjectContext';
 import TaskContext from '../../../context/TaskContext';
@@ -24,6 +25,7 @@ interface CreateTodoProps {
 }
 
 const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
+  const { t } = useTranslation();
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
   const { unitLists } = useContext(TaskContext);
@@ -84,18 +86,18 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
       onSubmit={handleSubmit(onTodoSubmit)}
     >
       <header className="text-black">
-        <h3>add construction item</h3>
+        <h3>{t(`projectPlan.createFirmTask.Add-Item`)}</h3>
       </header>
       <Grid container spacing={1} alignItems="center">
         <Grid item xs={6}>
           <TextField
-            label="Todo"
+            label={t('input-label.Todo')}
             type="text"
             value={form.watch('todo')}
             {...register('todo', {
               required: 'Todo is required',
               validate: (value) =>
-                value.trim() !== '' || 'Cannot be only whitespace',
+                value.trim() !== '' || t('input-sign.whitespaceSign'),
             })}
             error={!!errors.todo}
             helperText={errors.todo?.message}
@@ -103,7 +105,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
         </Grid>
         <Grid item xs={3}>
           <TextField
-            label="Quantity"
+            label={t('input-label.Quantity')}
             type="number"
             value={form.watch('quantity') || ''}
             {...register('quantity')}
@@ -111,7 +113,9 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
         </Grid>
         <Grid item xs={3}>
           <FormControl fullWidth>
-            <InputLabel id="unit-select-label">unit</InputLabel>
+            <InputLabel id="unit-select-label">
+              {t('input-label.Unit')}
+            </InputLabel>
             <Select
               labelId="unit-select-label"
               id="unit-select"
@@ -119,10 +123,12 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
               {...register('unit')}
               value={form.watch('unit')}
             >
-              <MenuItem value="">Select Unit</MenuItem>
+              <MenuItem value="">
+                {t(`selection.unit-select.Select-Unit`)}
+              </MenuItem>
               {unitLists.map((item) => (
                 <MenuItem key={item.id} value={item.unit}>
-                  {item.unit}
+                  {t(`selection.unit-select.${item.unit}`)}
                 </MenuItem>
               ))}
             </Select>
@@ -130,7 +136,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
         </Grid>
       </Grid>
       <Button type="submit" variant="contained" style={{ width: '100%' }}>
-        Add item
+        {t(`projectPlan.createFirmTask.Add-Item`)}
       </Button>
     </form>
   );

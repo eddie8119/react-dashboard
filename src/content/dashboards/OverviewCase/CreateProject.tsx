@@ -121,7 +121,7 @@ const CreateProject = ({
           >
             {projectTypeLists.map((item) => (
               <MenuItem key={item.id} value={item.name}>
-                {t(`selection.project-type.${item.name}`)}
+                {t(`selection.project-select.${item.name}`)}
               </MenuItem>
             ))}
           </Select>

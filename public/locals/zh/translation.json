@@ -18,7 +18,7 @@
     "Search-Name": "搜尋名稱"
   },
   "selection": {
-    "project-type": {
+    "project-select": {
       "All": "全部",
       "House": "住宅",
       "Mansion": "豪宅",

@@ -1,4 +1,5 @@
 import { useState, lazy, useContext, useEffect, FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import ProjectContext from '../../../context/ProjectContext';
 import TaskContext from '../../../context/TaskContext';
 import { editProjectThirdParty } from '../../../api/project';
@@ -27,6 +28,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
   firmTaskId,
   firmTaskLists,
 }) => {
+  const { t } = useTranslation();
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
   const { unitLists } = useContext(TaskContext);
@@ -178,7 +180,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
           style={{ width: '20%' }}
         />
         <Button type="submit" variant="contained" style={{ width: '20px' }}>
-          edit
+          {t(`btn-word.edit`)}
         </Button>
         <Button
           type="button"
@@ -186,7 +188,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
           variant="contained"
           style={{ width: '20px', backgroundColor: '#dc2626' }}
         >
-          delete
+          {t(`btn-word.delete`)}
         </Button>
       </form>
 
