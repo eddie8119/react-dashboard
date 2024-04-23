@@ -1,6 +1,6 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import CreateProject from './CreateProject';
-
 import {
   Button,
   Dialog,
@@ -8,20 +8,16 @@ import {
   DialogContent,
   IconButton,
 } from '@mui/material';
-
 import ClearIcon from '@mui/icons-material/Clear';
-
 const CreateProjectBtn = () => {
+  const { t } = useTranslation();
   const [openCreateProject, setOpenCreateProject] = useState<boolean>(false);
-
   const handleCreateProjectOpen: () => void = () => {
     setOpenCreateProject(true);
   };
-
   const handleCreateProjectClose: () => void = () => {
     setOpenCreateProject(false);
   };
-
   return (
     <>
       <Button
@@ -29,9 +25,8 @@ const CreateProjectBtn = () => {
         style={{ width: '200px' }}
         onClick={handleCreateProjectOpen}
       >
-        Create Project
+        {t(`overviewCase.createProject.Create-Project`)}
       </Button>
-
       {/* 彈窗 */}
       <Dialog
         open={openCreateProject}
@@ -39,7 +34,7 @@ const CreateProjectBtn = () => {
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle>
-          Create Project
+          {t(`overviewCase.createProject.Create-Project`)}
           <IconButton
             edge="end"
             color="inherit"
@@ -50,7 +45,6 @@ const CreateProjectBtn = () => {
             <ClearIcon />
           </IconButton>
         </DialogTitle>
-
         <DialogContent>
           <CreateProject handleCreateProjectClose={handleCreateProjectClose} />
         </DialogContent>
@@ -58,5 +52,4 @@ const CreateProjectBtn = () => {
     </>
   );
 };
-
 export default CreateProjectBtn;

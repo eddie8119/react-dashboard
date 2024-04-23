@@ -10,5 +10,40 @@
       "material-stock": "Material Stock",
       "project-profit": "Project Profit"
     }
+  },
+  "input-label": {
+    "Name": "Name",
+    "FileNumber": "File Number",
+    "Category": "Category",
+    "Search-Name": "Search Name"
+  },
+  "input-sign": {
+    "nameRequired": "Name is required",
+    "fileNumberRequired": "FileNumber is required",
+    "categoryRequired": "Category is required",
+    "whitespaceSign": "Cannot be only whitespace"
+  },
+  "selection": {
+    "project-type": {
+      "All": "All",
+      "House": "House",
+      "Mansion": "Mansion",
+      "Commercial": "Commercial",
+      "Office": "Office",
+      "Search-Name": "Search Name"
+    }
+  },
+  "overviewCase": {
+    "overviewDashboard": {
+      "Project-Cost": "Project Cost",
+      "Project-Revenue": "Project Revenue",
+      "Project-Profit": "Project Profit"
+    },
+    "createProject": {
+      "Create-Project": "Create Project"
+    },
+    "projectSelect": {
+      "Projeect-Select": "Project Select"
+    }
   }
 }

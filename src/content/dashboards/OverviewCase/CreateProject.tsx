@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { updateProject, getProjectTypeLists } from '../../../api/project';
 import { useProjectList } from '../../../context/ProjectListContext';
-
 import {
   TextField,
   Stack,
@@ -13,18 +13,17 @@ import {
   Select,
   FormHelperText,
 } from '@mui/material';
-
 interface FormValues {
   name: string;
   fileNumber: string;
   category: string;
 }
-
 const CreateProject = ({
   handleCreateProjectClose,
 }: {
   handleCreateProjectClose: () => void;
 }) => {
+  const { t } = useTranslation();
   const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeObject[]>(
     [],
   );
@@ -35,24 +34,19 @@ const CreateProject = ({
       category: '',
     },
   });
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = form;
-
   const {
     handleChangeCategory,
   }: { handleChangeCategory: (data: string) => void } = useProjectList();
-
   const initProjectList = () => {
     handleChangeCategory('All');
   };
-
   const onSubmit = async (data: FormValues) => {
     const { name, fileNumber, category } = data;
-
     const formData: ProjectData = {
       id: Date.now().toString(),
       name,
@@ -65,7 +59,6 @@ const CreateProject = ({
       category,
       thirdPartyLists: [],
     };
-
     try {
       await updateProject(formData);
       form.reset();
@@ -76,7 +69,6 @@ const CreateProject = ({
       throw new Error(String(error));
     }
   };
-
   useEffect(() => {
     const fetchData = async () => {
       const response = await getProjectTypeLists();
@@ -84,66 +76,64 @@ const CreateProject = ({
     };
     fetchData();
   }, []);
-
   return (
-    <>
-      <form noValidate onSubmit={handleSubmit(onSubmit)}>
-        <Stack
-          spacing={2}
-          width={400}
-          className="border border-black bg-white p-5"
-        >
-          <TextField
-            label="Name"
-            type="text"
-            {...register('name', {
-              required: 'Name is required',
-              validate: (value) =>
-                value.trim() !== '' || 'Cannot be only whitespace',
+    <form noValidate onSubmit={handleSubmit(onSubmit)}>
+      <Stack
+        spacing={2}
+        width={400}
+        className="border border-black bg-white p-5"
+      >
+        <TextField
+          label={t('input-label.Name')}
+          type="text"
+          {...register('name', {
+            required: t('input-sign.nameRequired'),
+            validate: (value) =>
+              value.trim() !== '' || t('input-sign.whitespaceSign'),
+          })}
+          error={!!errors.name}
+          helperText={errors.name?.message}
+        />
+        <TextField
+          label={t('input-label.FileNumber')}
+          type="text"
+          {...register('fileNumber', {
+            required: t('input-sign.fileNumberRequired'),
+            validate: (value) =>
+              value.trim() !== '' || t('input-sign.whitespaceSign'),
+          })}
+          error={!!errors.fileNumber}
+          helperText={errors.fileNumber?.message}
+        />
+        <FormControl fullWidth error={!!errors.category}>
+          <InputLabel id="type-select-label">
+            {t('input-label.Category')}
+          </InputLabel>
+          <Select
+            labelId="type-select-label"
+            id="type-select"
+            label="Category"
+            value={form.watch('category')}
+            {...register('category', {
+              required: t('input-sign.fileNumberRequired'),
             })}
-            error={!!errors.name}
-            helperText={errors.name?.message}
-          />
-          <TextField
-            label="FileNumber"
-            type="text"
-            {...register('fileNumber', {
-              required: 'FileNumber is required',
-              validate: (value) =>
-                value.trim() !== '' || 'Cannot be only whitespace',
-            })}
-            error={!!errors.fileNumber}
-            helperText={errors.fileNumber?.message}
-          />
-          <FormControl fullWidth error={!!errors.category}>
-            <InputLabel id="type-select-label">Category</InputLabel>
-            <Select
-              labelId="type-select-label"
-              id="type-select"
-              label="Category"
-              value={form.watch('category')}
-              {...register('category', {
-                required: 'Category is required',
-              })}
-              error={!!errors.category}
-            >
-              {projectTypeLists.map((item) => (
-                <MenuItem key={item.id} value={item.name}>
-                  {item.name}
-                </MenuItem>
-              ))}
-            </Select>
-            {errors.category && (
-              <FormHelperText>{errors.category.message}</FormHelperText>
-            )}
-          </FormControl>
-          <Button type="submit" variant="contained">
-            Create Project
-          </Button>
-        </Stack>
-      </form>
-    </>
+            error={!!errors.category}
+          >
+            {projectTypeLists.map((item) => (
+              <MenuItem key={item.id} value={item.name}>
+                {t(`selection.project-type.${item.name}`)}
+              </MenuItem>
+            ))}
+          </Select>
+          {errors.category && (
+            <FormHelperText>{errors.category.message}</FormHelperText>
+          )}
+        </FormControl>
+        <Button type="submit" variant="contained">
+          {t(`overviewCase.createProject.Create-Project`)}
+        </Button>
+      </Stack>
+    </form>
   );
 };
-
 export default CreateProject;

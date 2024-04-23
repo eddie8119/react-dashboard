@@ -1,7 +1,7 @@
 import { ChangeEvent } from 'react';
+import { useTranslation } from 'react-i18next';
 import { SelectChangeEvent } from '@mui/material';
 import { useProjectList } from '../../context/ProjectListContext';
-
 import {
   MenuItem,
   InputLabel,
@@ -9,25 +9,29 @@ import {
   Select,
   TextField,
 } from '@mui/material';
-
-const ProjectSelect = () => {
+const ProjectSelect = ({
+  projectTypeLists,
+}: {
+  projectTypeLists: ProjectTypeObject[];
+}) => {
+  const { t } = useTranslation();
   const { variables, handleChangeCategory, handleChangeKeyword } =
     useProjectList();
-
   const changeCategory = (event: SelectChangeEvent<string>): void => {
     handleChangeCategory(event.target.value);
   };
   const changeKeyword = (event: ChangeEvent<{ value: string }>): void => {
     handleChangeKeyword(event.target.value);
   };
-
   return (
     <section className="flex items-center">
       <header className="text-black">
-        <h1>Projeect Select</h1>
+        <h1>{t(`overviewCase.projectSelect.Projeect-Select`)}</h1>
       </header>
       <FormControl sx={{ m: 1, width: 150 }}>
-        <InputLabel id="demo-simple-select-label">category</InputLabel>
+        <InputLabel id="demo-simple-select-label">
+          {t('input-label.Category')}
+        </InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
@@ -35,15 +39,16 @@ const ProjectSelect = () => {
           value={variables.filter.category}
           onChange={(event) => changeCategory(event)}
         >
-          <MenuItem value="All">All</MenuItem>
-          <MenuItem value="House">House</MenuItem>
-          <MenuItem value="Mansion">Mansion</MenuItem>
-          <MenuItem value="Commercial">Commercial</MenuItem>
-          <MenuItem value="Office">Office</MenuItem>
+          <MenuItem value="All">{t('selection.project-type.All')}</MenuItem>
+          {projectTypeLists.map((item) => (
+            <MenuItem key={item.id} value={item.name}>
+              {t(`selection.project-type.${item.name}`)}
+            </MenuItem>
+          ))}
         </Select>
       </FormControl>
       <TextField
-        label="search name"
+        label={t('input-label.Search-Name')}
         type="text"
         value={variables.filter.keyword}
         onChange={(event) => changeKeyword(event)}
@@ -51,5 +56,4 @@ const ProjectSelect = () => {
     </section>
   );
 };
-
 export default ProjectSelect;
