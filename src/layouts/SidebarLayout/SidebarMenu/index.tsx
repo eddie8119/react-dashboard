@@ -65,10 +65,8 @@ const SidebarMenu = () => {
   return (
     <div className="grid grid-cols-1 gap-4">
       {navLists.map((navList) => (
-        <ul key={navList.id}>
-          {navList.title && (
-            <p className="text-gray">{t(`navLists.${navList.title}`)}</p>
-          )}
+        <ul key={navList.id} className="text-black">
+          {navList.title && <h3>{t(`navLists.${navList.title}`)}</h3>}
           {navList.includeLists.map((list) => (
             <li key={list.id} className="flex h-[45px] items-center gap-2">
               <list.icon />

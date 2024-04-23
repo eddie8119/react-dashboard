@@ -6,7 +6,7 @@ const ProjectListPanel = () => {
   const { projectListsdata } = useProjectList();
 
   const buttonLists = [
-    { id: 1, name: 'budjet', link: '/plan/project' },
+    { id: 1, name: 'plan', link: '/plan/project' },
     { id: 2, name: 'construction', link: '/construction/project' },
     { id: 3, name: 'profit', link: '/closeout/project' },
   ];
@@ -16,9 +16,9 @@ const ProjectListPanel = () => {
       {projectListsdata.map((data) => (
         <div
           key={data.id}
-          className="flex h-[140px]  items-center justify-between bg-box-bg px-[30px]"
+          className="container-box flex items-center justify-between bg-box-bg px-[30px]"
         >
-          <div className="flex w-full justify-between">
+          <div className="flex w-full items-center justify-between">
             <div className="flex flex-col ">
               <p className="text font-bold text-gray">
                 {data.fileNumber}-({data.category})

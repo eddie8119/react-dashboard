@@ -32,7 +32,7 @@ const OverviewDashboard = () => {
     ProjectProfitChart: <ProjectProfitChart />,
   };
   return (
-    <section className="grid grid-cols-4 gap-3">
+    <section className="grid grid-cols-3 gap-4">
       {overviewDashboardLists.map((data) => (
         <div key={data.id} className="container-box w-full">
           <header className="text-center text-black">
