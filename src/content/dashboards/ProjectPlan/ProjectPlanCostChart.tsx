@@ -36,7 +36,7 @@ const ProjectPlanCostChart: FC<ProjectPlanCostChartProps> = ({
     },
   };
   return (
-    <div className="container-box bg-blue-200">
+    <div className="container-box bg-primary-light">
       <Bar data={data} options={options} />
     </div>
   );
