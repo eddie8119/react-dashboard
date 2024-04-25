@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { getFirmLists } from '../api/firm';
 
-const useGetFirmLists = () => {
+const useGetFirmLists = (updateFirmList?: boolean) => {
   const [firmLists, setFirmLists] = useState<FirmObject[]>([]);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const useGetFirmLists = () => {
     };
 
     fetchData();
-  }, []);
+  }, [updateFirmList]);
 
   return firmLists;
 };
