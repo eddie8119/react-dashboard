@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from 'react';
 import ProjectContext from '../../context/ProjectContext';
 import { editProjectThirdParty } from '../../api/project';
-import FirmList from '../FirmList';
+import FirmListApi from './FirmListApi';
 
 const ChoseFirm = () => {
   const [thirdParties, setThirdParties] = useState<string[]>([]);
@@ -62,7 +62,10 @@ const ChoseFirm = () => {
       <header className="text-black">
         <h1>Create Construction Type</h1>
       </header>
-      <FirmList thirdParties={thirdParties} handleChoseFirm={handleChoseFirm} />
+      <FirmListApi
+        thirdParties={thirdParties}
+        handleChoseFirm={handleChoseFirm}
+      />
     </section>
   );
 };

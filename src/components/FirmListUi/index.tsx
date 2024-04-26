@@ -1,23 +1,16 @@
-import { useState, useEffect, FC } from 'react';
-import { getFirmLists } from '../../api/firm';
+import { FC } from 'react';
 
-interface FirmListProps {
+interface FirmListUiProps {
+  firmLists: FirmObject[];
   thirdParties?: string[];
   handleChoseFirm?: (firmName: string) => Promise<void>;
 }
 
-const FirmList: FC<FirmListProps> = ({ thirdParties, handleChoseFirm }) => {
-  const [firmLists, setFirmLists] = useState<FirmObject[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getFirmLists();
-      setFirmLists(response.data);
-    };
-
-    fetchData();
-  }, []);
-
+const FirmListUi: FC<FirmListUiProps> = ({
+  firmLists,
+  thirdParties,
+  handleChoseFirm,
+}) => {
   return (
     <div className="flex w-full flex-wrap gap-2 overflow-x-auto">
       {firmLists.map((firm) => (
@@ -41,4 +34,4 @@ const FirmList: FC<FirmListProps> = ({ thirdParties, handleChoseFirm }) => {
   );
 };
 
-export default FirmList;
+export default FirmListUi;
