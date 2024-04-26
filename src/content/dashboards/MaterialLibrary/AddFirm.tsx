@@ -1,4 +1,6 @@
+import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
+import FirmListCreateContext from '../../../context/FirmListCreateContext';
 import { updateFirmLists } from '../../../api/firm';
 import { TextField, Grid, Button } from '@mui/material';
 
@@ -7,6 +9,8 @@ interface FormValues {
 }
 
 const AddFirm = () => {
+  const { handlerSetUpdateFirmList } = useContext(FirmListCreateContext);
+
   const form = useForm({
     defaultValues: {
       firm: '',
@@ -30,6 +34,7 @@ const AddFirm = () => {
     try {
       await updateFirmLists(formData);
       form.reset();
+      handlerSetUpdateFirmList(); //api完成後，更新firmLists
     } catch (error) {
       throw new Error(String(error));
     }

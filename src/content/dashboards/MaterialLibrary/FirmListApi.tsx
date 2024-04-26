@@ -1,6 +1,7 @@
-import { FC } from 'react';
-import FirmListUi from '../FirmListUi/index';
-import useGetFirmLists from '../../hooks/useGetFirmLists';
+import { FC, useContext } from 'react';
+import FirmListCreateContext from '../../../context/FirmListCreateContext';
+
+import FirmListUi from '../../../components/FirmListUi';
 
 interface FirmListProps {
   thirdParties?: string[];
@@ -8,7 +9,7 @@ interface FirmListProps {
 }
 
 const FirmListApi: FC<FirmListProps> = ({ thirdParties, handleChoseFirm }) => {
-  const firmLists = useGetFirmLists();
+  const { firmLists } = useContext(FirmListCreateContext);
 
   return (
     <FirmListUi
