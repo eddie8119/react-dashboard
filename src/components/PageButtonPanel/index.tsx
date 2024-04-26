@@ -1,6 +1,7 @@
-import { useState, FC, lazy } from 'react';
+import { FC, lazy } from 'react';
 import { deleteProject } from '../../api/project';
 import { useNavigate } from 'react-router-dom';
+import usePopup from '../../hooks/usePopup';
 const PopUp = lazy(() => import('../PopUp/index'));
 
 interface PageButtonPanelProps {
@@ -12,15 +13,8 @@ const PageButtonPanel: FC<PageButtonPanelProps> = ({
   projectId,
   projectName,
 }) => {
-  const [openComfirmPop, setOpenComfirmPop] = useState<boolean>(false);
+  const { openComfirmPop, handlePopOpen, handlePopClose } = usePopup();
   const navigate = useNavigate();
-
-  const handlePopOpen: () => void = () => {
-    setOpenComfirmPop(true);
-  };
-  const handlePopClose: () => void = () => {
-    setOpenComfirmPop(false);
-  };
 
   const removeProject = async (id: string): Promise<void> => {
     try {
