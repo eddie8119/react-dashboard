@@ -1,29 +1,20 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import FirmListApi from './FirmListApi';
 import AddFirm from './AddFirm';
 import FirmListCreateContext, {
   initFirmListCreateContext,
 } from '../../../context/FirmListCreateContext';
-import { getFirmLists } from '../../../api/firm';
+import useGetFirmLists from '../../../hooks/useGetFirmLists';
 
 const FirmListPannel = () => {
   const [updateFirmList, setUpdateFirmList] = useState<boolean>(
     initFirmListCreateContext.updateFirmList,
   );
-  const [firmLists, setFirmLists] = useState<FirmObject[]>([]);
+  const firmLists = useGetFirmLists(updateFirmList);
 
   const handlerSetUpdateFirmList = () => {
     setUpdateFirmList(!updateFirmList);
   };
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getFirmLists();
-      setFirmLists(response.data);
-    };
-
-    fetchData();
-  }, [updateFirmList]);
 
   return (
     <FirmListCreateContext.Provider

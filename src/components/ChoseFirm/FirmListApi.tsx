@@ -1,6 +1,6 @@
-import { useState, useEffect, FC } from 'react';
-import { getFirmLists } from '../../api/firm';
+import { FC } from 'react';
 import FirmListUi from '../FirmListUi/index';
+import useGetFirmLists from '../../hooks/useGetFirmLists';
 
 interface FirmListProps {
   thirdParties?: string[];
@@ -8,16 +8,7 @@ interface FirmListProps {
 }
 
 const FirmListApi: FC<FirmListProps> = ({ thirdParties, handleChoseFirm }) => {
-  const [firmLists, setFirmLists] = useState<FirmObject[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getFirmLists();
-      setFirmLists(response.data);
-    };
-
-    fetchData();
-  }, []);
+  const firmLists = useGetFirmLists();
 
   return (
     <FirmListUi
