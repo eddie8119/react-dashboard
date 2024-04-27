@@ -1,8 +1,9 @@
-import { createContext, useReducer, useContext, FC, ReactNode } from 'react';
+import { createContext, useReducer, FC, ReactNode } from 'react';
 import ProjectFilterReducer, {
   INITIAL_STATE,
   ActionTypes,
   IntState,
+  Action,
 } from '../reducers/projectFilterReducer';
 import useProjectListsQuery from '../hooks/useProjectListsQuery';
 
@@ -36,6 +37,7 @@ export const ProjectListProvider: FC<ProjectListProviderProps> = ({
   children,
 }) => {
   const [variables, dispatch] = useReducer(ProjectFilterReducer, INITIAL_STATE);
+
   const { projectListsdata } = useProjectListsQuery({ variables });
 
   const handleChangeCategory = (category: string): void => {

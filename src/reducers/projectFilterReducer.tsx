@@ -23,7 +23,7 @@ interface Payload {
   sort?: string;
 }
 
-interface Action {
+export interface Action {
   payload?: Payload;
   type: string;
 }
