@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import ProjectSelect from '../index';
 
 test('changes the category selection', async () => {
-  render(<ProjectSelect />);
+  render(<ProjectSelect projectTypeLists={[]} />);
 
   const categorySelect = screen.getByLabelText('category');
   await userEvent.selectOptions(categorySelect, 'House');
@@ -12,7 +12,7 @@ test('changes the category selection', async () => {
 });
 
 test('changes the keyword search', async () => {
-  render(<ProjectSelect />);
+  render(<ProjectSelect projectTypeLists={[]} />);
 
   const searchInput = screen.getByLabelText('search name');
   await userEvent.type(searchInput, 'test');
