@@ -1,7 +1,7 @@
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { SelectChangeEvent } from '@mui/material';
-import { useProjectList } from '../../context/ProjectListContext';
+import { ProjectListContext } from '../../context/ProjectListContext';
 import {
   MenuItem,
   InputLabel,
@@ -16,7 +16,8 @@ const ProjectSelect = ({
 }) => {
   const { t } = useTranslation();
   const { variables, handleChangeCategory, handleChangeKeyword } =
-    useProjectList();
+    useContext(ProjectListContext);
+
   const changeCategory = (event: SelectChangeEvent<string>): void => {
     handleChangeCategory(event.target.value);
   };

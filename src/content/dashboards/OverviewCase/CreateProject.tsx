@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import { updateProject, getProjectTypeLists } from '../../../api/project';
-import { useProjectList } from '../../../context/ProjectListContext';
+import { ProjectListContext } from '../../../context/ProjectListContext';
 import {
   TextField,
   Stack,
@@ -41,7 +41,8 @@ const CreateProject = ({
   } = form;
   const {
     handleChangeCategory,
-  }: { handleChangeCategory: (data: string) => void } = useProjectList();
+  }: { handleChangeCategory: (data: string) => void } =
+    useContext(ProjectListContext);
   const initProjectList = () => {
     handleChangeCategory('All');
   };

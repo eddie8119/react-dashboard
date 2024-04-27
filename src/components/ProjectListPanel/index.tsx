@@ -1,9 +1,10 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { useProjectList } from '../../context/ProjectListContext';
+import { ProjectListContext } from '../../context/ProjectListContext';
 import useDateHandler from '../../hooks/useDateHandler';
 
 const ProjectListPanel = () => {
-  const { projectListsdata } = useProjectList();
+  const { projectListsdata } = useContext(ProjectListContext);
 
   const buttonLists = [
     { id: 1, name: 'plan', link: '/plan/project' },

@@ -66,7 +66,8 @@ export const ProjectListProvider: FC<ProjectListProviderProps> = ({
   );
 };
 
-export const useProjectList = () => {
-  const context = useContext(ProjectListContext);
-  return context;
-};
+// 更精簡的寫法
+// export const useProjectList = () => {
+//   const context = useContext(ProjectListContext);
+//   return context;
+// };
