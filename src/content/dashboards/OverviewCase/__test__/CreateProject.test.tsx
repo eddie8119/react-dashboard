@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CreateProject from '../CreateProject';
-import { updateProject } from '../../../api/project';
+import { updateProject } from '../../../../api/project';
 
 jest.mock('../../../api/project', () => ({
   updateProject: jest.fn(),

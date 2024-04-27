@@ -1,8 +1,8 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CreateTodo from '../CreateTodo';
-import { editProjectThirdParty } from '../../../api/project';
-import { getUnitLists } from '../../../api/unit';
+import { editProjectThirdParty } from '../../../../api/project';
+import { getUnitLists } from '../../../../api/unit';
 
 jest.mock('../../../api/project', () => ({
   editProjectThirdParty: jest.fn(),
