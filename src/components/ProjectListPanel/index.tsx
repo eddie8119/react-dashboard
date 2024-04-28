@@ -5,8 +5,13 @@ import useDateHandler from '../../hooks/useDateHandler';
 import Pagination from '@mui/material/Pagination';
 
 const ProjectListPanel = () => {
-  const { projectListsdata } = useContext(ProjectListContext);
+  const { projectListsdata, handleChangePagination } =
+    useContext(ProjectListContext);
 
+  const handlePageChange = (event, value) => {
+    //(event, value) 參數一定要這樣帶
+    handleChangePagination(value);
+  };
   const buttonLists = [
     { id: 1, name: 'plan', link: '/plan/project' },
     { id: 2, name: 'construction', link: '/construction/project' },
@@ -15,7 +20,12 @@ const ProjectListPanel = () => {
 
   return (
     <div className="container-box flex h-[400px] w-full flex-col ">
-      <Pagination count={10} variant="outlined" color="primary" />
+      <Pagination
+        count={5}
+        variant="outlined"
+        color="primary"
+        onChange={handlePageChange}
+      />
       <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
         {projectListsdata.map((data) => (
           <div

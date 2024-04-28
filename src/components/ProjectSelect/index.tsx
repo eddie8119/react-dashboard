@@ -33,6 +33,7 @@ const ProjectSelect = ({
   const changeCostSort = (event: SelectChangeEvent<string>): void => {
     handleChangeCostSort(event.target.value);
   };
+
   return (
     <Grid container spacing={1} alignItems="center">
       <header className="text-black">
@@ -85,7 +86,6 @@ const ProjectSelect = ({
         </FormControl>{' '}
       </Grid>
       <Grid item>
-        {' '}
         <TextField
           label={t('input-label.Search-Name')}
           type="text"

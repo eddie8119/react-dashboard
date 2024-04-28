@@ -1,6 +1,6 @@
 // import { isUndefined } from 'lodash';
 
-interface Pagination {
+export interface Pagination {
   current: number;
   pageSize: number;
   showSizeChanger: boolean;
@@ -20,7 +20,7 @@ export interface IntState {
 type Payload =
   | { category: string }
   | { keyword: string }
-  | { pagination: Pagination }
+  | { current: number }
   | { costSort: string };
 
 export interface Action {
@@ -32,7 +32,7 @@ const DEFAULT_PAGINATION: Pagination = {
   current: 1,
   pageSize: 6,
   showSizeChanger: true,
-  pageSizeOptions: [3, 6, 8],
+  pageSizeOptions: [6, 9, 12],
 };
 
 export const INITIAL_STATE: IntState = {
@@ -72,7 +72,7 @@ const ProjectFilterReducer = (state: IntState, action: Action) => {
         ...state,
         pagination: {
           ...state.pagination,
-          ...(action.payload as { pagination: Pagination }).pagination,
+          current: (action.payload as { current: number }).current,
         },
       };
     case ActionTypes.CHANGE_SORT:

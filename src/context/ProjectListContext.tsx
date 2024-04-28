@@ -16,6 +16,7 @@ interface ProjectListContextType {
   handleChangeCategory: (category: string) => void;
   handleChangeKeyword: (keyword: string) => void;
   handleChangeCostSort: (costSort: string) => void;
+  handleChangePagination: (page: number) => void;
 }
 
 export const ProjectListContext = createContext<ProjectListContextType>({
@@ -32,6 +33,7 @@ export const ProjectListContext = createContext<ProjectListContextType>({
   handleChangeCategory: () => {},
   handleChangeKeyword: () => {},
   handleChangeCostSort: () => {},
+  handleChangePagination: () => {},
 });
 
 export const ProjectListProvider: FC<ProjectListProviderProps> = ({
@@ -62,12 +64,20 @@ export const ProjectListProvider: FC<ProjectListProviderProps> = ({
     });
   };
 
+  const handleChangePagination = (page: number): void => {
+    dispatch({
+      type: ActionTypes.CHANGE_PAGINATION,
+      payload: { current: page },
+    });
+  };
+
   const value: ProjectListContextType = {
     variables,
     projectListsdata,
     handleChangeCategory,
     handleChangeKeyword,
     handleChangeCostSort,
+    handleChangePagination,
   };
 
   return (
