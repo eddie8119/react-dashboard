@@ -5,8 +5,10 @@ import useDateHandler from '../../hooks/useDateHandler';
 import Pagination from '@mui/material/Pagination';
 
 const ProjectListPanel = () => {
-  const { projectListsdata, handleChangePagination } =
+  const { variables, projectListsdata, handleChangePagination } =
     useContext(ProjectListContext);
+  const { pagination } = variables;
+  const pageCount = Math.ceil(projectListsdata.length / pagination.pageSize);
 
   //(event, value) 參數一定要這樣帶
   const handlePageChange = (
@@ -24,7 +26,7 @@ const ProjectListPanel = () => {
   return (
     <div className="container-box flex h-[400px] w-full flex-col ">
       <Pagination
-        count={5}
+        count={pageCount}
         variant="outlined"
         color="primary"
         onChange={(event, value) => {
