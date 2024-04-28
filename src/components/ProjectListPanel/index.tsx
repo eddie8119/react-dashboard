@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { ProjectListContext } from '../../context/ProjectListContext';
 import useDateHandler from '../../hooks/useDateHandler';
@@ -8,8 +8,11 @@ const ProjectListPanel = () => {
   const { projectListsdata, handleChangePagination } =
     useContext(ProjectListContext);
 
-  const handlePageChange = (event, value) => {
-    //(event, value) 參數一定要這樣帶
+  //(event, value) 參數一定要這樣帶
+  const handlePageChange = (
+    event: ChangeEvent<unknown>,
+    value: number,
+  ): void => {
     handleChangePagination(value);
   };
   const buttonLists = [
@@ -24,7 +27,9 @@ const ProjectListPanel = () => {
         count={5}
         variant="outlined"
         color="primary"
-        onChange={handlePageChange}
+        onChange={(event, value) => {
+          handlePageChange(event, value);
+        }}
       />
       <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
         {projectListsdata.map((data) => (
