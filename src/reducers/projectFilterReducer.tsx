@@ -17,12 +17,11 @@ export interface IntState {
   pagination: Pagination;
 }
 
-interface Payload {
-  category?: string;
-  keyword?: string;
-  pagination?: number[];
-  costSort?: string;
-}
+type Payload =
+  | { category: string }
+  | { keyword: string }
+  | { pagination: Pagination }
+  | { costSort: string };
 
 export interface Action {
   payload: Payload;
@@ -53,24 +52,36 @@ const ProjectFilterReducer = (state: IntState, action: Action) => {
     case ActionTypes.CHANGE_KEYWORD:
       return {
         ...state,
-        filter: { ...state.filter, keyword: action.payload?.keyword },
+        filter: {
+          ...state.filter,
+          keyword: (action.payload as { keyword: string }).keyword,
+        },
         pagination: { ...state.pagination, current: 1 },
       };
     case ActionTypes.CHANGE_CATEGORY:
       return {
         ...state,
-        filter: { ...state.filter, category: action.payload?.category },
+        filter: {
+          ...state.filter,
+          category: (action.payload as { category: string }).category,
+        },
         pagination: { ...state.pagination, current: 1 },
       };
     case ActionTypes.CHANGE_PAGINATION:
       return {
         ...state,
-        pagination: { ...state.pagination, ...action.payload?.pagination },
+        pagination: {
+          ...state.pagination,
+          ...(action.payload as { pagination: Pagination }).pagination,
+        },
       };
     case ActionTypes.CHANGE_SORT:
       return {
         ...state,
-        filter: { ...state.filter, costSort: action.payload?.costSort },
+        filter: {
+          ...state.filter,
+          costSort: (action.payload as { costSort: string }).costSort,
+        },
         pagination: { ...state.pagination, current: 1 },
       };
     default:
