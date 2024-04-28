@@ -3,7 +3,6 @@ import ProjectFilterReducer, {
   INITIAL_STATE,
   ActionTypes,
   IntState,
-  Action,
 } from '../reducers/projectFilterReducer';
 import useProjectListsQuery from '../hooks/useProjectListsQuery';
 
@@ -14,14 +13,14 @@ interface ProjectListProviderProps {
 interface ProjectListContextType {
   variables: IntState;
   projectListsdata: ProjectData[];
-  handleChangeCategory: (data: string) => void;
-  handleChangeKeyword: (data: string) => void;
-  handleChangeCostSort: (data: string) => void;
+  handleChangeCategory: (category: string) => void;
+  handleChangeKeyword: (keyword: string) => void;
+  handleChangeCostSort: (costSort: string) => void;
 }
 
 export const ProjectListContext = createContext<ProjectListContextType>({
   variables: {
-    filter: { keyword: '', category: '' },
+    filter: { keyword: '', category: '', costSort: '' },
     pagination: {
       current: 0,
       pageSize: 0,
@@ -32,6 +31,7 @@ export const ProjectListContext = createContext<ProjectListContextType>({
   projectListsdata: [],
   handleChangeCategory: () => {},
   handleChangeKeyword: () => {},
+  handleChangeCostSort: () => {},
 });
 
 export const ProjectListProvider: FC<ProjectListProviderProps> = ({
