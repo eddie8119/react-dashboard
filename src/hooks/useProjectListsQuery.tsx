@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import { getProjectLists } from '../api/project';
+import { IntState } from '../reducers/projectFilterReducer';
 
-const useProjectListsQuery = (params) => {
-  const { variables } = params;
-  const { filter, pagination, sort } = variables;
-
+const useProjectListsQuery = (variables: IntState) => {
+  const { filter, pagination } = variables;
   const [projectLists, setProjectLists] = useState<ProjectData[]>([]);
 
   useEffect(() => {
@@ -25,6 +24,10 @@ const useProjectListsQuery = (params) => {
       }
       return true;
     });
+  if (filter.costSort === 'ascending')
+    projectListsHandle.sort((a, b) => a.cost - b.cost);
+  if (filter.costSort === 'descending')
+    projectListsHandle.sort((a, b) => b.cost - a.cost);
 
   return {
     projectListsdata: projectListsHandle.slice(

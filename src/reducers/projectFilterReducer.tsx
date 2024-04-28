@@ -10,6 +10,7 @@ interface Pagination {
 interface Filter {
   keyword: string;
   category: string;
+  costSort: string;
 }
 export interface IntState {
   filter: Filter;
@@ -20,11 +21,11 @@ interface Payload {
   category?: string;
   keyword?: string;
   pagination?: number[];
-  sort?: string;
+  costSort?: string;
 }
 
 export interface Action {
-  payload?: Payload;
+  payload: Payload;
   type: string;
 }
 
@@ -36,7 +37,7 @@ const DEFAULT_PAGINATION: Pagination = {
 };
 
 export const INITIAL_STATE: IntState = {
-  filter: { keyword: '', category: 'All' },
+  filter: { keyword: '', category: 'All', costSort: '' },
   pagination: DEFAULT_PAGINATION,
 };
 
@@ -67,9 +68,11 @@ const ProjectFilterReducer = (state: IntState, action: Action) => {
         pagination: { ...state.pagination, ...action.payload?.pagination },
       };
     case ActionTypes.CHANGE_SORT:
-      const newVariable = { ...state, sort: action.payload?.sort };
-      //   if (isUndefined(newVariable.sort.order)) delete newVariable['sort'];
-      return newVariable;
+      return {
+        ...state,
+        filter: { ...state.filter, costSort: action.payload?.costSort },
+        pagination: { ...state.pagination, current: 1 },
+      };
     default:
       throw new Error(`不存在的 action type: ${action.type}`);
   }
