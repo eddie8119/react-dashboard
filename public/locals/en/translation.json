@@ -15,6 +15,7 @@
     "Name": "Name",
     "FileNumber": "File Number",
     "Category": "Category",
+    "Cost-Order": "Cost-Order",
     "Search-Name": "Search Name",
     "Todo": "Todo",
     "Quantity": "Quantity",
@@ -33,7 +34,10 @@
       "Mansion": "Mansion",
       "Commercial": "Commercial",
       "Office": "Office",
-      "Search-Name": "Search Name"
+      "No-Order": "No Order",
+      "Search-Name": "Search Name",
+      "Ascending-Order": "Low To High",
+      "Descending-Order": "High To Low"
     },
     "unit-select": {
       "Select-Unit": "Select Unit",
