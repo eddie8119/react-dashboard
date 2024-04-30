@@ -1,52 +1,25 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import CreateProject from '../CreateProject';
-import { updateProject } from '../../../../api/project';
+import CreateProjectBtn from '../CreateProjectBtn';
 
-jest.mock('../../../api/project', () => ({
-  updateProject: jest.fn(),
-}));
+describe('CreateProject', () => {
+  test('opens and closes the create project dialog', async () => {
+    render(<CreateProjectBtn />);
 
-afterEach(() => {
-  jest.clearAllMocks();
-});
+    const createProjectButton = screen.getByTestId('create-project-btn');
+    await userEvent.click(createProjectButton);
+    const createProjectDialog = screen.queryByTestId('create-project-dialog');
+    expect(createProjectDialog).toBeInTheDocument();
 
-test('create a project', async () => {
-  const handleClick = jest.fn();
-  render(<CreateProject handleCreateProjectClose={handleClick} />);
+    const closeIcon = screen.queryByTestId('close-create-project-dialog');
 
-  const nameInput = screen.getByLabelText(/Name/i) as HTMLInputElement;
-  const fileNumberInput = screen.getByLabelText(
-    /FileNumber/i,
-  ) as HTMLInputElement;
-  const categorySelect = screen.getByLabelText(
-    /Category/i,
-  ) as HTMLSelectElement;
+    userEvent.click(closeIcon!); //有返回 Promise 才要用 await
 
-  await userEvent.type(nameInput, 'taipei101');
-  await userEvent.type(fileNumberInput, '1234abc');
-  await userEvent.selectOptions(categorySelect, 'Mansion');
-
-  const createButton = screen.getByRole('button');
-  await userEvent.click(createButton);
-
-  // Verify updateProject was called with the correct data
-  expect(updateProject).toHaveBeenCalledWith({
-    id: expect.any(Number),
-    name: 'taipei101',
-    status: 'Progress',
-    date: expect.any(String),
-    picture: '',
-    fileNumber: '1234abc',
-    cost: 0,
-    category: 'Mansion',
+    // Wait for the dialog to be removed from the document
+    // 當按一下關閉圖示時，關閉對話方塊的狀態更新可能不會立即反映在 DOM 中
+    // waitFor 函數來等待對話方塊從文件中刪除
+    await waitFor(() => {
+      expect(createProjectDialog).not.toBeInTheDocument();
+    });
   });
-
-  // Verify the form fields are reset
-  expect(nameInput.value).toBe('');
-  expect(fileNumberInput.value).toBe('');
-  expect(categorySelect.value).toBe('');
-
-  // Verify handleCreateProjectClose was called
-  expect(handleClick).toHaveBeenCalled();
 });

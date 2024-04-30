@@ -24,6 +24,7 @@ const CreateProjectBtn = () => {
         variant="contained"
         style={{ width: '200px' }}
         onClick={handleCreateProjectOpen}
+        data-testid="create-project-btn"
       >
         {t(`overviewCase.createProject.Create-Project`)}
       </Button>
@@ -32,6 +33,7 @@ const CreateProjectBtn = () => {
         open={openCreateProject}
         onClose={handleCreateProjectClose}
         aria-labelledby="form-dialog-title"
+        data-testid="create-project-dialog"
       >
         <DialogTitle>
           {t(`overviewCase.createProject.Create-Project`)}
@@ -40,6 +42,7 @@ const CreateProjectBtn = () => {
             color="inherit"
             onClick={handleCreateProjectClose}
             aria-label="close"
+            data-testid="close-create-project-dialog"
             style={{ position: 'absolute', right: '20px', top: '10px' }}
           >
             <ClearIcon />
