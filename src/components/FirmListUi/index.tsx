@@ -22,7 +22,7 @@ const FirmListUi: FC<FirmListUiProps> = ({
               : 'box-border text-black'
           } flex items-center justify-center rounded-md border p-4 `}
           onClick={() => handleChoseFirm && handleChoseFirm(firm.name)}
-          role="button"
+          role="firm-button"
         >
           {firm.name}
           {thirdParties?.includes(firm.name) && (
