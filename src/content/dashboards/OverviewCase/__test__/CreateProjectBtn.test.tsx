@@ -2,7 +2,7 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import CreateProjectBtn from '../CreateProjectBtn';
 
-describe('CreateProject', () => {
+describe('CreateProjectBtn', () => {
   test('opens and closes the create project dialog', async () => {
     render(<CreateProjectBtn />);
 
