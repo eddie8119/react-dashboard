@@ -59,7 +59,12 @@ const AddFirm = () => {
           />
         </Grid>
         <Grid item xs={2}>
-          <Button type="submit" variant="contained" style={{ width: '50%' }}>
+          <Button
+            type="submit"
+            role="create-firmType"
+            variant="contained"
+            style={{ width: '50%' }}
+          >
             create
           </Button>
         </Grid>
