@@ -13,6 +13,7 @@ describe('AddFirm', () => {
     await userEvent.type(firmNameInput, 'New Firm');
     userEvent.click(createBtn);
 
+    //問題:半對 顯示綠色與紅色 顯示AxiosError: Network Error
     // Wait for the form to reset after submission 注意這 一開始沒用
     await waitFor(() => {
       expect(firmNameInput).toHaveValue('');
