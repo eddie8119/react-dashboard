@@ -127,7 +127,11 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
                 {t(`selection.unit-select.Select-Unit`)}
               </MenuItem>
               {unitLists.map((item) => (
-                <MenuItem key={item.id} value={item.unit}>
+                <MenuItem
+                  data-testid="unit-option"
+                  key={item.id}
+                  value={item.unit}
+                >
                   {t(`selection.unit-select.${item.unit}`)}
                 </MenuItem>
               ))}
