@@ -8,7 +8,7 @@ import { useForm } from 'react-hook-form';
 import { Select, Button, MenuItem } from '@mui/material';
 const PopUp = lazy(() => import('../../../components/PopUp'));
 
-interface TodoPanelProps {
+export interface TodoPanelProps {
   task: TaskData;
   index: number;
   firmTaskId: number;
@@ -183,6 +183,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
           {t(`btn-word.edit`)}
         </Button>
         <Button
+          data-testid="delete-comfirm-btn"
           type="button"
           onClick={handleDeletePopOpen}
           variant="contained"
@@ -194,6 +195,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
 
       {/* 彈窗 */}
       <PopUp
+        data-testid="delete-comfirm"
         openComfirmPop={openDeleteComfirmPop}
         handlePopClose={handleDeletePopClose}
         deleteOnClick={() => deleteTodo(task.id)}
