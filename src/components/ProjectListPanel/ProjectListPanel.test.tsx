@@ -1,6 +1,6 @@
 import { render, screen, logRoles } from '@testing-library/react';
-import ProjectListPanel from '../index';
-import { ProjectListContext } from '../../../context/ProjectListContext';
+import ProjectListPanel from './index';
+import { ProjectListContext } from '../../context/ProjectListContext';
 
 describe('ProjectListPanel', () => {
   test('should render the project List', async () => {
