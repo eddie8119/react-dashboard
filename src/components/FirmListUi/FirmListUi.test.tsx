@@ -1,7 +1,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
-import FirmListUi from '../index';
+import FirmListUi from './index';
 
 describe('FirmListUi', () => {
   const handleChoseFirm = vi.fn();
@@ -19,7 +19,6 @@ describe('FirmListUi', () => {
         handleChoseFirm={handleChoseFirm}
       />,
     );
-    screen.debug();
 
     const firmButtons = screen.getAllByRole('firm-button');
     // Check if the firm names are correctly displayed
