@@ -36,6 +36,7 @@ const ProjectListPanel = () => {
       <div className="grid grid-cols-1 gap-3 md:grid-cols-3">
         {projectListsdata.map((data) => (
           <div
+            data-testid="project-list-panel"
             key={data.id}
             className="container-box flex h-[150px] items-center justify-between bg-box-bg px-[30px]"
           >
