@@ -1,6 +1,12 @@
-import { render, screen, logRoles } from '@testing-library/react';
+import { vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import ProjectListPanel from './index';
 import { ProjectListContext } from '../../context/ProjectListContext';
+import useDateHandler from '../../hooks/useDateHandler';
+
+vi.mock('../../hooks/useDateHandler', () => {
+  return {};
+});
 
 describe('ProjectListPanel', () => {
   test('should render the project List', async () => {
@@ -97,15 +103,6 @@ describe('ProjectListPanel', () => {
       handleChangePagination: () => {}, // Add the missing properties
     };
 
-    const { container } = render(
-      <ProjectListContext.Provider value={mockContextValue}>
-        <ProjectListPanel />
-      </ProjectListContext.Provider>,
-    );
-    logRoles(container);
-
-    // const projectListPanels =
-    //   await screen.findAllByTestId('project-list-panel');
-    // expect(projectListPanels).toHaveLength(1);
+    render(<ProjectListPanel />);
   });
 });
