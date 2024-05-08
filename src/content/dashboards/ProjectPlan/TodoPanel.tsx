@@ -138,6 +138,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
       <form className="flex gap-3" onSubmit={handleSubmit(editTodoSubmit)}>
         <div className="flex w-[4%] items-center">{index + 1}</div>
         <Input
+          data-testid="todo-input"
           type="text"
           {...register('todo', {
             required: 'Todo is required',
@@ -147,6 +148,7 @@ const TodoPanel: FC<TodoPanelProps> = ({
           style={{ width: '16%' }}
         />
         <Input
+          data-testid="quantity-input"
           type="number"
           {...register('quantity')}
           style={{ width: '12%' }}
@@ -179,7 +181,12 @@ const TodoPanel: FC<TodoPanelProps> = ({
           {...register('cost')}
           style={{ width: '20%' }}
         />
-        <Button type="submit" variant="contained" style={{ width: '20px' }}>
+        <Button
+          data-testid="submit-button"
+          type="submit"
+          variant="contained"
+          style={{ width: '20px' }}
+        >
           {t(`btn-word.edit`)}
         </Button>
         <Button

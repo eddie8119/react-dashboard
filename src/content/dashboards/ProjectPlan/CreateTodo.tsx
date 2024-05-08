@@ -123,7 +123,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
               {...register('unit')}
               value={form.watch('unit')}
             >
-              <MenuItem value="">
+              <MenuItem value="" data-testid="unit-option-default">
                 {t(`selection.unit-select.Select-Unit`)}
               </MenuItem>
               {unitLists.map((item) => (
