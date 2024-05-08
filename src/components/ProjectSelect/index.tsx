@@ -51,11 +51,17 @@ const ProjectSelect = ({
             label="category"
             value={variables.filter.category}
             onChange={(event) => changeCategory(event)}
+            data-testid="category-select"
           >
             <MenuItem value="All">{t('selection.project-select.All')}</MenuItem>
             {projectTypeLists.map((item) => (
-              <MenuItem key={item.id} value={item.name}>
-                {t(`selection.project-select.${item.name}`)}
+              <MenuItem
+                data-testid="category-select-option"
+                key={item.id}
+                value={item.name}
+              >
+                {item.name}
+                {/* {t(`selection.project-select.${item.name}`)} */}
               </MenuItem>
             ))}
           </Select>
@@ -72,6 +78,7 @@ const ProjectSelect = ({
             label="Cost"
             value={variables.filter.costSort}
             onChange={(event) => changeCostSort(event)}
+            data-testid="cost-order-select"
           >
             <MenuItem value="">
               {t('selection.project-select.No-Order')}
@@ -83,7 +90,7 @@ const ProjectSelect = ({
               {t('selection.project-select.Descending-Order')}
             </MenuItem>
           </Select>
-        </FormControl>{' '}
+        </FormControl>
       </Grid>
       <Grid item>
         <TextField
@@ -91,6 +98,7 @@ const ProjectSelect = ({
           type="text"
           value={variables.filter.keyword}
           onChange={(event) => changeKeyword(event)}
+          data-testid="search-name"
         />
       </Grid>
     </Grid>
