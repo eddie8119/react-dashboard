@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import FirmListUi from './index';
@@ -20,14 +20,12 @@ describe('FirmListUi', () => {
       />,
     );
 
-    const firmButtons = screen.getAllByRole('firm-button');
+    const firmButtons = screen.getAllByTestId('firm-button');
     // Check if the firm names are correctly displayed
     expect(firmButtons).toHaveLength(2);
 
     // check if the correct function is called
-    userEvent.click(screen.getByText('Firm 1'));
-    await waitFor(() => {
-      expect(handleChoseFirm).toHaveBeenCalledWith('Firm 1');
-    });
+    await userEvent.click(screen.getByText('Firm 1'));
+    expect(handleChoseFirm).toHaveBeenCalledWith('Firm 1');
   });
 });
