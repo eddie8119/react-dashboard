@@ -25,8 +25,8 @@ describe('PopUp', () => {
     // Check if the dialog is open
     expect(dialog).toBeInTheDocument();
     // Check if the title and index are correctly displayed
-    expect(title).toBeInTheDocument();
-    expect(index).toBeInTheDocument();
+    expect(title).toHaveTextContent('Test Title');
+    expect(index).toHaveTextContent('Test Index');
   });
 
   test('PopUp can handle delete and close pop events', async () => {
@@ -44,10 +44,11 @@ describe('PopUp', () => {
     const deleteButton = screen.getByText('delete');
 
     // Simulate click events and check if the correct functions are called
-    userEvent.click(backButton);
-    await waitFor(() => expect(handlePopClose).toHaveBeenCalledTimes(1));
+    //優化: 找到關閉談窗的驗證方式 : (目前用過dialog與title .not.toBeInTheDocument 還失敗)
+    await userEvent.click(backButton);
+    expect(handlePopClose).toHaveBeenCalledTimes(1);
 
-    userEvent.click(deleteButton);
-    await waitFor(() => expect(deleteOnClick).toHaveBeenCalledTimes(1));
+    await userEvent.click(deleteButton);
+    expect(deleteOnClick).toHaveBeenCalledTimes(1);
   });
 });
