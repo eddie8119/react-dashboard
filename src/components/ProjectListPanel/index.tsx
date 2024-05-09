@@ -24,7 +24,10 @@ const ProjectListPanel = () => {
   ];
 
   return (
-    <div className="container-box flex h-[400px] w-full flex-col ">
+    <div
+      className="container-box flex h-[400px] w-full flex-col"
+      data-testid="ProjectListPanel"
+    >
       <Pagination
         count={pageCount}
         variant="outlined"

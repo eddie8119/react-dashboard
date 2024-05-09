@@ -1,14 +1,13 @@
-import { render, screen, logRoles } from '@testing-library/react';
-
+import { render, screen } from '@testing-library/react';
 import OverviewCase from '../index';
 
 describe('OverviewCase', () => {
-  test('should render the project List', async () => {
-    const { container } = render(<OverviewCase />);
-    logRoles(container);
+  test('should render the children components', () => {
+    render(<OverviewCase />);
 
-    // const projectListPanels =
-    //   await screen.findAllByTestId('project-list-panel');
-    // expect(projectListPanels).toHaveLength(1);
+    expect(screen.getByTestId('OverviewDashboard')).toBeInTheDocument();
+    expect(screen.getByTestId('create-project-btn')).toBeInTheDocument();
+    expect(screen.getByTestId('ProjectSelect')).toBeInTheDocument();
+    expect(screen.getByTestId('ProjectListPanel')).toBeInTheDocument();
   });
 });

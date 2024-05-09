@@ -35,7 +35,7 @@ const ProjectSelect = ({
   };
 
   return (
-    <Grid container spacing={1} alignItems="center">
+    <Grid container spacing={1} alignItems="center" data-testid="ProjectSelect">
       <header className="text-black">
         <h1>{t(`overviewCase.projectSelect.Projeect-Select`)}</h1>
       </header>
