@@ -21,7 +21,7 @@ const ProjectCostChart = () => {
   };
 
   return (
-    <div>
+    <div data-testid="project-cost-chart">
       <Doughnut
         data={data}
         width={'30%'}
