@@ -1,16 +1,10 @@
 import { useState, useEffect, useContext } from 'react';
 import ProjectContext from '../../context/ProjectContext';
 import { editProjectThirdParty } from '../../api/project';
-import { getFirmLists } from '../../api/firm';
-
-interface FirmObject {
-  id: number;
-  name: string;
-}
+import FirmListApi from './FirmListApi';
 
 const ChoseFirm = () => {
   const [thirdParties, setThirdParties] = useState<string[]>([]);
-  const [firmLists, setFirmLists] = useState<FirmObject[]>([]);
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
   //projectThirdPartyLists-目前專案有的協力廠商
@@ -43,6 +37,8 @@ const ChoseFirm = () => {
         id: Date.now(),
         name: firmName,
         taskLists: [],
+        sellingPrice: 0,
+        cost: 0,
       };
       updateFirmDataLists = [...projectThirdPartyLists, newFirmData];
 
@@ -54,15 +50,6 @@ const ChoseFirm = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await getFirmLists();
-      setFirmLists(response.data);
-    };
-
-    fetchData();
-  }, [firmLists]);
-
-  useEffect(() => {
     //將目前專案有的協力廠商 儲存到thirdParties
     const initProjectThirdPartyLists = projectThirdPartyLists.map(
       (firm) => firm.name,
@@ -71,23 +58,15 @@ const ChoseFirm = () => {
   }, [projectInfo]);
 
   return (
-    <div>
-      <h1 className="text-black">Create Construction Type</h1>
-      <div className="flex w-full flex-wrap  overflow-x-auto">
-        {firmLists.map((firm) => (
-          <div
-            key={firm.id}
-            className={`${thirdParties.includes(firm.name) ? 'bg-blue-700' : 'border-black text-black'} m-1 flex cursor-pointer items-center justify-center rounded-md border  p-4 `}
-            onClick={() => handleChoseFirm(firm.name)}
-          >
-            {firm.name}
-            {thirdParties.includes(firm.name) && (
-              <span className="ml-2 h-3 w-3 rounded-full bg-white" />
-            )}
-          </div>
-        ))}
-      </div>
-    </div>
+    <section className="container-box">
+      <header className="text-black">
+        <h1>Create Construction Type</h1>
+      </header>
+      <FirmListApi
+        thirdParties={thirdParties}
+        handleChoseFirm={handleChoseFirm}
+      />
+    </section>
   );
 };
 

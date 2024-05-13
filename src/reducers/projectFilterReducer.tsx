@@ -1,6 +1,6 @@
 // import { isUndefined } from 'lodash';
 
-interface Pagination {
+export interface Pagination {
   current: number;
   pageSize: number;
   showSizeChanger: boolean;
@@ -10,21 +10,21 @@ interface Pagination {
 interface Filter {
   keyword: string;
   category: string;
+  costSort: string;
 }
 export interface IntState {
   filter: Filter;
   pagination: Pagination;
 }
 
-interface Payload {
-  category?: string;
-  keyword?: string;
-  pagination?: number[];
-  sort?: string;
-}
+type Payload =
+  | { category: string }
+  | { keyword: string }
+  | { current: number }
+  | { costSort: string };
 
-interface Action {
-  payload?: Payload;
+export interface Action {
+  payload: Payload;
   type: string;
 }
 
@@ -32,11 +32,11 @@ const DEFAULT_PAGINATION: Pagination = {
   current: 1,
   pageSize: 6,
   showSizeChanger: true,
-  pageSizeOptions: [3, 6, 8],
+  pageSizeOptions: [6, 9, 12],
 };
 
 export const INITIAL_STATE: IntState = {
-  filter: { keyword: '', category: 'All' },
+  filter: { keyword: '', category: 'All', costSort: '' },
   pagination: DEFAULT_PAGINATION,
 };
 
@@ -52,24 +52,38 @@ const ProjectFilterReducer = (state: IntState, action: Action) => {
     case ActionTypes.CHANGE_KEYWORD:
       return {
         ...state,
-        filter: { ...state.filter, keyword: action.payload?.keyword },
+        filter: {
+          ...state.filter,
+          keyword: (action.payload as { keyword: string }).keyword,
+        },
         pagination: { ...state.pagination, current: 1 },
       };
     case ActionTypes.CHANGE_CATEGORY:
       return {
         ...state,
-        filter: { ...state.filter, category: action.payload?.category },
+        filter: {
+          ...state.filter,
+          category: (action.payload as { category: string }).category,
+        },
         pagination: { ...state.pagination, current: 1 },
       };
     case ActionTypes.CHANGE_PAGINATION:
       return {
         ...state,
-        pagination: { ...state.pagination, ...action.payload?.pagination },
+        pagination: {
+          ...state.pagination,
+          current: (action.payload as { current: number }).current,
+        },
       };
     case ActionTypes.CHANGE_SORT:
-      const newVariable = { ...state, sort: action.payload?.sort };
-      //   if (isUndefined(newVariable.sort.order)) delete newVariable['sort'];
-      return newVariable;
+      return {
+        ...state,
+        filter: {
+          ...state.filter,
+          costSort: (action.payload as { costSort: string }).costSort,
+        },
+        pagination: { ...state.pagination, current: 1 },
+      };
     default:
       throw new Error(`不存在的 action type: ${action.type}`);
   }

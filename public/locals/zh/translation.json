@@ -10,5 +10,34 @@
       "material-stock": "材料進貨",
       "project-profit": "專案利潤圖表"
     }
+  },
+  "input-label": {
+    "Name": "名稱",
+    "FileNumber": "專案編號",
+    "Category": "類別",
+    "Search-Name": "搜尋名稱"
+  },
+  "selection": {
+    "project-select": {
+      "All": "全部",
+      "House": "住宅",
+      "Mansion": "豪宅",
+      "Commercial": "商業",
+      "Office": "辦公室",
+      "Search-Name": "搜尋名稱"
+    }
+  },
+  "overviewCase": {
+    "overviewDashboard": {
+      "Project-Cost": "專案成本",
+      "Project-Revenue": "專案收入",
+      "Project-Profit": "專案利潤"
+    },
+    "createProject": {
+      "Create-Project": "建立專案"
+    },
+    "projectSelect": {
+      "Projeect-Select": "篩選專案"
+    }
   }
 }

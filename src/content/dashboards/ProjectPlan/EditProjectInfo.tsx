@@ -27,7 +27,7 @@ interface FormValues {
 const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
-  const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeList[]>(
+  const [projectTypeLists, setProjectTypeLists] = useState<ProjectTypeObject[]>(
     [],
   );
   const form = useForm({
@@ -55,6 +55,7 @@ const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
       category,
       id: projectInfo.id,
       date: projectInfo.date,
+      sellingPrice: projectInfo.sellingPrice,
       picture: projectInfo.picture,
       cost: projectInfo.cost,
       thirdPartyLists: projectInfo.thirdPartyLists,
@@ -86,76 +87,82 @@ const EditProjectInfo: FC<EditProjectInfoProps> = ({ projectId }) => {
   }, [projectInfo, setValue]);
 
   return (
-    <div>
-      <form noValidate className="flex" onSubmit={handleSubmit(onTodoSubmit)}>
-        <Grid container spacing={2} alignItems="center">
-          <Grid item xs={3}>
-            <TextField
-              label="Name"
-              sx={{ width: '100%' }}
-              type="text"
-              {...register('name', {
-                required: 'Name is required',
-              })}
-              error={!!errors.name}
-              helperText={errors.name?.message}
-            />
-          </Grid>
-          <Grid item xs={2}>
-            <TextField
-              label="FileNumber"
-              sx={{ width: '100%' }}
-              type="text"
-              {...register('fileNumber', {
-                required: 'FileNumber is required',
-              })}
-              error={!!errors.fileNumber}
-              helperText={errors.fileNumber?.message}
-            />
-          </Grid>
-          <Grid item xs={2}>
-            <FormControl fullWidth error={!!errors.category}>
-              <InputLabel id="category-select-label">Category</InputLabel>
-              <Select
-                labelId="category-select-label"
-                id="category-select"
-                label="category"
-                {...register('category', {
-                  required: 'Category is required',
-                })}
-                error={!!errors.category}
-              >
-                {projectTypeLists.map((item) => (
-                  <MenuItem key={item.id} value={item.name}>
-                    {item.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={1}>
-            <FormControl fullWidth error={!!errors.status}>
-              <InputLabel id="type-select-label">Status</InputLabel>
-              <Select
-                labelId="type-select-label"
-                id="type-select"
-                label="Status"
-                {...register('status')}
-              >
-                <MenuItem value="Plan">Plan</MenuItem>
-                <MenuItem value="Progress">Progress</MenuItem>
-                <MenuItem value="Completed">Completed</MenuItem>
-              </Select>
-            </FormControl>
-          </Grid>
-          <Grid item xs={2}>
-            <Button type="submit" variant="contained" style={{ width: '100%' }}>
-              edit info
-            </Button>
-          </Grid>
+    <form noValidate className="flex" onSubmit={handleSubmit(onTodoSubmit)}>
+      <Grid container spacing={2} alignItems="center">
+        <Grid item xs={3}>
+          <TextField
+            label="Name"
+            sx={{ width: '100%' }}
+            type="text"
+            value={form.watch('name')}
+            {...register('name', {
+              required: 'Name is required',
+              validate: (value) =>
+                value.trim() !== '' || 'Cannot be only whitespace',
+            })}
+            error={!!errors.name}
+            helperText={errors.name?.message}
+          />
         </Grid>
-      </form>
-    </div>
+        <Grid item xs={2}>
+          <TextField
+            label="FileNumber"
+            sx={{ width: '100%' }}
+            type="text"
+            value={form.watch('fileNumber')}
+            {...register('fileNumber', {
+              required: 'FileNumber is required',
+              validate: (value) =>
+                value.trim() !== '' || 'Cannot be only whitespace',
+            })}
+            error={!!errors.fileNumber}
+            helperText={errors.fileNumber?.message}
+          />
+        </Grid>
+        <Grid item xs={2}>
+          <FormControl fullWidth error={!!errors.category}>
+            <InputLabel id="category-select-label">Category</InputLabel>
+            <Select
+              labelId="category-select-label"
+              id="category-select"
+              label="category"
+              value={form.watch('category')}
+              {...register('category', {
+                required: 'Category is required',
+              })}
+              error={!!errors.category}
+            >
+              {projectTypeLists.map((item) => (
+                <MenuItem key={item.id} value={item.name}>
+                  {item.name}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={1}>
+          <FormControl fullWidth error={!!errors.status}>
+            <InputLabel id="type-select-label">Status</InputLabel>
+            <Select
+              labelId="type-select-label"
+              id="type-select"
+              label="Status"
+              value={form.watch('status')}
+              {...register('status')}
+            >
+              <MenuItem value="Plan">Plan</MenuItem>
+              <MenuItem value="Progress">Progress</MenuItem>
+              <MenuItem value="Completed">Completed</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={2}>
+          <Button type="submit" variant="contained" style={{ width: '100%' }}>
+            edit info
+          </Button>
+        </Grid>
+      </Grid>
+    </form>
   );
 };
 

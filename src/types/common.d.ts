@@ -7,6 +7,7 @@ interface ProjectData {
     picture?: string;
     fileNumber: string;
     cost: number;
+    sellingPrice: number,
     category: string;   
     thirdPartyLists:ThirdPartyData[]
 }
@@ -15,6 +16,8 @@ interface ThirdPartyData {
     id: number;
     name: string;
     taskLists: TaskData[];
+    cost: number;
+    sellingPrice: number;
 }
 
 interface TaskData {
@@ -27,13 +30,19 @@ interface TaskData {
     price: number;
 }
 
+
 //選單菜單系列
-interface unitList {
-    id: number;
+interface UnitMenuObject {
+    id: string;
     unit: string;
 }
 
-interface ProjectTypeList {
-    id: number;
+interface ProjectTypeObject {
+    id: string;
     name: string;
 };
+
+interface FirmObject {
+    id: string;
+    name: string;
+}

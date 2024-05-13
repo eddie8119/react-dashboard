@@ -1,5 +1,7 @@
 import { FC, useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import TodoPanel from './TodoPanel';
+import TodoPanelChart from './TodoPanelChart';
 
 interface TodoListsAreaProps {
   firmTaskLists: TaskData[];
@@ -12,6 +14,7 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({
   firmTaskId,
   firmTaskName,
 }) => {
+  const { t } = useTranslation();
   const [firmTotalCost, setFirmTotalCost] = useState<number>(0);
 
   const handleFirmCostTotal = (): void => {
@@ -29,32 +32,46 @@ const TodoListsArea: FC<TodoListsAreaProps> = ({
   return (
     <div className="flex w-full flex-col gap-2">
       {firmTaskLists.length !== 0 && (
-        <div className=" flex items-center justify-between">
-          <div className="flex gap-2">
-            <p className="w-[20px]" />
-            <p className="w-[90px]">Title</p>
-            <p className="w-[70px]">Quantity</p>
-            <p className="w-[80px] text-center">unit</p>
-            <p className="w-[120px] text-center">Cost</p>
+        <>
+          <table>
+            <thead>
+              <tr className="flex w-full items-center gap-2">
+                <th className="w-[4%]" />
+                <th className="w-[16%] text-center">
+                  {t(`projectPlan.todoListsArea.Title`)}
+                </th>
+                <th className="w-[12%]">
+                  {t(`projectPlan.todoListsArea.Quantity`)}
+                </th>
+                <th className="w-[15%] text-center">
+                  {t(`projectPlan.todoListsArea.Unit`)}
+                </th>
+                <th className="w-[20%] text-center">
+                  {t(`projectPlan.todoListsArea.Cost`)}
+                </th>
+              </tr>
+            </thead>
+            <div className="flex h-[250px] w-full flex-col gap-2 overflow-y-auto">
+              {firmTaskLists.map((task, index) => (
+                <TodoPanel
+                  key={task.id}
+                  task={task}
+                  index={index}
+                  firmTaskId={firmTaskId}
+                  firmTaskLists={firmTaskLists}
+                />
+              ))}
+            </div>
+          </table>
+          <div className="flex w-[412px] justify-end">
+            <p>
+              {firmTaskName} {t(`projectPlan.todoListsArea.Cost-Total`)}:
+              <span className="ml-3">{firmTotalCost}</span>
+            </p>
           </div>
-        </div>
+          <TodoPanelChart firmTaskLists={firmTaskLists} />
+        </>
       )}
-      <div className="flex h-[250px] w-full flex-col gap-2 overflow-y-auto">
-        {firmTaskLists.map((task, index) => (
-          <TodoPanel
-            task={task}
-            index={index}
-            firmTaskId={firmTaskId}
-            firmTaskLists={firmTaskLists}
-          />
-        ))}
-      </div>
-      <div className="flex w-[412px] justify-end">
-        <p>
-          {firmTaskName} Cost Total:
-          <span className="ml-3">{firmTotalCost}</span>
-        </p>
-      </div>
     </div>
   );
 };

@@ -1,10 +1,12 @@
-import { useState, lazy, useContext, FC } from 'react';
+import { lazy, useContext, FC } from 'react';
 import CreateTodo from './CreateTodo';
 import TodoListsArea from './TodoListsArea';
 import { IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import ProjectContext from '../../../context/ProjectContext';
+import usePopup from '../../../hooks/usePopup';
 import { editProjectThirdParty } from '../../../api/project';
+
 const PopUp = lazy(() => import('../../../components/PopUp'));
 
 interface FirmTaskPanelProps {
@@ -12,25 +14,19 @@ interface FirmTaskPanelProps {
 }
 
 const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
-  const [openComfirmPop, setOpenComfirmPop] = useState<boolean>(false);
+  const { openComfirmPop, handlePopOpen, handlePopClose } = usePopup();
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
   const popPropsTitle = firmTask.name;
 
-  const handlePopOpen: () => void = () => {
-    setOpenComfirmPop(true);
-  };
-  const handlePopClose: () => void = () => {
-    setOpenComfirmPop(false);
-  };
-  const deleteThirdParty: () => void = async () => {
+  const deleteThirdParty = async (): Promise<void> => {
     const handleThirdPartyLists = projectInfo?.thirdPartyLists.filter(
       (item) => item.id !== firmTask.id,
     );
 
     try {
       await editProjectThirdParty(projectInfo.id, handleThirdPartyLists);
-      setOpenComfirmPop(false);
+      handlePopClose();
       handlerSetUpdateProjectInfo();
     } catch (error) {
       throw new Error(String(error));
@@ -38,12 +34,11 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
   };
 
   return (
-    <div
-      key={firmTask.id}
-      className="flex min-w-[550px] flex-col gap-6 border border-black p-4  text-black"
-    >
+    <div className="box-border flex min-h-[700px] min-w-[550px] flex-col gap-6 p-4 text-black">
       <div className="relative flex items-center justify-center">
-        <h1>{firmTask.name}</h1>
+        <header className="text-black">
+          <h1>{firmTask.name}</h1>
+        </header>
         <IconButton
           onClick={handlePopOpen}
           edge="end"
@@ -70,6 +65,7 @@ const FirmTaskPanel: FC<FirmTaskPanelProps> = ({ firmTask }) => {
 
       <CreateTodo firmTaskId={firmTask.id} />
       <TodoListsArea
+        key={firmTask.id}
         firmTaskId={firmTask.id}
         firmTaskLists={firmTask.taskLists}
         firmTaskName={firmTask.name}

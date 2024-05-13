@@ -10,5 +10,70 @@
       "material-stock": "Material Stock",
       "project-profit": "Project Profit"
     }
+  },
+  "input-label": {
+    "Name": "Name",
+    "FileNumber": "File Number",
+    "Category": "Category",
+    "Cost-Order": "Cost-Order",
+    "Search-Name": "Search Name",
+    "Todo": "Todo",
+    "Quantity": "Quantity",
+    "Unit": "Unit"
+  },
+  "input-sign": {
+    "nameRequired": "Name is required",
+    "fileNumberRequired": "FileNumber is required",
+    "categoryRequired": "Category is required",
+    "whitespaceSign": "Cannot be only whitespace"
+  },
+  "selection": {
+    "project-select": {
+      "All": "All",
+      "House": "House",
+      "Mansion": "Mansion",
+      "Commercial": "Commercial",
+      "Office": "Office",
+      "No-Order": "No Order",
+      "Search-Name": "Search Name",
+      "Ascending-Order": "Low To High",
+      "Descending-Order": "High To Low"
+    },
+    "unit-select": {
+      "Select-Unit": "Select Unit",
+      "cm": "cm",
+      "m": "m",
+      "m2": "m2"
+    }
+  },
+  "btn-word": {
+    "edit": "edit",
+    "delete": "delete"
+  },
+  "overviewCase": {
+    "overviewDashboard": {
+      "Project-Cost": "Project Cost",
+      "Project-Revenue": "Project Revenue",
+      "Project-Profit": "Project Profit"
+    },
+    "createProject": {
+      "Create-Project": "Create Project"
+    },
+    "projectSelect": {
+      "Projeect-Select": "Project Select"
+    }
+  },
+  "projectPlan": {
+    "createFirmTask": {
+      "Create-Firm-Task": "Create Firm Task",
+      "Add-Item": "Add Item"
+    },
+    "todoListsArea": {
+      "Title": "Title",
+      "Quantity": "Quantity",
+      "Unit": "Unit",
+      "Cost": "Cost",
+      "Cost-Total": "Cost Total"
+    }
   }
 }

@@ -1,7 +1,11 @@
-import React from 'react';
+import FirmListPannel from './FirmListPannel';
 
 const MaterialLibrary = () => {
-  return <div>MaterialLibrary</div>;
+  return (
+    <main className="outlat-container">
+      <FirmListPannel />
+    </main>
+  );
 };
 
 export default MaterialLibrary;

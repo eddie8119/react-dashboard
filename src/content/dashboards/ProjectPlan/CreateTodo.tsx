@@ -1,8 +1,9 @@
-import { useEffect, useState, useContext, FC } from 'react';
+import { useContext, FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useForm } from 'react-hook-form';
 import ProjectContext from '../../../context/ProjectContext';
+import TaskContext from '../../../context/TaskContext';
 import { editProjectThirdParty } from '../../../api/project';
-import { getUnitLists } from '../../../api/unit';
 
 import {
   TextField,
@@ -24,9 +25,10 @@ interface CreateTodoProps {
 }
 
 const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
+  const { t } = useTranslation();
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
-  const [unitLists, setUnitLists] = useState<unitList[]>([]);
+  const { unitLists } = useContext(TaskContext);
 
   const form = useForm<FormValues>({
     defaultValues: {
@@ -77,50 +79,60 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
     }
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await getUnitLists();
-      setUnitLists(response.data);
-    };
-    fetchData();
-  }, []);
-
   return (
     <form
       noValidate
       className="grid grid-cols-1 gap-3"
       onSubmit={handleSubmit(onTodoSubmit)}
     >
-      <p>add construction item</p>
+      <header className="text-black">
+        <h3>{t(`projectPlan.createFirmTask.Add-Item`)}</h3>
+      </header>
       <Grid container spacing={1} alignItems="center">
         <Grid item xs={6}>
           <TextField
-            label="Todo"
+            label={t('input-label.Todo')}
             type="text"
+            value={form.watch('todo')}
             {...register('todo', {
               required: 'Todo is required',
+              validate: (value) =>
+                value.trim() !== '' || t('input-sign.whitespaceSign'),
             })}
             error={!!errors.todo}
             helperText={errors.todo?.message}
           />
         </Grid>
         <Grid item xs={3}>
-          <TextField label="Quantity" type="number" {...register('quantity')} />
+          <TextField
+            label={t('input-label.Quantity')}
+            type="number"
+            value={form.watch('quantity') || ''}
+            {...register('quantity')}
+          />
         </Grid>
         <Grid item xs={3}>
           <FormControl fullWidth>
-            <InputLabel id="unit-select-label">unit</InputLabel>
+            <InputLabel id="unit-select-label">
+              {t('input-label.Unit')}
+            </InputLabel>
             <Select
               labelId="unit-select-label"
               id="unit-select"
               label="Unit"
               {...register('unit')}
-              value={form.watch('unit') || ''} //表單重置後，顯示空值
+              value={form.watch('unit')}
             >
-              <MenuItem value="">Select Unit</MenuItem>
+              <MenuItem value="" data-testid="unit-option-default">
+                {t(`selection.unit-select.Select-Unit`)}
+              </MenuItem>
               {unitLists.map((item) => (
-                <MenuItem key={item.id} value={item.unit}>
-                  {item.unit}
+                <MenuItem
+                  data-testid="unit-option"
+                  key={item.id}
+                  value={item.unit}
+                >
+                  {t(`selection.unit-select.${item.unit}`)}
                 </MenuItem>
               ))}
             </Select>
@@ -128,7 +140,7 @@ const CreateTodo: FC<CreateTodoProps> = ({ firmTaskId }) => {
         </Grid>
       </Grid>
       <Button type="submit" variant="contained" style={{ width: '100%' }}>
-        Add item
+        {t(`projectPlan.createFirmTask.Add-Item`)}
       </Button>
     </form>
   );

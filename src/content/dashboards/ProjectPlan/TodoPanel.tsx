@@ -1,13 +1,14 @@
 import { useState, lazy, useContext, useEffect, FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import ProjectContext from '../../../context/ProjectContext';
+import TaskContext from '../../../context/TaskContext';
 import { editProjectThirdParty } from '../../../api/project';
-import { getUnitLists } from '../../../api/unit';
 import Input from '@mui/material/Input';
 import { useForm } from 'react-hook-form';
-import { TextField, Button, MenuItem } from '@mui/material';
+import { Select, Button, MenuItem } from '@mui/material';
 const PopUp = lazy(() => import('../../../components/PopUp'));
 
-interface TodoPanelProps {
+export interface TodoPanelProps {
   task: TaskData;
   index: number;
   firmTaskId: number;
@@ -27,11 +28,12 @@ const TodoPanel: FC<TodoPanelProps> = ({
   firmTaskId,
   firmTaskLists,
 }) => {
+  const { t } = useTranslation();
   const { projectInfo, handlerSetUpdateProjectInfo } =
     useContext(ProjectContext);
+  const { unitLists } = useContext(TaskContext);
   const [openDeleteComfirmPop, setOpenDeleteComfirmPop] =
     useState<boolean>(false);
-  const [unitLists, setUnitLists] = useState<unitList[]>([]);
 
   const form = useForm({
     defaultValues: {
@@ -42,7 +44,11 @@ const TodoPanel: FC<TodoPanelProps> = ({
     },
   });
   const { setValue } = useForm();
-  const { register, handleSubmit } = form;
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = form;
 
   const handleDeletePopOpen: () => void = () => {
     setOpenDeleteComfirmPop(true);
@@ -57,16 +63,32 @@ const TodoPanel: FC<TodoPanelProps> = ({
   ): Promise<void> => {
     const updateThirdPartyLists = projectInfo.thirdPartyLists.map((item) => {
       if (item.id === firmTaskId) {
+        const totalCost = updateData.reduce(
+          (sum, item) => sum + item.cost * item.quantity,
+          0,
+        );
+
         return {
           ...item,
+          cost: totalCost,
           taskLists: updateData,
         };
       }
       return item;
     });
 
+    //專案總成本 也要更新 計算project.cost
+    const projectCost = updateThirdPartyLists.reduce(
+      (sum, item) => sum + item.cost,
+      0,
+    );
+
     try {
-      await editProjectThirdParty(projectInfo.id, updateThirdPartyLists);
+      await editProjectThirdParty(
+        projectInfo.id,
+        updateThirdPartyLists,
+        projectCost,
+      );
       handlerSetUpdateProjectInfo();
     } catch (error) {
       throw new Error(String(error));
@@ -105,46 +127,37 @@ const TodoPanel: FC<TodoPanelProps> = ({
   };
 
   useEffect(() => {
-    const fetchInitData = async () => {
-      const response = await getUnitLists();
-      setUnitLists(response.data);
-    };
-    fetchInitData();
-  }, []);
-
-  useEffect(() => {
     form.setValue('todo', task.todo);
     form.setValue('quantity', task.quantity);
     form.setValue('unit', task.unit);
     form.setValue('cost', task.cost);
   }, [task, setValue]);
 
-  const btnLists = [
-    {
-      id: 1,
-      name: 'delete',
-      color: 'bg-red-600',
-      hovercolor: 'bg-red-700',
-      action: handleDeletePopOpen,
-    },
-  ];
-
   return (
-    <div key={task.id} className=" flex items-center">
+    <>
       <form className="flex gap-3" onSubmit={handleSubmit(editTodoSubmit)}>
-        <div className="flex w-[20px] items-center">{index + 1}</div>
-        <Input type="text" {...register('todo')} style={{ width: '90px' }} />
+        <div className="flex w-[4%] items-center">{index + 1}</div>
         <Input
+          data-testid="todo-input"
+          type="text"
+          {...register('todo', {
+            required: 'Todo is required',
+            validate: (value) => value.trim() !== '',
+          })}
+          error={!!errors.todo}
+          style={{ width: '16%' }}
+        />
+        <Input
+          data-testid="quantity-input"
           type="number"
           {...register('quantity')}
-          style={{ width: '70px' }}
+          style={{ width: '12%' }}
         />
-        <div style={{ position: 'relative', width: '80px' }}>
-          <TextField
+        <div style={{ position: 'relative', width: '15%' }}>
+          <Select
             id="unit-select"
-            select
             variant="standard"
-            defaultValue={task.unit}
+            value={form.watch('unit')}
             {...register('unit')}
             style={{
               position: 'absolute',
@@ -159,41 +172,44 @@ const TodoPanel: FC<TodoPanelProps> = ({
                 {item.unit}
               </MenuItem>
             ))}
-          </TextField>
+          </Select>
         </div>
 
         <Input
           type="number"
           placeholder="Cost"
           {...register('cost')}
-          style={{ width: '100px' }}
+          style={{ width: '20%' }}
         />
-        <Button type="submit" variant="contained" style={{ width: '20px' }}>
-          edit
+        <Button
+          data-testid="submit-button"
+          type="submit"
+          variant="contained"
+          style={{ width: '20px' }}
+        >
+          {t(`btn-word.edit`)}
         </Button>
-
-        <div className="flex gap-2">
-          {btnLists.map((btn) => (
-            <button
-              onClick={btn.action}
-              key={btn.id}
-              className={`rounded-md  border border-transparent ${btn.color} px-3 py-2 text-center text-sm font-medium text-white hover:${btn.hovercolor}  focus:ring-2`}
-            >
-              {btn.name}
-            </button>
-          ))}
-        </div>
+        <Button
+          data-testid="delete-comfirm-btn"
+          type="button"
+          onClick={handleDeletePopOpen}
+          variant="contained"
+          style={{ width: '20px', backgroundColor: '#dc2626' }}
+        >
+          {t(`btn-word.delete`)}
+        </Button>
       </form>
 
       {/* 彈窗 */}
       <PopUp
+        data-testid="delete-comfirm"
         openComfirmPop={openDeleteComfirmPop}
         handlePopClose={handleDeletePopClose}
         deleteOnClick={() => deleteTodo(task.id)}
         popupTitle="Delete the task"
         popupIndex={`Are you sure you want to delete ${task.todo}?`}
       />
-    </div>
+    </>
   );
 };
 

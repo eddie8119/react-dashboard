@@ -6,7 +6,7 @@ interface PopUpProps {
   popupTitle: string;
   popupIndex: string;
   openComfirmPop: boolean;
-  deleteOnClick: () => void;
+  deleteOnClick: () => Promise<void>;
   handlePopClose: () => void;
 }
 const PopUp: FC<PopUpProps> = ({
