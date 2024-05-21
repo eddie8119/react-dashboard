@@ -14,7 +14,7 @@ const useProjectListsQuery = (variables: IntState) => {
     fetchData();
   }, [variables]);
 
-  const projectListsHandle = projectLists
+  const filteredProjectLists = projectLists
     .filter((project) => {
       return project.name.indexOf(filter.keyword) !== -1;
     })
@@ -24,16 +24,24 @@ const useProjectListsQuery = (variables: IntState) => {
       }
       return true;
     });
-  if (filter.costSort === 'ascending')
-    projectListsHandle.sort((a, b) => a.cost - b.cost);
-  if (filter.costSort === 'descending')
-    projectListsHandle.sort((a, b) => b.cost - a.cost);
+
+  let sortedProjectLists = [...filteredProjectLists];
+
+  if (filter.costSort === 'ascending') {
+    sortedProjectLists.sort((a, b) => a.cost - b.cost);
+  }
+
+  if (filter.costSort === 'descending') {
+    sortedProjectLists.sort((a, b) => b.cost - a.cost);
+  }
+
+  const paginatedProjectLists = sortedProjectLists.slice(
+    (pagination.current - 1) * pagination.pageSize,
+    (pagination.current - 1) * pagination.pageSize + pagination.pageSize,
+  );
 
   return {
-    projectListsdata: projectListsHandle.slice(
-      (pagination.current - 1) * pagination.pageSize,
-      (pagination.current - 1) * pagination.pageSize + pagination.pageSize,
-    ),
+    projectListsdata: paginatedProjectLists,
   };
 };
 
