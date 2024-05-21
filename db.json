@@ -67,19 +67,23 @@
     {
       "id": "8",
       "name": "油漆"
+    },
+    {
+      "id": "1716272998999",
+      "name": "測試"
     }
   ],
   "projectLists": [
     {
       "name": "大安蔡宅",
-      "status": "Completed",
+      "status": "Plan",
       "fileNumber": "001",
       "category": "Mansion",
       "id": "0",
       "date": "2024-03-20T15:03:05.138Z",
+      "sellingPrice": 210000,
       "picture": " ",
       "cost": 169000,
-      "sellingPrice": 210000,
       "thirdPartyLists": [
         {
           "id": 2,
@@ -155,14 +159,14 @@
     },
     {
       "name": "松山石宅",
-      "status": "Completed",
+      "status": "Plan",
       "fileNumber": "002",
       "category": "Mansion",
       "id": "1",
       "date": "2024-03-22T15:03:05.138Z",
+      "sellingPrice": 99000,
       "picture": " ",
       "cost": 88000,
-      "sellingPrice": 99000,
       "thirdPartyLists": [
         {
           "id": 2,
@@ -215,6 +219,79 @@
               "stock": 0
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "大安牙醫",
+      "status": "Plan",
+      "fileNumber": "124g",
+      "category": "Commercial",
+      "id": "1716265373821",
+      "date": "2024-05-21T04:22:53.821Z",
+      "sellingPrice": 0,
+      "picture": "",
+      "cost": 107000,
+      "thirdPartyLists": [
+        {
+          "id": 1716265435514,
+          "name": "泥做",
+          "taskLists": [
+            {
+              "todo": "泥做",
+              "unit": "cm",
+              "quantity": 1000,
+              "cost": 100,
+              "id": 1716265450186,
+              "price": 0,
+              "stock": 0
+            },
+            {
+              "todo": "泥做",
+              "unit": "",
+              "quantity": 250,
+              "cost": 4,
+              "id": 1716265463797,
+              "price": 0,
+              "stock": 0
+            },
+            {
+              "todo": "泥做",
+              "unit": "",
+              "quantity": 1000,
+              "cost": 6,
+              "id": 1716265465431,
+              "price": 0,
+              "stock": 0
+            },
+            {
+              "todo": "泥做",
+              "unit": "",
+              "quantity": 0,
+              "cost": 0,
+              "id": 1716265467017,
+              "price": 0,
+              "stock": 0
+            },
+            {
+              "todo": "aa",
+              "unit": "",
+              "quantity": 0,
+              "cost": 0,
+              "id": 1716265468561,
+              "price": 0,
+              "stock": 0
+            }
+          ],
+          "sellingPrice": 0,
+          "cost": 107000
+        },
+        {
+          "id": 1716265436778,
+          "name": "門框",
+          "taskLists": [],
+          "sellingPrice": 0,
+          "cost": 0
         }
       ]
     }
