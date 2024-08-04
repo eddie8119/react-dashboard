@@ -18,6 +18,7 @@ interface FormValues {
   fileNumber: string;
   category: string;
 }
+
 const CreateProject = ({
   handleCreateProjectClose,
 }: {
@@ -81,6 +82,7 @@ const CreateProject = ({
     <form noValidate onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={2} width={400} className="box-border p-5">
         <TextField
+          data-testid="name-input"
           label={t('input-label.Name')}
           type="text"
           {...register('name', {
@@ -92,6 +94,7 @@ const CreateProject = ({
           helperText={errors.name?.message}
         />
         <TextField
+          data-testid="file-number-input"
           label={t('input-label.FileNumber')}
           type="text"
           {...register('fileNumber', {
@@ -107,6 +110,7 @@ const CreateProject = ({
             {t('input-label.Category')}
           </InputLabel>
           <Select
+            data-testid="category-select"
             labelId="type-select-label"
             id="type-select"
             label="Category"
@@ -117,7 +121,11 @@ const CreateProject = ({
             error={!!errors.category}
           >
             {projectTypeLists.map((item) => (
-              <MenuItem key={item.id} value={item.name}>
+              <MenuItem
+                data-testid="project-type-option"
+                key={item.id}
+                value={item.name}
+              >
                 {t(`selection.project-select.${item.name}`)}
               </MenuItem>
             ))}
@@ -126,7 +134,7 @@ const CreateProject = ({
             <FormHelperText>{errors.category.message}</FormHelperText>
           )}
         </FormControl>
-        <Button type="submit" variant="contained">
+        <Button data-testid="submit-btn" type="submit" variant="contained">
           {t(`overviewCase.createProject.Create-Project`)}
         </Button>
       </Stack>
