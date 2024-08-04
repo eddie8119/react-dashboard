@@ -17,7 +17,7 @@ describe('OverviewDashboard', () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText('overviewCase.overviewDashboard.Project-Revenue'),
-    ).t   oBeInTheDocument();
+    ).toBeInTheDocument();
     expect(
       screen.getByText('overviewCase.overviewDashboard.Project-Profit'),
     ).toBeInTheDocument();
