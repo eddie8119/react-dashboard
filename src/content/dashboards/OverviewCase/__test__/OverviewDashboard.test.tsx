@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import { vi } from 'vitest';
-import '@testing-library/jest-dom';
 import OverviewDashboard from '../OverviewDashboard.tsx';
 
 vi.mock('react-i18next', () => ({
@@ -18,7 +17,7 @@ describe('OverviewDashboard', () => {
     ).toBeInTheDocument();
     expect(
       screen.getByText('overviewCase.overviewDashboard.Project-Revenue'),
-    ).toBeInTheDocument();
+    ).t   oBeInTheDocument();
     expect(
       screen.getByText('overviewCase.overviewDashboard.Project-Profit'),
     ).toBeInTheDocument();

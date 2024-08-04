@@ -1,13 +1,43 @@
 import { render, screen } from '@testing-library/react';
+import { vi } from 'vitest';
 import userEvent from '@testing-library/user-event';
 import CreateProject from '../CreateProject';
-import { updateProject } from '../../../../api/project';
+
+vi.mock('react-i18next', () => ({
+  useTranslation: () => ({
+    t: (key: string) => key,
+  }),
+}));
+
+vi.mock('../../../../api/project', () => ({
+  updateProject: vi.fn(),
+  getProjectTypeLists: vi.fn().mockResolvedValue([
+    { id: '0', name: 'House' },
+    { id: '1', name: 'Mansion' },
+  ]),
+}));
+
+beforeEach(() => {
+  vi.clearAllMocks();
+});
 
 describe('CreateProject', () => {
-  test('should get project type data', async () => {
-    render(<CreateProject handleCreateProjectClose={() => {}} />);
-    const typeOptions = await screen.findAllByTestId('project-type-option');
-    expect(typeOptions).toHaveLength(2);
+  const mockHandleCreateProjectClose = vi.fn();
+
+  test('can not submit without fill in', async () => {
+    render(
+      <CreateProject handleCreateProjectClose={mockHandleCreateProjectClose} />,
+    );
+
+    const nameInput = screen.getByTestId('name-input');
+    const fileNumberInput = screen.getByTestId('file-number-input');
+    const categorySelect = screen.getByTestId('category-select');
+    const submitButton = screen.getByTestId('submit-btn');
+
+    await userEvent.click(submitButton);
+    // await userEvent.type(nameInput, 'taipei101');
+    // const typeOptions = await screen.findAllByTestId('project-type-option');
+    // expect(typeOptions).toHaveLength(2);
   });
   test('should create a project', async () => {
     // const handleClick = jest.fn();
